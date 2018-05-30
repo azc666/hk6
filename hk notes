@@ -1,0 +1,29 @@
+BC Display - s/b no keyline, s/b same overall size as fyi (image of bc is fine), background can still be lighter to match fyi display
+
+DONE  ----- BC descriptions need to include engraved logo or engraved card
+
+FYI template has weak top border
+
+1/10/18
+removed qty 100
+added name and email in cart etc.
+
+password reset enmails
+/Volumes/Code/sites/hk5/resources/views/vendor/notifications/email.blade.php:
+   46  {{ $salutation }}
+   47  @else
+   48: Regards,<br>{{ config('app.name') }}
+   49  @endif
+   50  
+
+/Volumes/Code/sites/hk5/vendor/laravel/framework/src/Illuminate/Notifications/resources/views/email.blade.php:
+   46  {{ $salutation }}
+   47  @else
+   48: Regards,<br>{{ config('app.name') }}
+   49  @endif
+   50  
+
+/Volumes/Code/sites/hk5/vendor/laravel/framework/src/Illuminate/Notifications/Messages/SimpleMessage.php:
+
+
+APP_URL=http://hk5.test

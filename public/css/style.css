@@ -1,0 +1,103 @@
+body {
+    background-color: #b1c4dd;
+}
+
+.header-background {
+    background: lightslategrey;
+}
+
+.body-background {
+    background: white;
+    border-radius: 5px 5px 0 0;
+}
+
+.footer-background {
+    background: white;
+    border-radius: 0 0 5px 5px;
+}
+
+h2.page_head {
+    color: #4c4c4c;
+}
+
+.footer-img-center {
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.aside {
+    /*width:275px;
+    float:right;*/
+    border-left:1px dashed #aaa;
+    padding-left:15px;
+}
+
+.widget {
+    margin-bottom:20px;
+}
+.widget h4 {
+    margin:0 0 10px 0;
+    padding:0 5px;
+    font-weight:normal;
+    border-bottom:1px solid #ddd;
+}
+.widget h5 {
+    margin:0 0 10px 0;
+    padding:0 5px;
+    font-weight:normal;
+}
+.widget .inner {
+    margin:0 10px;
+}
+
+#menu_text {
+    display: inline;    
+    padding-left: 0px;
+    font-size: .7em;
+    font-weight: bold;
+    margin-left: 20mm;
+    line-height: 2em;
+}
+
+a.menu_link:link {
+    text-decoration: none;
+    color: #4c4c4c;
+}
+
+a.menu_link:hover, a.menu_link:active {
+    color: royalblue;
+}
+
+#menu_bullet {
+    background-repeat: no-repeat;
+    height: 20px;
+    padding-left: 0;
+    cursor: pointer;
+}
+
+#menu_bullet:hover {
+    background-image: url('/../assets/arrow.gif');
+    background-size: 60px 20px;
+    color: royalblue;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #333;
+    }
+}
+
+.input-group-addon {
+    min-width:225px;
+    text-align:left;
+}
+
+.profile .input-group-addon {
+    min-width:5px;
+    text-align:left;
+}
+

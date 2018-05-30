@@ -1,0 +1,76 @@
+/* Structure
+------------------------------------------*/
+
+#coolMenu ul {
+	list-style: none;
+	width: 100%;
+}
+#coolMenu {
+	float: left;
+	width: 100%;
+}
+#coolMenu > li {
+	float: left;
+}
+#coolMenu li a {
+	display: block;
+	height: 2em;
+	line-height: 2em;
+	padding: 0 1.5em;
+	text-decoration: none;
+}
+#coolMenu ul {
+	position: absolute;
+	display: none; width: 12.5%;
+	z-index: 999;
+}
+#coolMenu ul li a {
+	width: 90px;
+}
+/*#coolMenu :last-child {
+    float: right;
+}*/
+#cartright {
+	float: right;
+	font-family: Arial;
+	font-size: 14px;
+	color: #000;
+	font-weight: bold;
+}
+#coolMenu li:hover ul.noJS {
+	display: block; 
+	float:left;
+    /*border-right:10px;*/
+}
+
+/* Main menu
+------------------------------------------*/
+#coolMenu {
+	font-family: Arial;
+	font-size: 14px;
+	background: rgb(176, 196, 222);
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 0;
+}
+#coolMenu > li > a {
+	color: #000;
+	font-weight: bold;
+}
+#coolMenu > li:hover > a {
+	background: #fff;
+	color: #000;
+}
+
+
+/* Submenu
+------------------------------------------*/
+#coolMenu ul {
+	background: rgb(176, 196, 222);
+}
+#coolMenu ul li a {
+	color: #000;
+}
+#coolMenu ul li:hover a {
+	background: #fff;
+}

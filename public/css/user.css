@@ -1,0 +1,138 @@
+@charset "utf-8";
+
+/*CSS code for class dropt:*/
+/*span.dropt {border-bottom: thin dotted; background: #ffeedd;}*/
+span.dropt:hover {text-decoration: none; background: #ffffff; z-index: 6; }
+span.dropt span {position: absolute; left: -9999px;
+  margin: 20px 0 0 0; padding: 3px 3px 3px 3px;
+  border-style:solid; border-color:black; border-width:1px; z-index: 6;}
+span.dropt:hover span {left: 15%; background: #ffffff;} 
+span.dropt span {position: absolute; left: -9999px;
+  margin: 4px 0 0 0; padding: 3px 3px 3px 3px; 
+  border-style:solid; border-color:black; border-width:1px;}
+span.dropt:hover span {margin: 20px 0 0 200px; background: #ffffff; z-index:6;} 
+
+ul{
+  width:550px;
+  margin-bottom:20px;
+  overflow:hidden;
+  /*border-top:1px solid #ccc;*/
+}
+
+li{
+  line-height:1.8em;
+  /*border-bottom:1px solid #ccc;
+  float:left;*/
+/*  display:inline;
+}*/
+}
+
+#double li  { width:50%;} <span class="code-comment">/* 2 col */</span>
+#triple li  { width:33.333%; } <span class="code-comment">/* 3 col */</span>
+#quad li    { width:25%; } <span class="code-comment">/* 4 col */</span>
+#six li     { width:16.666%; } <span class="code-comment">/* 6 col */</span></code>
+
+.error {
+  color:red;
+}
+.recover {
+  width: 600px;
+}
+
+.form {
+  font-size: 1em;
+  width:625;
+}
+
+.form td {
+  color:green;
+  height:50px;
+}
+
+.dynlist{
+  color:#708090;
+  font-size: .9em;
+}
+
+.viewlist {
+  width:67%;
+  /*border:1;
+  cellspacing:0;
+  cellpadding:6;*/
+  font-size: .9em;
+}
+
+.viewlist a:link, a:visited {
+    text-decoration:none;
+    color:#000;
+    font-weight:bold;
+}
+.viewlist a:hover {
+    text-decoration:none;
+    color:royalblue;
+    /*font-size: 1.25em;*/
+}
+
+.cartlist {
+  width:67%;
+  /*border:1;
+  cellspacing:0;
+  cellpadding:6;*/
+  font-size: 1em;
+}
+
+.cartemaillist {
+  width:67%;
+  /*border:1;
+  cellspacing:0;
+  cellpadding:6;*/
+  font-size: 1em;
+}
+
+.cartlabelemaillist {
+  width:67%;
+  /*border:1;
+  cellspacing:0;
+  cellpadding:6;*/
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.cartconfirmlist {
+  width:67%;
+  /*border:1;
+  cellspacing:0;
+  cellpadding:6;*/
+  font-size: 1.1em;
+}
+
+.button {
+  font: 'Comic Sans MS'; 
+  font-size: 1em; 
+  color: black; 
+  background-color: LIGHTSTEELBLUE;
+  border-radius: 5px; 
+  border-style: 1pt solid grey;
+}
+
+.button_index {
+  /*font-size: 1.15em;*/
+  font-weight: bold;
+  margin-left: 20mm;
+  font: 'Comic Sans MS'; 
+  font-size: 1em; 
+  color: black; 
+  background-color: LIGHTSTEELBLUE;
+  border-radius: 5px; 
+  border-style: 1pt solid grey;
+}
+
+.proofbutton {
+  font: 'Comic Sans MS'; 
+  font-size: 1em; 
+  color: black; 
+  background-color: LIGHTSTEELBLUE;
+  border-radius: 5px; 
+  border-style: 1pt solid grey;
+  margin-left: 100px;
+}

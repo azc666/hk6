@@ -1,0 +1,3 @@
+{{-- {{ Cart::restore(Auth::user()->username) }} --}}
+
+{{-- {{ redirect('cart')->withSuccessMessage('Your cart has been successfully saved!') }} --}}

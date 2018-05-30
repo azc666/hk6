@@ -1,0 +1,320 @@
+.body {
+    margin: 0;
+    padding: 0;
+}
+
+.dropshadow {    
+    height: auto;
+    /*-webkit-box-shadow: -15px 13px 20px 3px rgba(0,0,0,0.91);
+    -moz-box-shadow: -15px 13px 20px 3px rgba(0,0,0,0.91);*/
+    box-shadow: 10px 10px 20px 3px rgba(170,170,170,0.91);
+}
+
+.bc_background {
+    background-image: url('/assets/mpdf/bc_template.jpg');
+    background-size:100%;
+    background-repeat:no-repeat;
+    padding-bottom: 0;
+    padding-top: 0;
+    min-height: 100%;
+    height: 100%;
+}
+
+.bc_name {
+    position: relative;
+    float:left;
+    text-align: left;
+    font-family: helveticaneueltstdmd;
+    /*color: #FF0000FF;*/
+    line-height: 125%;
+    margin-left: 19.5mm;
+    padding-top: 49mm;
+    font-size: 36pt;
+}
+
+.bc_title {
+    /*position: relative; */
+    float:left;
+    text-align: left;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 135%;
+    margin-left: 19.5mm;
+    font-size: 25pt;
+}
+
+.bc_address_Line1 {
+    position: relative;
+    text-align: right;
+    margin-right: 19.5mm;
+    padding-top: 3mm;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 125%;
+    font-size: 22pt;
+}
+
+.bc_address_Line1_1 {
+    position: relative;
+    text-align: right;
+    margin-right: 19.5mm;
+    padding-top: 13.5mm;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 125%;
+    font-size: 22pt;
+}
+
+.bc_address_Line2 {
+    position: relative;
+    text-align: right;
+    margin-right: 19.5mm;
+    /*padding-top: 3mm;*/
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 130.5%;
+    font-size: 22pt;
+}
+
+.bc_email {
+    position: relative;
+    text-align: right;
+    margin-right: 19.5mm;
+    /*padding-top: 1mm;*/
+    font-family: helveticaneueltstdmd;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 126%;
+    font-size: 22pt;
+}
+
+.fyi_background {
+    background-image: url('/assets/mpdf/fyi_template.jpg');
+    background-size:100%;
+    background-repeat:no-repeat;
+    padding-bottom: 0;
+    padding-top: 0;
+    min-height: 100%;
+    height: 100%;
+}
+
+.fyi_name {
+    position: relative;
+    text-align: left;
+    font-family: helveticaneueltstdmd;
+    /*color: #FF0000FF;*/
+    line-height: 125%;
+    margin-left: 37.5mm;
+    margin-bottom: 0;
+    padding-top: 358.5mm;
+    font-size: 41pt;
+    clear: both;
+}
+
+.fyi_title {
+    position: relative; 
+    text-align: left;
+    font-family: helveticaneueltstdlt;
+    line-height: 110%;
+    padding-top: .5mm;
+    padding-bottom: 0;
+    margin-left: 21mm;
+    font-size: 34pt;
+}
+
+.fyi_address_Line1 {
+    position: absolute; 
+    text-align: right;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 117%;
+    margin-bottom: 0;
+    padding-top: 32.5mm;
+    padding-right: 38.5mm;
+    font-size: 30pt;
+    clear: both;
+}
+
+.fyi_address_Line1_1 {
+    position: absolute; 
+    text-align: right;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 117%;
+    margin-bottom: 0;
+    padding-top: 45mm;
+    padding-right: 38.5mm;
+    font-size: 30pt;
+    clear: both;
+}
+
+.fyi_address_line2 {
+    position: relative; 
+    text-align: right;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 117%;
+    /*padding-top: .5mm;*/
+    padding-right: 38.5mm;
+    font-size: 30pt;
+}
+
+.fyi_email {
+    position: relative;
+    text-align: right;
+    font-family: helveticaneueltstdmd;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 117%;
+    /*padding-top: 20mm;*/
+    padding-right: 38.5mm;
+    font-size: 30pt; 
+}
+
+.bcfyi_background {
+    background-image: url('/assets/mpdf/bcfyi_template.jpg');
+    background-size:100%;
+    background-repeat:no-repeat;
+    padding-bottom: 0;
+    padding-top: 0;
+    min-height: 100%;
+    height: 100%;
+}
+
+.bcfyi_bc_name {
+    position: relative;
+    float:left;
+    text-align: left;
+    font-family: helveticaneueltstdmd;
+    /*color: #FF0000FF;*/
+    line-height: 145%;
+    margin-left: 37.5mm;
+    padding-top: 70.5mm;
+    font-size: 38pt;
+}
+
+.bcfyi_bc_title {
+    position: relative; 
+    float:left;
+    text-align: left;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 120%;
+    margin-left: 37.5mm;
+    font-size: 28.5pt;
+}
+
+.bcfyi_bc_address_line1 {
+    position: relative;
+    text-align: right;
+    margin-right: 96mm;
+    padding-top: 5mm;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 114%;
+    font-size: 28.5pt;
+}
+
+.bcfyi_bc_address_line1_1 {
+    position: relative;
+    text-align: right;
+    margin-right: 96mm;
+    padding-top: 17mm;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 114%;
+    font-size: 28.5pt;
+}
+
+.bcfyi_bc_address_line2 {
+    position: relative;
+    text-align: right;
+    margin-right: 96mm;
+    /*padding-top: 5mm;*/
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 114%;
+    font-size: 28.5pt;
+}
+
+.bcfyi_bc_email {
+    position: relative;
+    text-align: right;
+    font-family: helveticaneueltstdmd;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 117%;
+    /*padding-top: 20mm;*/
+    padding-right: 96mm;
+    font-size: 28.5pt; 
+}
+
+.bcfyi_fyi_name {
+    position: relative;
+    text-align: left;
+    font-family: helveticaneueltstdmd;
+    /*color: #FF0000FF;*/
+    line-height: 125%;
+    margin-left: 37mm;
+    padding-top: 183mm;
+    font-size: 40pt;
+}
+
+.bcfyi_fyi_address_line1 {
+    position: absolute; 
+    text-align: right;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 125%;
+    padding-top: 32mm;
+    padding-right: 39mm;
+    font-size: 28.5pt;
+}
+
+.bcfyi_fyi_address_line1_1 {
+    position: absolute; 
+    text-align: right;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 125%;
+    padding-top: 44mm;
+    padding-right: 39mm;
+    font-size: 28.5pt;
+}
+
+.bcfyi_fyi_address_line2 {
+    position: relative; 
+    text-align: right;
+    font-family: helveticaneueltstdlt;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 125%;
+    /*padding-top: 1mm;*/
+    padding-right: 39mm;
+    font-size: 28.5pt;
+}
+
+.bcfyi_fyi_email {
+    position: relative;
+    text-align: right;
+    font-family: helveticaneueltstdmd;
+    color: rgb(0,63,133);
+    /*color: #FF0000FF;*/
+    line-height: 125%;
+    /*padding-top: 20mm;*/
+    padding-right: 39mm;
+    font-size: 28.5pt; 
+}
