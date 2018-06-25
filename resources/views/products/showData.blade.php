@@ -15,7 +15,9 @@ Session::put('fax', $request->fax);
 Session::put('cell', $request->cell);
 // dd(Session::get('cell'));
 @endphp
-
+{{-- @php
+    dd('up to title');
+@endphp --}}
 {{-- ////////////////// Business Card //////////////// --}}    
     @if ($request->id == 101 || $request->id == 102 || $request->id == 103)
         <div class="bc_background">
@@ -65,6 +67,70 @@ Session::put('cell', $request->cell);
         </div>
     </div> {{-- close background class --}}
     @endif
+
+{{-- ////////////// Double Sided Business Card //////////// --}}    
+    @if ($request->id == 110 || $request->id == 111)
+
+    @php
+    dd('up to title');
+@endphp
+        <div class="dsbc_background">
+        <div class="dsbc_name">
+            {!! $request->name ?: '&nbsp;' !!}
+        </div>
+        <div class="dsbc_name2">
+            {!! $request->name ?: '&nbsp;' !!}
+        </div>
+        <div class="dsbc_title">
+            {!! $request->title ?: '&nbsp;' !!}
+        </div>
+        <div class="dsbc_title2">
+            {!! $request->title2 ?: '&nbsp;' !!}
+        </div>
+
+
+
+        @if ($request->address2 && $request->email && $phone != null)
+            <div class="bc_address_line1">
+                {{ $HKName }}
+            </div>
+        @else
+            <div class="bc_address_line1_1">
+                {{ $HKName }}
+            </div>
+        @endif   
+        <div class="bc_address_line2">
+            @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
+                @if ($request->address2)
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
+                @else
+                    {{ $request->address1 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
+                @endif
+            @elseif (Auth::user()->username == 'HK35')
+                @if ($request->address2)
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                @else
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                @endif    
+            @else
+                @if ($request->address2)
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
+                @else
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
+                @endif
+            @endif
+            <br>            
+            @if ($phone != null)
+                {{ $phone }} <br>
+            @endif 
+            
+        </div>   
+        <div class="bc_email">
+            {{ strtolower($HKEmail) }}
+        </div>
+    </div> {{-- close background class --}}
+    @endif
+
 
 {{-- //////////////////// FYI Pads /////////////////// --}}    
     @if ($request->id == 107 || $request->id == 108 || $request->id == 109)

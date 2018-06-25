@@ -29,10 +29,10 @@ class ProductController extends Controller
         if ($product->id == 101 || $product->id == 104 || $product->id == 107) {
             $titles = Title::where('type', 'Staff')->orderBy('title')->pluck('title', 'title');
         }
-        if ($product->id == 102 || $product->id == 105 || $product->id == 108) {
+        if ($product->id == 102 || $product->id == 105 || $product->id == 108 || $product->id == 110) {
             $titles = Title::where('type', 'Associate')->orderBy('title')->pluck('title', 'title');
         }
-        if ($product->id == 103 || $product->id == 106 || $product->id == 109) {
+        if ($product->id == 103 || $product->id == 106 || $product->id == 109 || $product->id == 111) {
             $titles = Title::where('type', 'Partner')->orderBy('title')->pluck('title', 'title');
         }
         return view('products.show', [$product->id], compact('product', 'category', 'request', 'titles'));
@@ -61,10 +61,10 @@ class ProductController extends Controller
         if ($request->id == 101 || $request->id == 104 || $request->id == 107) {
             $titles = Title::where('type', 'Staff')->orderBy('title')->pluck('title', 'title');
         }
-        if ($request->id == 102 || $request->id == 105 || $request->id == 108) {
+        if ($request->id == 102 || $request->id == 105 || $request->id == 108 || $request->id == 110) {
             $titles = Title::where('type', 'Associate')->orderBy('title')->pluck('title', 'title');
         }
-        if ($request->id == 103 || $request->id == 106 || $request->id == 109) {
+        if ($request->id == 103 || $request->id == 106 || $request->id == 109 || $request->id == 111) {
             $titles = Title::where('type', 'Partner')->orderBy('title')->pluck('title', 'title');
         }
 
@@ -155,6 +155,35 @@ class ProductController extends Controller
             ]);
         }
 
+//////////////// Double Sided Business Cards /////////////////        
+// dd($request->prod_name); 
+        if ($request->id == 110 || $request->id == 111) {
+ // dd($request->id);           
+// dd('hola');
+        
+
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'prod_layout', 'rowId', 'cartItem'), [
+                'mode'                 => '',
+                'format'               => array(300, 360),
+                'default_font_size'    => '12',
+                'default_font'         => 'sans-serif',
+                'margin_left'          => 0,
+                'margin_right'         => 0,
+                'margin_top'           => 0,
+                'margin_bottom'        => 0,
+                'margin_header'        => 0,
+                'margin_footer'        => 0,
+                'orientation'          => 'P',
+                'title'                => 'Laravel mPDF',
+                'author'               => '',
+                'watermark'            => 'PROOF',
+                'show_watermark'       => true,
+                'watermark_font'       => 'sans-serif',
+                'display_mode'         => 'fullpage',
+                'watermark_text_alpha' => 0.075,
+            ]);
+        }        
+
 ////////////////////// FYI Pads //////////////////////
         if ($request->id == 107 || $request->id == 108 || $request->id == 109) { 
             $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail'), [
@@ -223,6 +252,7 @@ class ProductController extends Controller
     }
 
 //////////////////////////////////////////////////////////////////////////////
+// ////////////////////  showEdit  /////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
     public function showEdit(Request $request, Product $product)
@@ -311,11 +341,7 @@ $cartItem = array(
             $pathToPdf = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.pdf';
             $pathToWhereJpgShouldBeStored = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.jpg';
         }
-//         $cartItem = Cart::get($rowId);
-//         Cart::search(function($cartItem, $rowId) {
-//     return $cartItem->id;
-// });
-        // dd($cartItem->name);
+
 //////////////// Business Cards /////////////////        
 // dd($request->prod_name); 
         if ($request->prod_id == 101 || $request->prod_id == 102 || $request->prod_id == 103 || $request->prod_name == "Staff Business Card" || $request->prod_name == "Associate Business Card" || $request->prod_name == "Partner Business Card") {
@@ -345,6 +371,36 @@ $cartItem = array(
                 'watermark_text_alpha' => 0.075,
             ]);
         }
+// 
+//////////////// Double Sided Business Cards /////////////////        
+dd($request->prod_id); 
+  dd('hola');       
+        if ($request->prod_id == 110 || $request->prod_id == 111) {
+           
+
+        
+
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'prod_layout', 'rowId', 'cartItem'), [
+                'mode'                 => '',
+                'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
+                'default_font_size'    => '12',
+                'default_font'         => 'sans-serif',
+                'margin_left'          => 0,
+                'margin_right'         => 0,
+                'margin_top'           => 0,
+                'margin_bottom'        => 0,
+                'margin_header'        => 0,
+                'margin_footer'        => 0,
+                'orientation'          => 'P',
+                'title'                => 'Laravel mPDF',
+                'author'               => '',
+                'watermark'            => 'PROOF',
+                'show_watermark'       => true,
+                'watermark_font'       => 'sans-serif',
+                'display_mode'         => 'fullpage',
+                'watermark_text_alpha' => 0.075,
+            ]);
+        }        
 
 /////////////////////// FYI Pads ///////////////////////        
         if ($request->prod_id == 107 || $request->prod_id == 108 || $request->prod_id == 109 || $request->prod_name == "Staff FYI Pads" || $request->prod_name == "Associate FYI Pads" || $request->prod_name == "Partner FYI Pads") { 
