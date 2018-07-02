@@ -55,11 +55,10 @@ class EditController extends Controller
 
         $item = Cart::get($rowId);
         $option = $item->options->merge([
+            
             'name' => Session::get('name'),
             'title' => Session::get('title'),
             'email' => Session::get('email'),
-            'proofPath' => $proofFilePath,
-            // 'community' => Session::get('community'),
             'address1' => Session::get('address1'),
             'address2' => Session::get('address2'),
             'city' => Session::get('city'),
@@ -68,8 +67,31 @@ class EditController extends Controller
             'phone' => Session::get('phone'),
             'fax' => Session::get('fax'),
             'cell' => Session::get('cell'),
-            // 'license' => Session::get('license'),
+
+            'name2' => Session::get('name2'),
+            'title2' => Session::get('title2'),
+            'emailf' => Session::get('emailf'),
+            'address1f' => Session::get('address1f'),
+            'address2f' => Session::get('address2f'),
+            'cityf' => Session::get('cityf'),
+            'statef' => Session::get('statef'),
+            'zipf' => Session::get('zipf'),
+            'phonef' => Session::get('phonef'),
+            'faxf' => Session::get('faxf'),
+            'cellf' => Session::get('cellf'),
+
+            'emailb' => Session::get('emailb'),
+            'address1b' => Session::get('address1b'),
+            'address2b' => Session::get('address2b'),
+            'cityb' => Session::get('cityb'),
+            'stateb' => Session::get('stateb'),
+            'zipb' => Session::get('zipb'),
+            'phoneb' => Session::get('phoneb'),
+            'faxb' => Session::get('faxb'),
+            'cellb' => Session::get('cellb'),
+
             'specialInstructions' => Session::get('specialInstructions'),
+            'proofPath' => $proofFilePath,
             'prod_name' => strip_tags(Session::get('prod_name')),
             'prod_id' => $request->prod_id,
         ]);

@@ -62,8 +62,18 @@
 
                         <td>
                             <strong>{{ strip_tags($item->name) }}</strong>
-                            <br>{!! $item->options->name !!} 
-                            <br>{!! $item->options->email !!} 
+                            @if ($item->options->name2)
+                                <br><br><strong>Front Side:</strong>
+                                <br>{!! $item->options->name !!} 
+                                <br>{!! $item->options->email !!}
+                                <br><br><strong>Reverse Side:</strong>
+                                <br>{!! $item->options->name2 !!} 
+                                <br>{!! $item->options->email2 !!}
+                            @else
+                                <br>{!! $item->options->name !!} 
+                                <br>{!! $item->options->email !!} 
+                            @endif
+                            
                             <br><br>
                              <div class="text-muted move-up">
                                 {!! nl2br($item->options->prod_description) !!} 
@@ -73,7 +83,7 @@
                         <td>
                         {!! Form::open(['route' => ['cart', 'method' => 'PATCH']]) !!}
                         
-                        @if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC')
+                        @if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC')
                             {!! Form::select('qty', array('Select Quantity', '250' => '250', '500' => '500'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
                         @endif
                         
@@ -105,7 +115,7 @@
                                     default: $bcfyi_qty = '4 FYI Pads'; 
                                 }
                             }
-                            if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
+                            if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC') {
                                 switch ($item->qty) {
                                     case '250': $bcfyi_qty = '250 Business Cards'; break;
                                     case '500': $bcfyi_qty = '500 Business Cards'; break;
@@ -180,6 +190,19 @@
                             <input type="hidden" name="phone" value="{{$item->options->phone}}">
                             <input type="hidden" name="fax" value="{{$item->options->fax}}">
                             <input type="hidden" name="cell" value="{{$item->options->cell}}">
+
+                            <input type="hidden" name="name2" value="{{$item->options->name2}}">
+                            <input type="hidden" name="title2" value="{{$item->options->title2}}">
+                            <input type="hidden" name="email2" value="{{$item->options->email2}}">
+                            <input type="hidden" name="address1b" value="{{$item->options->address1b}}">
+                            <input type="hidden" name="address2b" value="{{$item->options->address2b}}">
+                            <input type="hidden" name="city2" value="{{$item->options->city2}}">
+                            <input type="hidden" name="state2" value="{{$item->options->state2}}">
+                            <input type="hidden" name="zip2" value="{{$item->options->zip2}}">
+                            <input type="hidden" name="phone2" value="{{$item->options->phone2}}">
+                            <input type="hidden" name="fax2" value="{{$item->options->fax2}}">
+                            <input type="hidden" name="cell2" value="{{$item->options->cell2}}">
+
                             <input type="hidden" name="specialInstructions" value="{{$item->options->specialInstructions}}">
                             <input type="hidden" name="prod_name" value="{{ $item->options->prod_name }}">
                             {{ Session::put('prod_name', $item->options->prod_name) }}

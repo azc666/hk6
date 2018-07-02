@@ -438,9 +438,9 @@
 
   <div class="form-inline col-sm-12">
     <div class="form-group">
-        {!! Form::label('address1f', 'Address1:', ['class' => 'move-down col-sm-2 control-label']) !!}
+        {!! Form::label('address1', 'Address1:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-6 control-text move-down">
-          {!! Form::text('address1f', null, ['class' => 'form-control', 'placeholder' => 'Address1 Front']) !!}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {!! Form::text('address1', null, ['class' => 'form-control', 'placeholder' => 'Address1 Front']) !!}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </div>
       {!! Form::label('address1b', 'Address1:', ['class' => 'move-down sr-1 control-label']) !!}
       <div class="col-sm-6 control-text-zip move-down">
@@ -449,9 +449,9 @@
 
         <div class="form-inline col-sm-12">
     <div class="form-group">
-        {!! Form::label('address2f', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
+        {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-6 control-text move-down">
-          {!! Form::text('address2f', null, ['class' => 'form-control', 'placeholder' => 'Address2 Front']) !!}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {!! Form::text('address2', null, ['class' => 'form-control', 'placeholder' => 'Address2 Front']) !!}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </div>
       {!! Form::label('address2b', 'Address2:', ['class' => 'move-down sr-1 control-label']) !!}
       <div class="col-sm-6 control-text-zip move-down">
@@ -460,13 +460,13 @@
 
         <div class="form-inline col-sm-12">
     <div class="form-group">
-        {!! Form::label('cityf', 'City:', ['class' => 'move-down col-sm-2 control-label']) !!}
+        {!! Form::label('city', 'City:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-6 control-text move-down">
-          {!! Form::text('cityf', null, ['class' => 'form-control', 'placeholder' => 'City Front']) !!}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {!! Form::text('city', null, ['class' => 'form-control', 'placeholder' => 'City Front']) !!}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </div>
-      {!! Form::label('cityb', 'City:', ['class' => 'move-down sr-1 control-label']) !!}
+      {!! Form::label('city2', 'City:', ['class' => 'move-down sr-1 control-label']) !!}
       <div class="col-sm-6 control-text-zip move-down">
-          {!! Form::text('cityb', null, ['class' => 'form-control', 'placeholder' => 'City Back']) !!}
+          {!! Form::text('city2', null, ['class' => 'form-control', 'placeholder' => 'City Back']) !!}
       </div>
     {{-- </div> --}}
   {{-- </div> --}}
@@ -476,24 +476,24 @@
 {{-- <div class="form-inline"> --}}
     <div class="form-inline col-sm-12">
     <div class="form-group">
-        {!! Form::label('statef', 'State:', ['class' => 'move-down col-sm-2 control-label']) !!}
+        {!! Form::label('state', 'State:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-6 control-text move-down">
-          {!! Form::text('statef', null, ['class' => 'form-control', 'placeholder' => 'State Front']) !!}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {!! Form::text('state', null, ['class' => 'form-control', 'placeholder' => 'State Front']) !!}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </div>
-      {!! Form::label('stateb', 'State:', ['class' => 'move-down sr-1 control-label']) !!}
+      {!! Form::label('state2', 'State:', ['class' => 'move-down sr-1 control-label']) !!}
       <div class="col-sm-6 control-text-zip move-down">
-          {!! Form::text('stateb', null, ['class' => 'form-control', 'placeholder' => 'State Back']) !!}
+          {!! Form::text('state2', null, ['class' => 'form-control', 'placeholder' => 'State Back']) !!}
       </div>
 
    <div class="form-inline col-sm-12">
     <div class="form-group">
-        {!! Form::label('zipf', 'Zip:', ['class' => 'move-down col-sm-2 control-label']) !!}
+        {!! Form::label('zip', 'Zip:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-6 control-text move-down">
-          {!! Form::text('zipf', null, ['class' => 'form-control', 'placeholder' => 'Zip Front']) !!}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {!! Form::text('zip', null, ['class' => 'form-control', 'placeholder' => 'Zip Front']) !!}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </div>
       {!! Form::label('', '', ['class' => 'move-down sr-1 control-label']) !!}
       <div class="col-sm-6 control-text-zip move-down">
-          {!! Form::text('zipb', null, ['class' => 'form-control', 'placeholder' => 'Zip Back']) !!}
+          {!! Form::text('zip2', null, ['class' => 'form-control', 'placeholder' => 'Zip Back']) !!}
       </div>   
 
   
@@ -501,7 +501,7 @@
   {{-- <div class="col-xs-12" style="height:15px;"></div> --}}
   <div class="form-inline col-sm-12">
     <div class="form-group">
-      {!! Form::label('phone', 'Phone:', ['class' => 'move-down col-sm-2 control-label']) !!}
+      {!! Form::label('phonef', 'Phone:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-6 control-text move-down">
 
         {{-- Bogotá --}}
@@ -854,14 +854,14 @@
 
 </div>
         {{-- closes <div class="panel-body"> --}}
-        {{-- </div>  --}}
+        </div> 
         {{-- closes <div class="panel panel-primary space-above"> --}}
-      {{-- </div>  --}}
+      </div> 
 
 
 </div> {{-- closes <div class="col-md-7"> --}}
 </div> {{-- closes <div class="row body-background"> --}}
-  {{-- </div> --}}
+  </div>
 
 @endsection    
 

@@ -71,6 +71,9 @@ class ProductController extends Controller
         $numb = $request->phone;
         $numbfax = $request->fax;
         $numbcell = $request->cell;
+        $numb2 = $request->phone2;
+        $numbfax2 = $request->fax2;
+        $numbcell2 = $request->cell2;
 
         $phone = '';
         if (($request->phone) && ($request->fax || $request->cell)) {
@@ -78,11 +81,9 @@ class ProductController extends Controller
         } elseif (empty($request->fax) && empty($request->cell)) {
             $phone .= 'T ' . Phone::phoneNumber($numb);
         }
-
         if ($request->cell) {
             $phone .= 'M ' .  Phone::cellNumber($numbcell);
         }
-
         if (($request->cell) && ($request->fax)) {
             $phone .= ' | F ' . Phone::faxNumber($numbfax);
         } elseif ($request->fax && ($request->phone)) {
@@ -90,14 +91,36 @@ class ProductController extends Controller
         } elseif ($request->fax) {
             $phone .= 'F ' . Phone::faxNumber($numbfax);
         }
-
         if ((!$request->phone) && (!$request->fax && !$request->cell)) {
             $phone = null; 
+        } 
+
+        $phone2 = '';
+        if (($request->phone2) && ($request->fax2 || $request->cell2)) {
+            $phone2 .= 'T ' . Phone::phoneNumber($numb2) . ' | ';             
+        } elseif (empty($request->fax2) && empty($request->cell2)) {
+            $phone2 .= 'T ' . Phone::phoneNumber($numb2);
+        }
+        if ($request->cell2) {
+            $phone2 .= 'M ' .  Phone::cellNumber($numbcell2);
+        }
+        if (($request->cell2) && ($request->fax2)) {
+            $phone2 .= ' | F ' . Phone::faxNumber($numbfax2);
+        } elseif ($request->fax2 && ($request->phone2)) {
+            $phone2 .= 'F ' . Phone::faxNumber($numbfax2);
+        } elseif ($request->fax2) {
+            $phone2 .= 'F ' . Phone::faxNumber($numbfax2);
+        }
+        if ((!$request->phone2) && (!$request->fax2 && !$request->cell2)) {
+            $phone2 = null; 
         } 
 
         $request->merge(['phone' => Phone::phoneNumber($numb)]); 
         $request->merge(['fax' => Phone::faxNumber($numbfax)]);
         $request->merge(['cell' => Phone::cellNumber($numbcell)]);
+        $request->merge(['phone2' => Phone::phoneNumber($numb2)]); 
+        $request->merge(['fax2' => Phone::faxNumber($numbfax2)]);
+        $request->merge(['cell2' => Phone::cellNumber($numbcell2)]);
 
         // $categories = App\Category::all();
 
@@ -114,9 +137,11 @@ class ProductController extends Controller
 
         $HKEmail = '';
         $string = $request->email;
+        $string2 = $request->email2;
         $pattern = '^\@(.*)$^';
         $replacement = '@hklaw.com';
         $HKEmail = preg_replace($pattern, $replacement, $string);
+        $HKEmail2 = preg_replace($pattern, $replacement, $string2);
 
         $data = [];
 
@@ -133,7 +158,7 @@ class ProductController extends Controller
 ///////////////////// Business Cards ///////////////////////
       
         if ($request->id == 101 || $request->id == 102 || $request->id == 103) {
-            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail'), [
+            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2'), [
                 'mode'                 => '',
                 'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
                 'default_font_size'    => '12',
@@ -162,7 +187,7 @@ class ProductController extends Controller
 // dd('hola');
         
 
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'prod_layout', 'rowId', 'cartItem'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'numb2', 'numbfax2', 'numbcell2', 'phone', 'phone2', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2', 'prod_layout', 'rowId', 'cartItem'), [
                 'mode'                 => '',
                 'format'               => array(300, 360),
                 'default_font_size'    => '12',
@@ -186,7 +211,7 @@ class ProductController extends Controller
 
 ////////////////////// FYI Pads //////////////////////
         if ($request->id == 107 || $request->id == 108 || $request->id == 109) { 
-            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail'), [
+            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',
@@ -210,7 +235,7 @@ class ProductController extends Controller
 
 ////////////////////// Combo BC FYI Pads //////////////////////
         if ($request->id == 104 || $request->id == 105 || $request->id == 106) { 
-            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail'), [
+            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',
@@ -287,6 +312,9 @@ $cartItem = array(
         $numb = $request->phone;
         $numbfax = $request->fax;
         $numbcell = $request->cell;
+        $numb2 = $request->phone2;
+        $numbfax2 = $request->fax2;
+        $numbcell2 = $request->cell2;
 
         $phone = '';
         if (($request->phone) && ($request->fax || $request->cell)) {
@@ -294,7 +322,6 @@ $cartItem = array(
         } elseif (empty($request->fax) && empty($request->cell)) {
             $phone .= 'T ' . Phone::phoneNumber($numb);
         }
-
         if ($request->cell) {
             $phone .= 'M ' .  Phone::cellNumber($numbcell);
         }
@@ -305,14 +332,36 @@ $cartItem = array(
         } elseif ($request->fax) {
             $phone .= 'F ' . Phone::faxNumber($numbfax);
         }
-
         if ((!$request->phone) && (!$request->fax && !$request->cell)) {
             $phone = null; 
+        } 
+
+        $phone2 = '';
+        if (($request->phone2) && ($request->fax2 || $request->cell2)) {
+            $phone2 .= 'T ' . Phone::phoneNumber($numb2) . ' | ';             
+        } elseif (empty($request->fax2) && empty($request->cell2)) {
+            $phone2 .= 'T ' . Phone::phoneNumber($numb2);
+        }
+        if ($request->cell2) {
+            $phone2 .= 'M ' .  Phone::cellNumber($numbcell2);
+        }
+        if (($request->cell2) && ($request->fax2)) {
+            $phone2 .= ' | F ' . Phone::faxNumber($numbfax2);
+        } elseif ($request->fax2 && ($request->phone2)) {
+            $phone2 .= 'F ' . Phone::faxNumber($numbfax2);
+        } elseif ($request->fax2) {
+            $phone2 .= 'F ' . Phone::faxNumber($numbfax2);
+        }
+        if ((!$request->phone2) && (!$request->fax2 && !$request->cell2)) {
+            $phone2 = null; 
         } 
 
         $request->merge(['phone' => Phone::phoneNumber($numb)]); 
         $request->merge(['fax' => Phone::faxNumber($numbfax)]);
         $request->merge(['cell' => Phone::cellNumber($numbcell)]);
+        $request->merge(['phone2' => Phone::phoneNumber($numb2)]); 
+        $request->merge(['fax2' => Phone::faxNumber($numbfax2)]);
+        $request->merge(['cell2' => Phone::cellNumber($numbcell2)]);
 
         $HKName = '';
         if (Auth::user()->loc_num == 35) {
@@ -327,9 +376,11 @@ $cartItem = array(
 
         $HKEmail = '';
         $string = $request->email;
+        $string2 = $request->email2;
         $pattern = '^\@(.*)$^';
         $replacement = '@hklaw.com';
         $HKEmail = preg_replace($pattern, $replacement, $string);
+        $HKEmail2 = preg_replace($pattern, $replacement, $string2);
 // dd($request->phone);
         $data = [];
 
@@ -350,7 +401,7 @@ $cartItem = array(
             # code...
         
 
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'prod_layout', 'rowId', 'cartItem'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2', 'prod_layout', 'rowId', 'cartItem'), [
                 'mode'                 => '',
                 'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
                 'default_font_size'    => '12',
@@ -373,14 +424,14 @@ $cartItem = array(
         }
 // 
 //////////////// Double Sided Business Cards /////////////////        
-dd($request->prod_id); 
-  dd('hola');       
+// dd($request->prod_id); 
+//   dd('hola');       
         if ($request->prod_id == 110 || $request->prod_id == 111) {
            
 
         
 
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'prod_layout', 'rowId', 'cartItem'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'numb2', 'numbfax2', 'numbcell2', 'phone', 'phone2', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2', 'prod_layout', 'rowId', 'cartItem'), [
                 'mode'                 => '',
                 'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
                 'default_font_size'    => '12',
@@ -405,7 +456,7 @@ dd($request->prod_id);
 /////////////////////// FYI Pads ///////////////////////        
         if ($request->prod_id == 107 || $request->prod_id == 108 || $request->prod_id == 109 || $request->prod_name == "Staff FYI Pads" || $request->prod_name == "Associate FYI Pads" || $request->prod_name == "Partner FYI Pads") { 
             // dd($cartItem->options->prod_id);
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail', 'prod_layout', 'rowId', 'cartItem'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2', 'prod_layout', 'rowId', 'cartItem'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',
@@ -429,7 +480,7 @@ dd($request->prod_id);
 
         ////////////// Combo BC FYI Pads ////////////
         if ($request->prod_id == 104 || $request->prod_id == 105 || $request->prod_id == 106 || $request->prod_name == 'Staff BC + FYI Pads' || $request->prod_name == 'Associate BC + FYI Pads' || $request->prod_name == 'Partner BC + FYI Pads') { 
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail', 'prod_layout', 'rowId'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2', 'prod_layout', 'rowId'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',
@@ -472,7 +523,7 @@ Session::put('product_layout', $request->prod_layout);
         if ($request->prod_id == 103 || $request->prod_id == 106 || $request->prod_id == 109) {
             $titles = Title::where('type', 'Partner')->orderBy('title')->pluck('title', 'title');
         }
-        return view('products.edit', compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'titles', 'HKEmail', 'prod_layout', 'rowId'));
+        return view('products.edit', compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'numb2', 'numbfax2', 'numbcell2', 'phone2', 'titles', 'HKEmail', 'prod_layout', 'rowId'));
 
     }
 }

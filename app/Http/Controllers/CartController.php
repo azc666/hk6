@@ -82,7 +82,7 @@ class CartController extends Controller
 
         $prod_layout = Session::get('prod_layout');
 
-        if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
+        if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC') {
             switch (Session::get('qty')) {
                 case '250': $quantity = 250; break;
                 case '500': $quantity = 500; break;
@@ -114,18 +114,27 @@ class CartController extends Controller
             Cart::add($request->id, $request->name, $quantity, $price, [
                 'proofPath' => $proofFilePath,
                 'name' => Session::get('name'),
+                'name2' => Session::get('name2'),
                 'title' => Session::get('title'),
+                'title2' => Session::get('title2'),
                 'email' => Session::get('email'),
-                // 'community' => Session::get('community'),
+                'email2' => Session::get('email2'),
                 'address1' => Session::get('address1'),
                 'address2' => Session::get('address2'),
+                'address1b' => Session::get('address1'),
+                'address2b' => Session::get('address2b'),
                 'city' => Session::get('city'),
                 'state' => Session::get('state'),
                 'zip' => Session::get('zip'),
+                'city2' => Session::get('city2'),
+                'state2' => Session::get('state2'),
+                'zip2' => Session::get('zip2'),
                 'phone' => Session::get('phone'),
                 'fax' => Session::get('fax'),
                 'cell' => Session::get('cell'),
-                // 'license' => Session::get('license'),
+                'phone2' => Session::get('phone2'),
+                'fax2' => Session::get('fax2'),
+                'cell2' => Session::get('cell2'),
                 'specialInstructions' => Session::get('specialInstructions'),
                 'prod_name' => strip_tags(Session::get('prod_name')),
                 'prod_layout' => Session::get('prod_layout'),
@@ -158,7 +167,7 @@ class CartController extends Controller
                 
         if ($request->qty > 0) {
 
-            if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
+            if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC') {
                 switch ($request->qty) {
                     case '250': $bcfyi_qty = '250 Business Cards'; break;
                     case '500': $bcfyi_qty = '500 Business Cards'; break;

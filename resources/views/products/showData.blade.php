@@ -71,9 +71,9 @@ Session::put('cell', $request->cell);
 {{-- ////////////// Double Sided Business Card //////////// --}}    
     @if ($request->id == 110 || $request->id == 111)
 
-    @php
+{{--     @php
     dd('up to title');
-@endphp
+@endphp --}}
         <div class="dsbc_background">
         <div class="dsbc_name">
             {!! $request->name ?: '&nbsp;' !!}

@@ -67,13 +67,17 @@
 {{-- ////////////////// Double sided Business Card //////////////// --}}    
     @if ($request->prod_id == 110 || $request->prod_id == 111 || $request->prod_name == 'Partner Double Sided BC' )
         <div class="dsbc_background">
-       <div class="dsbc_name">
+       <div class="dsbcf_name">
             {!! $request->name ?: '&nbsp;' !!}
         </div>
-        <div class="dsbc_title">
+        <div class="dsbcf_title">
             {!! $request->title ?: '&nbsp;' !!}
         </div>
-        @if ($request->address2)
+
+        {{-- @php
+            dd($request->address2)
+        @endphp --}}
+        @if (!$request->address2)
             <div class="dsbcf_address_line1">
                 {{ $HKName }}
             </div>
@@ -85,42 +89,41 @@
 
         <div class="dsbcf_address_line2">
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
-                @if ($request->address2f)
-                    {{ $request->address1f }} <br> {{ $request->address2f }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
+                @if ($request->address2)
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
                 @else
-                    {{ $request->address1f }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
                 @endif
             @elseif (Auth::user()->username == 'HK35')
-                @if ($request->address2f)
-                    {{ $request->address1f }} <br> {{ $request->address2f }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                @if ($request->address2)
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
                 @else
-                    {{ $request->address1f }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
                 @endif    
             @else
-                @if ($request->address2f)
-                    {{ $request->address1f }} <br> {{ $request->address2f }} <br> {{ $request->cityf }}, {{ $request->statef }} {{ $request->zipf }}
+                @if ($request->address2)
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @else
-                    {{ $request->address1f }} <br> {{ $request->cityf }}, {{ $request->statef }} {{ $request->zipf }}
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @endif
             @endif
 <br>
             @if ($phone != null)
                 {{ $phone }} <br>
             @endif 
-            
         </div> 
-        <div class="dsbc_emailf">
+        <div class="dsbcf_email">
             {{ strtolower($HKEmail) }}
         </div>
 
-        <div class="dsbc_name2">
+        <div class="dsbcb_name">
             {!! $request->name2 ?: '&nbsp;' !!}
         </div>
         
-        <div class="dsbc_title2">
+        <div class="dsbcb_title">
             {!! $request->title2 ?: '&nbsp;' !!}
         </div>
-        @if ($request->address2b)
+        @if (!$request->address2b)
             <div class="dsbcb_address_line1">
                 {{ $HKName }}
             </div>
@@ -132,32 +135,32 @@
         <div class="dsbcb_address_line2">
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
                 @if ($request->address2b)
-                    {{ $request->address1b }} <br> {{ $request->address2b }} <br> {{ $request->cityb }} {{ $request->stateb }} {{ $request->zipb }}
+                    {{ $request->address1b }} <br> {{ $request->address2b }} <br> {{ $request->city2 }} {{ $request->state2 }} {{ $request->zip2 }}
                 @else
-                    {{ $request->address1b }} <br> {{ $request->cityb }} {{ $request->stateb }} {{ $request->zipb }}
+                    {{ $request->address1b }} <br> {{ $request->city2 }} {{ $request->state2 }} {{ $request->zip2 }}
                 @endif
             @elseif (Auth::user()->username == 'HK35')
                 @if ($request->address2b)
-                    {{ $request->address1b }} <br> {{ $request->address2b }} <br> {{ $request->cityb }}, {{ $request->stateb }}, {{ $request->zipb }}
+                    {{ $request->address1b }} <br> {{ $request->address2b }} <br> {{ $request->city2 }}, {{ $request->state2 }}, {{ $request->zip2 }}
                 @else
-                    {{ $request->address1b }} <br> {{ $request->cityb }}, {{ $request->stateb }}, {{ $request->zipb }}
+                    {{ $request->address1b }} <br> {{ $request->city2 }}, {{ $request->state2 }}, {{ $request->zip2 }}
                 @endif    
             @else
                 @if ($request->address2b)
-                    {{ $request->address1b }} <br> {{ $request->address2b }} <br> {{ $request->cityb }}, {{ $request->stateb }} {{ $request->zipb }}
+                    {{ $request->address1b }} <br> {{ $request->address2b }} <br> {{ $request->city2 }}, {{ $request->state2 }} {{ $request->zip2 }}
                 @else
-                    {{ $request->address1b }} <br> {{ $request->cityb }}, {{ $request->stateb }} {{ $request->zipb }}
+                    {{ $request->address1b }} <br> {{ $request->city2 }}, {{ $request->state2 }} {{ $request->zip2 }}
                 @endif
             @endif
             <br> 
     
-            @if ($phone != null)
-                {{ $phone }} <br>
+            @if ($phone2 != null)
+                {{ $phone2 }} <br>
             @endif 
             
         </div> 
-        <div class="dsbc_emailb">
-            {{ strtolower($HKEmail) }}
+        <div class="dsbcb_email">
+            {{ strtolower($HKEmail2) }}
         </div>
     </div> {{-- close background class --}}
     @endif
@@ -309,24 +312,31 @@
 </div>  {{-- close container --}}
 
 {!! Session::put('qty', $request->qty) !!}
+
 {!! Session::put('name', $request->name) !!}
 {!! Session::put('title', $request->title) !!}
-{!! Session::put('name2', $request->name2) !!}
-{!! Session::put('title2', $request->title2) !!}
 {!! Session::put('email', strtolower($HKEmail)) !!}
 {!! Session::put('address1', $request->address1) !!}
 {!! Session::put('address2', $request->address2) !!}
-{!! Session::put('address1f', $request->address1f) !!}
-{!! Session::put('address2f', $request->address2f) !!}
-{!! Session::put('address1b', $request->address1b) !!}
-{!! Session::put('address2b', $request->address2b) !!}
 {!! Session::put('city', $request->city) !!}
 {!! Session::put('state', $request->state) !!}
 {!! Session::put('zip', $request->zip) !!}
 {!! Session::put('phone', $request->phone) !!}
 {!! Session::put('fax', $request->fax) !!}
 {!! Session::put('cell', $request->cell) !!}
-{{-- {!! Session::put('cell', $numbcell) !!} --}}
+
+{!! Session::put('name2', $request->name2) !!}
+{!! Session::put('title2', $request->title2) !!}
+{!! Session::put('email2', strtolower($HKEmail2)) !!}
+{!! Session::put('address1b', $request->address1b) !!}
+{!! Session::put('address2b', $request->address2b) !!}
+{!! Session::put('city2', $request->city2) !!}
+{!! Session::put('state2', $request->state2) !!}
+{!! Session::put('zip2', $request->zip2) !!}
+{!! Session::put('phone2', $request->phone2) !!}
+{!! Session::put('fax2', $request->fax2) !!}
+{!! Session::put('cell2', $request->cell2) !!}
+
 {!! Session::put('specialInstructions', $request->specialInstructions) !!}
 {!! Session::put('prod_name', $request->prod_name) !!}
 {!! Session::put('prod_description', $request->prod_description) !!}

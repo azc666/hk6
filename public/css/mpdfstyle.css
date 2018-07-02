@@ -102,38 +102,38 @@
     height: 100%;
 }
 
-.dsbc_name {
+.dsbcf_name {
     position: relative;
     float:left;
     text-align: left;
     font-family: helveticaneueltstdmd;
     /*color: #FF0000FF;*/
     line-height: 125%;
-    margin-left: 39mm;
-    padding-top: 59mm;
-    font-size: 36pt;
+    margin-left: 37mm;
+    padding-top: 66.5mm;
+    font-size: 31pt;
 }
 
-.dsbc_title {
+.dsbcf_title {
     /*position: relative; */
     float:left;
     text-align: left;
     font-family: helveticaneueltstdlt;
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
-    line-height: 135%;
-    margin-left: 39mm;
-    font-size: 25pt;
+    line-height: 175%;
+    margin-left: 37.2mm;
+    font-size: 23pt;
 }
 
 .dsbcf_address_Line1 {
     position: relative;
     text-align: right;
-    margin-right: 29.5mm;
-    padding-top: 20mm;
+    margin-right: 39.5mm;
+    padding-top: 12mm;
     font-family: helveticaneueltstdlt;
     color: rgb(0,63,133);
-    /*color: #FF0000FF;*/
+    /*color: #7FFE07FF;*/
     line-height: 125%;
     font-size: 22pt;
 }
@@ -141,109 +141,109 @@
 .dsbcf_address_Line1_1 {
     position: relative;
     text-align: right;
-    margin-right: 29.5mm;
-    padding-top: 10.5mm;
+    margin-right: 39.5mm;
+    padding-top: 1.8mm;
     font-family: helveticaneueltstdlt;
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
     line-height: 125%;
-    font-size: 22pt;
+    font-size: 23pt;
 }
 
 .dsbcf_address_Line2 {
     position: relative;
     text-align: right;
-    margin-right: 29.5mm;
+    margin-right: 39.5mm;
     /*padding-top: 3mm;*/
     font-family: helveticaneueltstdlt;
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
-    line-height: 130.5%;
-    font-size: 22pt;
+    line-height: 120.5%;
+    font-size: 23pt;
 }
 
-.dsbc_emailf {
+.dsbcf_email {
     position: relative;
     text-align: right;
-    margin-right: 29.5mm;
+    margin-right: 39.5mm;
     /*padding-top: 1mm;*/
     font-family: helveticaneueltstdmd;
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
     line-height: 126%;
-    font-size: 22pt;
+    font-size: 23pt;
 }
 
-.dsbc_name2 {
+.dsbcb_name {
     position: relative;
     float:left;
     text-align: left;
     font-family: helveticaneueltstdmd;
     /*color: #FF0000FF;*/
     line-height: 125%;
-    margin-left: 39mm;
-    padding-top: 75mm;
-    font-size: 36pt;
+    margin-left: 37mm;
+    padding-top: 81mm;
+    font-size: 31pt;
 }
 
-.dsbc_title2 {
+.dsbcb_title {
     /*position: relative; */
     float:left;
     text-align: left;
     font-family: helveticaneueltstdlt;
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
-    line-height: 135%;
-    margin-left: 39mm;
-    font-size: 25pt;
+    line-height: 175%;
+    margin-left: 37.2mm;
+    font-size: 23pt;
 }
 
 .dsbcb_address_Line1 {
     position: relative;
     text-align: right;
-    margin-right: 29.5mm;
-    padding-top: 10mm;
+    margin-right: 39.5mm;
+    padding-top: 11mm;
     font-family: helveticaneueltstdlt;
     color: rgb(0,63,133);
-    /*color: #FF0000FF;*/
+    /*color: #7FFE07FF;*/
     line-height: 125%;
-    font-size: 22pt;
+    font-size: 23pt;
 }
 
 .dsbcb_address_Line1_1 {
     position: relative;
     text-align: right;
-    margin-right: 29.5mm;
-    padding-top: 10mm;
+    margin-right: 39.5mm;
+    padding-top: 1.5mm;
     font-family: helveticaneueltstdlt;
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
     line-height: 125%;
-    font-size: 22pt;
+    font-size: 23pt;
 }
 
 .dsbcb_address_Line2 {
     position: relative;
     text-align: right;
-    margin-right: 29.5mm;
+    margin-right: 39.5mm;
     /*padding-top: 3mm;*/
     font-family: helveticaneueltstdlt;
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
-    line-height: 130.5%;
-    font-size: 22pt;
+    line-height: 120.5%;
+    font-size: 23pt;
 }
 
-.dsbc_emailb {
+.dsbcb_email {
     position: relative;
     text-align: right;
-    margin-right: 29.5mm;
+    margin-right: 39.5mm;
     /*padding-top: 1mm;*/
     font-family: helveticaneueltstdmd;
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
     line-height: 126%;
-    font-size: 22pt;
+    font-size: 23pt;
 }
 
 .fyi_background {

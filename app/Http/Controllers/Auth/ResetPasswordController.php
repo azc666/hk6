@@ -40,8 +40,8 @@ class ResetPasswordController extends Controller
         // if (!Auth::user()) {
         //     return redirect('/home');
         // }
-
-        $this->middleware('guest');
+//dd('hola');
+        // $this->middleware('guest');
     }
 
     public function showPassword(Request $request, User $user)
@@ -52,7 +52,7 @@ class ResetPasswordController extends Controller
 
     public function changePassword(Request $request, User $user)
     {
-        
+        //dd('change pw');
         //$this->middleware('auth');
         $user = Auth::user();
 
@@ -60,7 +60,7 @@ class ResetPasswordController extends Controller
         $user->password = bcrypt($request->password);
 
         $user->save();
-// dd('change pw');
+// 
         // return view('user.profile', compact('request', 'user'));
         return redirect('home')->withSuccessMessage('User created successfully!');
     }
