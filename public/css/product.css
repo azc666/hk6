@@ -82,6 +82,10 @@ h5 a:hover {
     text-decoration: none;
 }
 
+/*.text-field {
+    width: 600px;
+}*/
+
 @media print {
     .noprint {display:none !important;}
     a:link:after, a:visited:after {  

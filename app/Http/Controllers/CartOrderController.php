@@ -153,6 +153,17 @@ class CartOrderController extends Controller
             <div class="' . $item->options->phone . '">
             <div class="' . $item->options->fax . '">
             <div class="' . $item->options->cell . '">
+            <div class="' . $item->options->name2 . '">
+            <div class="' . $item->options->title2 . '">
+            <div class="' . $item->options->email2 . '">
+            <div class="' . $item->options->address1b . '">
+            <div class="' . $item->options->address2b . '">
+            <div class="' . $item->options->city2 . '">
+            <div class="' . $item->options->state2 . '">
+            <div class="' . $item->options->zip2 . '">
+            <div class="' . $item->options->phone2 . '">
+            <div class="' . $item->options->fax2 . '">
+            <div class="' . $item->options->cell2 . '">
             <div class="' . $item->options->specialInstructions . '">';
 
             $cartOrder .= '<td class="table-image">';
@@ -161,23 +172,43 @@ class CartOrderController extends Controller
             $cartOrder .= '</td>';
             $cartOrderToEmail .= '</td>';
 
-            $cartOrderToEmail .= '<td><strong>' . strip_tags($item->name) . '</strong>
-            <br>' . $item->options->name . 
-            '<br>' . $item->options->email .
-            '<br><br>' . nl2br($item->options->prod_description) . '
-            Proof: <a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '" target="_blank">' . $item->options->proofPath . '</a>
+            $cartOrderToEmail .= '<td><strong>' . strip_tags($item->name) . '</strong>';
+
+            if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC') {
+                $cartOrderToEmail .= '<br><br><strong>Front Side:</strong>
+                        <br>' . $item->options->name . 
+                        '<br>' . $item->options->email . 
+                        '<br><br><strong>Reverse Side:</strong>
+                        <br>' . $item->options->name2 .  
+                        '<br>' . $item->options->email2;
+            } else {
+                $cartOrderToEmail .= '<br>' . $item->options->name .  
+                        '<br>' . $item->options->email; 
+            }
+            // <br>' . $item->options->name . 
+            // '<br>' . $item->options->email .
+            $cartOrderToEmail .= '<br><br>' . nl2br($item->options->prod_description) . 'Proof: <a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '" target="_blank">' . $item->options->proofPath . '</a>
             </td>
             <td>';
-            $cartOrder .= '<td><strong>' . strip_tags($item->name) . '</strong>
-            <br>' . $item->options->name . 
-            '<br>' . $item->options->email .
-            '<br><br>' . nl2br($item->options->prod_description) . '
+
+            $cartOrder .= '<td><strong>' . strip_tags($item->name) . '</strong>';
+
+            if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC') {
+                $cartOrder .= '<br><br><strong>Front Side:</strong>
+                        <br>' . $item->options->name . 
+                        '<br>' . $item->options->email . 
+                        '<br><br><strong>Reverse Side:</strong>
+                        <br>' . $item->options->name2 .  
+                        '<br>' . $item->options->email2;
+            } else {
+                $cartOrder .= '<br>' . $item->options->name .  
+                        '<br>' . $item->options->email; 
+            }
+            // <br>' . $item->options->name . 
+            // '<br>' . $item->options->email .
+            $cartOrder .= '<br><br>' . nl2br($item->options->prod_description) . '
             </td>
-            <td>';
-// dd($cartOrderToEmail);
-            // $orderArray[] = [
-            //     'prod_descr'    =>  nl2br($item->options->prod_description),
-            // ];    
+            <td>';    
              
             $bcfyi_qty = $item->qty;
             if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI') {
@@ -222,6 +253,17 @@ class CartOrderController extends Controller
                 'city_o'        =>  $item->options->city,
                 'state_o'       =>  $item->options->state,
                 'zip_o'         =>  $item->options->zip,
+                'name_o2'        =>  $item->options->name2,
+                'title_o2'       =>  $item->options->title2,
+                'email_o2'       =>  $item->options->email2,
+                'phone_o2'       =>  strip_tags($item->options->phone2),
+                'fax_o2'         =>  $item->options->fax2,
+                'cell_o2'        =>  $item->options->cell2,
+                'address1_o2'    =>  $item->options->address1b,
+                'address2_o2'    =>  $item->options->address2b,
+                'city_o2'        =>  $item->options->city2,
+                'state_o2'       =>  $item->options->state2,
+                'zip_o2'         =>  $item->options->zip2,
                 'sp_instr_o'    =>  $item->options->specialInstructions,
                 'proof_path'    =>  $item->options->proofPath,
             ]; 
@@ -312,6 +354,37 @@ class CartOrderController extends Controller
                 }
             }
 // dd($prod_layout);
+        if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC') {
+            $cartOrderProduction .= 
+            '<tr><td>Quantity_o </td><td>' . $bcfyi_qty . '</tr>
+            <tr><td>Name_o </td><td>' . $item_prod->options->name . '</tr>
+            <tr><td>Title_o </td><td>' . $item_prod->options->title . '</tr>
+            <tr><td>Email_o </td><td>' . $item_prod->options->email . '</tr>
+            <tr><td>Phone_o </td><td>' . strip_tags($item_prod->options->phone) . '</tr>
+            <tr><td>Fax_o </td><td>' . $item_prod->options->fax . '</tr>
+            <tr><td>Cell_o </td><td>' . $item_prod->options->cell . '</tr>
+            <tr><td>Address1_o </td><td>' . $item_prod->options->address1 . '</tr>
+            <tr><td>Address2_o </td><td>' . $item_prod->options->address2 . '</tr>
+            <tr><td>City_o </td><td>' . $item_prod->options->city . '</tr>
+            <tr><td>State_o </td><td>' . $item_prod->options->state . '</tr>
+            <tr><td>Zip_o </td><td>' . $item_prod->options->zip . '</tr>
+            <tr><td>Name_o2 </td><td>' . $item_prod->options->name2 . '</tr>
+            <tr><td>Title_o2 </td><td>' . $item_prod->options->title2 . '</tr>
+            <tr><td>Email_o2 </td><td>' . $item_prod->options->email2 . '</tr>
+            <tr><td>Phone_o2 </td><td>' . strip_tags($item_prod->options->phone2) . '</tr>
+            <tr><td>Fax_o2 </td><td>' . $item_prod->options->fax2 . '</tr>
+            <tr><td>Cell_o2 </td><td>' . $item_prod->options->cell2 . '</tr>
+            <tr><td>Address1_o2 </td><td>' . $item_prod->options->address1b . '</tr>
+            <tr><td>Address2_o2 </td><td>' . $item_prod->options->address2b . '</tr>
+            <tr><td>City_o2 </td><td>' . $item_prod->options->city2 . '</tr>
+            <tr><td>State_o2 </td><td>' . $item_prod->options->state2 . '</tr>
+            <tr><td>Zip_o2 </td><td>' . $item_prod->options->zip2 . '</tr>
+            <tr><td>SP_Instructions_o </td><td>' . $item_prod->options->specialInstructions . '</tr>
+            <tr><td>Admin Contact </td><td>' . Auth::User()->contact_a . '</tr>
+            <tr><td>Shipping Contact </td><td>' . Auth::User()->contact_s . '</tr>
+            <tr><td>Shipping Address </td><td>' . Auth::User()->address1_s . ' ' . Auth::User()->address2_s . ' ' . Auth::User()->city_s . ' ' . Auth::User()->state_s . ' ' . Auth::User()->zip_s . '</tr>
+            <tr><td>Proof Image </td><td><a href="' . url($item_prod->options->proofPath) . '">' . $item_prod->options->proofPath . '</a></tr></tbody>';
+        } else {
             $cartOrderProduction .= 
             '<tr><td>Quantity_o </td><td>' . $bcfyi_qty . '</tr>
             <tr><td>Name_o </td><td>' . $item_prod->options->name . '</tr>
@@ -330,7 +403,9 @@ class CartOrderController extends Controller
             <tr><td>Shipping Contact </td><td>' . Auth::User()->contact_s . '</tr>
             <tr><td>Shipping Address </td><td>' . Auth::User()->address1_s . ' ' . Auth::User()->address2_s . ' ' . Auth::User()->city_s . ' ' . Auth::User()->state_s . ' ' . Auth::User()->zip_s . '</tr>
             <tr><td>Proof Image </td><td><a href="' . url($item_prod->options->proofPath) . '">' . $item_prod->options->proofPath . '</a></tr></tbody>';
+        }   
             $cartOrderProduction .= '</table><br>';
+        
           
  /*
  <tr><td>Proof Image </td><td><a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '">' . substr_replace($item->options->proofPath, 'pdf', -3) . '</a></tr></tbody>';

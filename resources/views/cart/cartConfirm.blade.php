@@ -62,8 +62,20 @@ Order Checkout
                     
                     <td>
                        <strong>{{ strip_tags($item->name) }}</strong>
-                       <br>{!! $item->options->name !!} 
-                       <br>{!! $item->options->email !!} 
+                       {{-- <br>{!! $item->options->name !!} 
+                       <br>{!! $item->options->email !!} --}}
+                       @if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC')
+                            <br><br><strong>Front Side:</strong>
+                            <br>{!! $item->options->name !!} 
+                            <br>{!! $item->options->email !!}
+                            <br><br><strong>Reverse Side:</strong>
+                            <br>{!! $item->options->name2 !!} 
+                            <br>{!! $item->options->email2 !!}
+                        @else
+                            <br>{!! $item->options->name !!} 
+                            <br>{!! $item->options->email !!} 
+                        @endif
+                         
                        <br><br>
                        <div class="text-muted move-up">
                         {!! nl2br($item->options->prod_description) !!} 

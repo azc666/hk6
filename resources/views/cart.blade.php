@@ -54,7 +54,9 @@
                 @foreach (Cart::content() as $item)
                     @php
                         $prod_layout = $item->options->prod_layout;
+                        // dd($prod_layout);
                     @endphp
+
                     <tr>
                         <td class="table-image">
                             <a href="{{ url(substr_replace($item->options->proofPath, 'pdf', -3)) }}" target="_blank"><img src="{{ $item->options->proofPath }}" style="max-width:300px;" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
@@ -62,7 +64,7 @@
 
                         <td>
                             <strong>{{ strip_tags($item->name) }}</strong>
-                            @if ($item->options->name2)
+                            @if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC')
                                 <br><br><strong>Front Side:</strong>
                                 <br>{!! $item->options->name !!} 
                                 <br>{!! $item->options->email !!}
@@ -201,7 +203,7 @@
                             <input type="hidden" name="zip2" value="{{$item->options->zip2}}">
                             <input type="hidden" name="phone2" value="{{$item->options->phone2}}">
                             <input type="hidden" name="fax2" value="{{$item->options->fax2}}">
-                            <input type="hidden" name="cell2" value="{{$item->options->cell2}}">
+                            <input type="hidden" name="cell2" value="{{$item->options->cell2}}"> 
 
                             <input type="hidden" name="specialInstructions" value="{{$item->options->specialInstructions}}">
                             <input type="hidden" name="prod_name" value="{{ $item->options->prod_name }}">

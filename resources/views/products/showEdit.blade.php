@@ -65,7 +65,7 @@
     dd($request->prod_name);
 @endphp --}}
 {{-- ////////////////// Double sided Business Card //////////////// --}}    
-    @if ($request->prod_id == 110 || $request->prod_id == 111 || $request->prod_name == 'Partner Double Sided BC' )
+    @if ($request->prod_id == 110 || $request->prod_id == 111 || $request->prod_name == 'Partner Double Sided BC' || $request->prod_name == 'Associate Double Sided BC' )
         <div class="dsbc_background">
        <div class="dsbcf_name">
             {!! $request->name ?: '&nbsp;' !!}

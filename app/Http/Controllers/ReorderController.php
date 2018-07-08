@@ -35,7 +35,7 @@ class ReorderController extends Controller
                 $prod_layout = $val['prod_layout'];
                 
 
-                if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
+                if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'PDSBC' ||$prod_layout == 'ADSBC') {
                     switch (Session::get('qty')) {
                         case '250': $quantity = 250; break;
                         case '500': $quantity = 500; break;

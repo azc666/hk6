@@ -296,16 +296,13 @@ $cartItem = array(
 
     // dd($request->prod_name);
 // dd($cartItem);
-        if ($request->id == 101 || $request->id == 104 || $request->prod_name == 'Staff Business Card' || $request->prod_name == 'Staff BC + FYI Pads') {
+        if ($request->prod_id == 101 || $request->prod_id == 104 || $request->prod_name == 'Staff Business Card' || $request->prod_name == 'Staff BC + FYI Pads') {
             $titles = Title::where('type', 'Staff')->orderBy('title')->pluck('title', 'title');
         }
-        if ($request->id == 102 || $request->id == 105 || $request->prod_name == 'Associate Business Card' || $request->prod_name == 'Associate BC + FYI Pads') {
+        if ($request->prod_id == 102 || $request->prod_id == 105 || $request->prod_id == 108 || $request->prod_id == 110 || $request->prod_name == 'Associate Business Card' || $request->prod_name == 'Associate BC + FYI Pads') {
             $titles = Title::where('type', 'Associate')->orderBy('title')->pluck('title', 'title');
         }
-        // dd(Cart::get($rowId)->name);
-        if ($request->id == 103 || $request->id == 106 || $request->prod_name == "Partner Business Card" || $request->prod_name == 'Partner BC + FYI Pads') {
-            // dd('hola');
-            // dd($request->prod_layout);
+        if ($request->prod_id == 103 || $request->prod_id == 106 || $request->prod_id == 111 || $request->prod_name == "Partner Business Card" || $request->prod_name == 'Partner BC + FYI Pads') {
             $titles = Title::where('type', 'Partner')->orderBy('title')->pluck('title', 'title');
         }
 // dd($titles);
@@ -431,9 +428,9 @@ $cartItem = array(
 
         
 
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'numb2', 'numbfax2', 'numbcell2', 'phone', 'phone2', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2', 'prod_layout', 'rowId', 'cartItem'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'numb2', 'numbfax2', 'numbcell2', 'phone', 'phone2', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2', 'prod_layout', 'rowId', 'cartItem', 'titles'), [
                 'mode'                 => '',
-                'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
+                'format'               => array(300, 360),
                 'default_font_size'    => '12',
                 'default_font'         => 'sans-serif',
                 'margin_left'          => 0,
