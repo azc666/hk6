@@ -44,6 +44,8 @@
               $product->id == 101 ? $imagePath  = '/assets/staff/mexico_sbc.jpg' : '';
               $product->id == 107 ? $imagePath  = '/assets/staff/mexico_sfyi.jpg' : '';
               $product->id == 104 ? $imagePath  = '/assets/staff/mexico_sbcfyi.jpg' : '';
+              $product->id == 110 ? $imagePath  = '/assets/associate/mexico_adsbc.jpg' : '';
+              $product->id == 111 ? $imagePath  = '/assets/partner/mexico_pdsbc.jpg' : '';
             } elseif (Auth::user()->username == 'HK34') {
               $product->id == 103 ? $imagePath  = '/assets/partner/bogota_pbc.jpg' : '';
               $product->id == 109 ? $imagePath  = '/assets/partner/bogota_pfyi.jpg' : '';
@@ -54,6 +56,8 @@
               $product->id == 101 ? $imagePath  = '/assets/staff/bogota_sbc.jpg' : '';
               $product->id == 107 ? $imagePath  = '/assets/staff/bogota_sfyi.jpg' : '';
               $product->id == 104 ? $imagePath  = '/assets/staff/bogota_sbcfyi.jpg' : '';
+              $product->id == 110 ? $imagePath  = '/assets/associate/bogota_adsbc.jpg' : '';
+              $product->id == 111 ? $imagePath  = '/assets/partner/bogota_pdsbc.jpg' : '';
             } elseif (Auth::user()->username == 'HK46') {
               $product->id == 103 ? $imagePath  = '/assets/partner/london_pbc.jpg' : '';
               $product->id == 109 ? $imagePath  = '/assets/partner/london_pfyi.jpg' : '';
@@ -64,6 +68,8 @@
               $product->id == 101 ? $imagePath  = '/assets/staff/london_sbc.jpg' : '';
               $product->id == 107 ? $imagePath  = '/assets/staff/london_sfyi.jpg' : '';
               $product->id == 104 ? $imagePath  = '/assets/staff/london_sbcfyi.jpg' : '';
+              $product->id == 110 ? $imagePath  = '/assets/associate/london_adsbc.jpg' : '';
+              $product->id == 111 ? $imagePath  = '/assets/partner/london_pdsbc.jpg' : '';
             }
             @endphp  
 

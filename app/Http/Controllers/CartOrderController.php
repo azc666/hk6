@@ -357,6 +357,7 @@ class CartOrderController extends Controller
         if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC') {
             $cartOrderProduction .= 
             '<tr><td>Quantity_o </td><td>' . $bcfyi_qty . '</tr>
+            <tr><td><strong>******  FRONT  ******</strong></td></tr>
             <tr><td>Name_o </td><td>' . $item_prod->options->name . '</tr>
             <tr><td>Title_o </td><td>' . $item_prod->options->title . '</tr>
             <tr><td>Email_o </td><td>' . $item_prod->options->email . '</tr>
@@ -368,17 +369,19 @@ class CartOrderController extends Controller
             <tr><td>City_o </td><td>' . $item_prod->options->city . '</tr>
             <tr><td>State_o </td><td>' . $item_prod->options->state . '</tr>
             <tr><td>Zip_o </td><td>' . $item_prod->options->zip . '</tr>
-            <tr><td>Name_o2 </td><td>' . $item_prod->options->name2 . '</tr>
-            <tr><td>Title_o2 </td><td>' . $item_prod->options->title2 . '</tr>
-            <tr><td>Email_o2 </td><td>' . $item_prod->options->email2 . '</tr>
-            <tr><td>Phone_o2 </td><td>' . strip_tags($item_prod->options->phone2) . '</tr>
-            <tr><td>Fax_o2 </td><td>' . $item_prod->options->fax2 . '</tr>
-            <tr><td>Cell_o2 </td><td>' . $item_prod->options->cell2 . '</tr>
-            <tr><td>Address1_o2 </td><td>' . $item_prod->options->address1b . '</tr>
-            <tr><td>Address2_o2 </td><td>' . $item_prod->options->address2b . '</tr>
-            <tr><td>City_o2 </td><td>' . $item_prod->options->city2 . '</tr>
-            <tr><td>State_o2 </td><td>' . $item_prod->options->state2 . '</tr>
-            <tr><td>Zip_o2 </td><td>' . $item_prod->options->zip2 . '</tr>
+            <tr><td><strong>******  REVERSE  ******</strong></td></tr>
+            <tr><td>Name_o </td><td>' . $item_prod->options->name2 . '</tr>
+            <tr><td>Title_o </td><td>' . $item_prod->options->title2 . '</tr>
+            <tr><td>Email_o </td><td>' . $item_prod->options->email2 . '</tr>
+            <tr><td>Phone_o </td><td>' . strip_tags($item_prod->options->phone2) . '</tr>
+            <tr><td>Fax_o </td><td>' . $item_prod->options->fax2 . '</tr>
+            <tr><td>Cell_o </td><td>' . $item_prod->options->cell2 . '</tr>
+            <tr><td>Address1_o </td><td>' . $item_prod->options->address1b . '</tr>
+            <tr><td>Address2_o </td><td>' . $item_prod->options->address2b . '</tr>
+            <tr><td>City_o </td><td>' . $item_prod->options->city2 . '</tr>
+            <tr><td>State_o </td><td>' . $item_prod->options->state2 . '</tr>
+            <tr><td>Zip_o </td><td>' . $item_prod->options->zip2 . '</tr>
+            <tr><td><strong>******  ORDER INFO  ******</strong></td></tr>
             <tr><td>SP_Instructions_o </td><td>' . $item_prod->options->specialInstructions . '</tr>
             <tr><td>Admin Contact </td><td>' . Auth::User()->contact_a . '</tr>
             <tr><td>Shipping Contact </td><td>' . Auth::User()->contact_s . '</tr>
@@ -437,6 +440,7 @@ class CartOrderController extends Controller
        
         if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46' ) {
             \Mail::to('sheri.testa@hklaw.com')->send(new OrderConfirmEmail($cartOrderEmail));
+            \Mail::to('azc666@gmail.com')->send(new OrderConfirmEmail($cartOrderEmail));
         }
 
         // \Mail::to('output@g-d.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
