@@ -117,7 +117,7 @@ class CartOrderController extends Controller
                    
                     $cartOrder .= $address_s;
 
-                    $cartOrder .= '<p><small>Most orders ship within 2-3 working days. <br> Please allow 1-2 weeks for engraved Partner Cards.</small></p>';
+                    $cartOrder .= '<p><small>Most orders ship within 2-3 working days. <br>Double Sided Business Cards will automatically be sent for approval before production. <br> Please allow 1-2 weeks for engraved Partner Cards.</small></p>';
 
                     $cartOrder .= '<p class="move-down"></p>
                 </div>    
@@ -354,7 +354,8 @@ class CartOrderController extends Controller
                 }
             }
 // dd($prod_layout);
-        if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC') {
+        // if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC') {
+        if (strpos($item_prod->name, 'Double Sided BC')) {
             $cartOrderProduction .= 
             '<tr><td>Quantity_o </td><td>' . $bcfyi_qty . '</tr>
             <tr><td><strong>******  FRONT  ******</strong></td></tr>
