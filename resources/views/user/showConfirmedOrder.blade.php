@@ -14,6 +14,9 @@
       <button class="btn btn-primary hidden-print pull-right move-left" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
     </div>
 </div>
+@php
+  // dd($confirmEmail);
+@endphp
 
 {!! $confirmEmail->cart !!}
 

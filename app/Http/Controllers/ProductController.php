@@ -18,7 +18,8 @@ use ImageMagick;
 use \Cart as Cart;
 use App\Classes\LayoutHelpersClass;
 // use Input;
-// use Spatie\PdfToImage\Pdf;
+use Spatie\PdfToImage\Pdf as sPdf;
+// use bnbwebexpeBnb\PdfToImage\Pdf as bnbPdf;
 
 class ProductController extends Controller
 {
@@ -262,10 +263,50 @@ class ProductController extends Controller
 
         $pdf->save($pathToPdf);
 
+        // Session::put('product_layout', $request->prod_layout);
+
         $im = new \Imagick($pathToPdf);
         $im->setImageFormat('jpg');
 
         file_put_contents($pathToWhereJpgShouldBeStored, $im);
+// dd($pathToWhereJpgShouldBeStored);
+
+// $output = '';
+// $output .= "Fonts are:<br>";
+ 
+// $fontList = \Imagick::queryFonts();
+ 
+// foreach ($fontList as $fontName) {
+//     $output .= '<li>' . $fontName . "</li>";
+// }
+ 
+// return $output;
+// exit();
+
+
+        // $im = new \Imagick($pathToPdf);
+        // $im->setImageFormat('jpg');
+        // header("Content-Type: image/jpg");
+        // echo $im->getImageBlog();
+        // exit();
+        // file_put_contents($pathToWhereJpgShouldBeStored, $im);
+
+        // $fonts = $im->queryfonts();
+        // dd($fonts);
+
+        // source PDF file
+        // $source = $pathToPdf;
+        // output file
+        // $target = $pathToWhereJpgShouldBeStored;
+        // create a command string 
+ 
+        // exec('/usr/bin/convert "'.$source .'" -colorspace RGB -resize 800 "'.$target.'"', $output, $response);
+         
+        // echo $response ? "PDF converted to JPEG!!" : 'PDF to JPEG Conversion failed';
+        // exit();
+
+        // $sPdf = new sPdf($pathToPdf);
+        // $sPdf->saveImage($pathToWhereJpgShouldBeStored);
 
         Session::put('prod_description', strip_tags($request->prod_description));
         Session::put('address2', $request->address2);
@@ -299,10 +340,10 @@ $cartItem = array(
         if ($request->prod_id == 101 || $request->prod_id == 104 || $request->prod_name == 'Staff Business Card' || $request->prod_name == 'Staff BC + FYI Pads') {
             $titles = Title::where('type', 'Staff')->orderBy('title')->pluck('title', 'title');
         }
-        if ($request->prod_id == 102 || $request->prod_id == 105 || $request->prod_id == 108 || $request->prod_id == 110 || $request->prod_name == 'Associate Business Card' || $request->prod_name == 'Associate BC + FYI Pads') {
+        if ($request->prod_id == 102 || $request->prod_id == 105 || $request->prod_id == 108 || $request->prod_id == 110 || $request->prod_name == 'Associate Business Card' || $request->prod_name == 'Associate BC + FYI Pads' || $request->prod_layout == 'ADSBC') {
             $titles = Title::where('type', 'Associate')->orderBy('title')->pluck('title', 'title');
         }
-        if ($request->prod_id == 103 || $request->prod_id == 106 || $request->prod_id == 111 || $request->prod_name == "Partner Business Card" || $request->prod_name == 'Partner BC + FYI Pads') {
+        if ($request->prod_id == 103 || $request->prod_id == 106 || $request->prod_id == 111 || $request->prod_layout == 'PDSBC' || $request->prod_name == "Partner Business Card" || $request->prod_name == 'Partner BC + FYI Pads') {
             $titles = Title::where('type', 'Partner')->orderBy('title')->pluck('title', 'title');
         }
 // dd($titles);
@@ -423,11 +464,8 @@ $cartItem = array(
 //////////////// Double Sided Business Cards /////////////////        
 // dd($request->prod_id); 
 //   dd('hola');       
-        if ($request->prod_id == 110 || $request->prod_id == 111) {
+        if ($request->prod_id == 110 || $request->prod_id == 111 || $request->prod_name == "Associate Double Sided BC" || $request->prod_name == "Partner Double Sided BC") {
            
-
-        
-
             $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'numb2', 'numbfax2', 'numbcell2', 'phone', 'phone2', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2', 'prod_layout', 'rowId', 'cartItem', 'titles'), [
                 'mode'                 => '',
                 'format'               => array(300, 360),
@@ -506,10 +544,19 @@ $cartItem = array(
 // dd($request->prod_layout);
 Session::put('product_layout', $request->prod_layout);
 // dd(Session::get('product_layout'));
-        $im = new \Imagick($pathToPdf);
-        $im->setImageFormat('jpg');
+        // $im = new \Imagick($pathToPdf);
+        // $im->setImageFormat('jpg');
 
-        file_put_contents($pathToWhereJpgShouldBeStored, $im);
+        // file_put_contents($pathToWhereJpgShouldBeStored, $im);
+
+        $im = new Imagick();
+        // $im->setResolution(80,80);
+        $im->readimage($pathToPdf); 
+        $im->setImageFormat('jpeg'); 
+        $image_name = $pathToWhereJpgShouldBeStored;
+        $im->writeImage($image_name); 
+        $im->clear(); 
+        $im->destroy();
 
         if ($request->prod_id == 101 || $request->prod_id == 104 || $request->prod_id == 107) {
             $titles = Title::where('type', 'Staff')->orderBy('title')->pluck('title', 'title');

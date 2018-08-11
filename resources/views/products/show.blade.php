@@ -359,10 +359,11 @@
           @endif
         </div>
     </div>
+  </div>
 
   @endif 
 
-  {{--  //////////////// Double Sided BC //////////////// --}}
+{{--  //////////////// Double Sided BC //////////////// --}}
   @if ($product->id == 110 || $product->id == 111) 
 
 <span style="margin:125px"><strong>Front Side</strong></span>
@@ -818,7 +819,7 @@
 </div>
 
 @endif 
-
+{{-- </div> --}}
 {{-- <div class="col-xs-12" style="height:15px;"></div> --}}
 
 <div class="form-group">

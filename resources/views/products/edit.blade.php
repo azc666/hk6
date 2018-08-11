@@ -50,7 +50,7 @@
 {{-- @php
   dd($request->prod_id);
 @endphp --}}
-  @if ($request->prod_id == 101 || $request->prod_id == 102 || $request->prod_id == 103 || $request->prod_id == 104 || $request->prod_id == 105 || $request->prod_id == 106 || $request->prod_id == 107 || $request->prod_id == 108 || $request->prod_id == 109) {{-- || $request->prod_layout == 'SBC' || $request->prod_layout == 'ABC' || $request->prod_layout == 'PBC' || $request->prod_layout == 'SFYI' || $request->prod_layout == 'AFYI' || $request->prod_layout == 'PFYI' || $request->prod_layout == 'SBCFYI' || $request->prod_layout == 'ABCFYI' || $request->prod_layout == 'PBCFYI' || Cart::get($rowId)->name == 'Staff Business Card' || Cart::get($rowId)->name == 'Associate Business Card' || Cart::get($rowId)->name == 'Partner Business Card' || Cart::get($rowId)->name == 'Staff FYI' || Cart::get($rowId)->name == 'Associate FYI' || Cart::get($rowId)->name == 'Partner FYI' || Cart::get($rowId)->name == 'Staff BC + FYI Pads' || Cart::get($rowId)->name == 'Associate BC + FYI Pads' || Cart::get($rowId)->name == 'Partner BC + FYI Pads') --}}
+  @if ($request->prod_id == 101 || $request->prod_id == 102 || $request->prod_id == 103 || $request->prod_id == 104 || $request->prod_id == 105 || $request->prod_id == 106 || $request->prod_id == 107 || $request->prod_id == 108 || $request->prod_id == 109 || $request->prod_layout == 'SBC' || $request->prod_layout == 'ABC' || $request->prod_layout == 'PBC' || $request->prod_layout == 'SFYI' || $request->prod_layout == 'AFYI' || $request->prod_layout == 'PFYI' || $request->prod_layout == 'SBCFYI' || $request->prod_layout == 'ABCFYI' || $request->prod_layout == 'PBCFYI'){{--  || Cart::get($rowId)->name == 'Staff Business Card' || Cart::get($rowId)->name == 'Associate Business Card' || Cart::get($rowId)->name == 'Partner Business Card' || Cart::get($rowId)->name == 'Staff FYI' || Cart::get($rowId)->name == 'Associate FYI' || Cart::get($rowId)->name == 'Partner FYI' || Cart::get($rowId)->name == 'Staff BC + FYI Pads' || Cart::get($rowId)->name == 'Associate BC + FYI Pads' || Cart::get($rowId)->name == 'Partner BC + FYI Pads') --}}
 
     <div class="form-group">
         {!! Form::label('name', 'Name:', ['class' => 'col-sm-2 control-label']) !!}
@@ -312,7 +312,7 @@
     {{-- </div> --}} {{-- closes <div class="form-inline"> --}}
   
    {{-- ////////////////////  Double Sided BC  ///////////////// --}}
-@if ($request->prod_id == 110 || $request->prod_id == 111)
+@if ($request->prod_id == 110 || $request->prod_id == 111 || $request->prod_layout == 'ADSBC' || $request->prod_layout == 'PDSBC')
   
 <span style="margin:125px"><strong>Front Side</strong></span>
 <span style="margin:20px"><strong>Reverse Side</strong></span>
@@ -329,9 +329,11 @@
       </div>
     </div>
 </div>
-
+@php
+  // dd($request->prod_layout);
+@endphp
  {{-- /////// Assoc & Partner Titles /////// --}}
-    @if ($request->prod_id == 110 || $request->prod_id == 111) 
+    @if ($request->prod_id == 110 || $request->prod_id == 111 || $request->prod_layout == 'ADSBC' || $request->prod_layout == 'PDSBC') 
       <div class="form-group">
         <div class="form-inline">      
           {!! Form::label('title', 'Title:', ['class' => 'move-down col-sm-2 control-label']) !!}

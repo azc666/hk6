@@ -62,6 +62,10 @@
                             <a href="{{ url(substr_replace($item->options->proofPath, 'pdf', -3)) }}" target="_blank"><img src="{{ $item->options->proofPath }}" style="max-width:300px;" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
                         </td>
 
+                        @php
+                            // dd($item->options->email);
+                        @endphp
+
                         <td>
                             <strong>{{ strip_tags($item->name) }}</strong>
                             @if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC')

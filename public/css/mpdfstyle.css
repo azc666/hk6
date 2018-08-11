@@ -24,7 +24,11 @@
     position: relative;
     float:left;
     text-align: left;
+    /*font-family: franklingothicmedium;*/
     font-family: helveticaneueltstdmd;
+    /*font-family: robotomedium;*/
+    /*font-family: notomonoregular;*/
+    /*font-style: bold;*/
     /*color: #FF0000FF;*/
     line-height: 125%;
     margin-left: 19.5mm;
@@ -36,7 +40,10 @@
     /*position: relative; */
     float:left;
     text-align: left;
+    /*font-family: dingbats;*/
     font-family: helveticaneueltstdlt;
+    /*font-family: helveticaneueltstdlt;*/
+    /*font-weight: 700;*/
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
     line-height: 135%;

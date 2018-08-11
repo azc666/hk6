@@ -85,7 +85,7 @@ Order Checkout
                 <td>
                     {!! Form::open(['route' => ['cart', 'method' => 'PATCH']]) !!}
                     
-                    @if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC')
+                    @if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC')
                     {!! Form::select('qty', array('Select Quantity', '250' => '250', '500' => '500'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
                     @endif
                     
@@ -117,7 +117,7 @@ Order Checkout
                             default: $bcfyi_qty = '4 FYI Pads'; 
                         }
                     }
-                    if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
+                    if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC') {
                         switch ($item->qty) {
                             case '250': $bcfyi_qty = '250 Business Cards'; break;
                             case '500': $bcfyi_qty = '500 Business Cards'; break;
@@ -230,7 +230,8 @@ Order Checkout
 
                         <p><small>
                             An Email confirmation will be sent to the admin: {{ Auth::user()->contact_a }} ({{ Html::mailto(Auth::user()->email) }}).
-                            <br>Most orders ship within 2-3 working days. 
+                            <br>Most orders ship within 2-3 working days.
+                            <br>Double Sided Business Cards will automatically be sent for approval before production. 
                             <br> Please allow 1-2 weeks for engraved Partner Cards.
                         </small></p>
 
