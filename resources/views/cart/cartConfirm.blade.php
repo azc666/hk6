@@ -231,8 +231,12 @@ Order Checkout
                         <p><small>
                             An Email confirmation will be sent to the admin: {{ Auth::user()->contact_a }} ({{ Html::mailto(Auth::user()->email) }}).
                             <br>Most orders ship within 2-3 working days.
-                            <br>Double Sided Business Cards will automatically be sent for approval before production. 
-                            <br> Please allow 1-2 weeks for engraved Partner Cards.
+                        </small>
+                        <br><strong>
+                            Double Sided Business Cards will automatically be sent for approval before production. 
+                        </strong>
+                        <br><small>
+                            Please allow 1-2 weeks for engraved Partner Cards.
                         </small></p>
 
                         <form action="{{ route('cartorder') }}" method="POST">
