@@ -73,6 +73,10 @@ class ProductController extends Controller
         $numbfax = $request->fax;
         $numbcell = $request->cell;
         $numb2 = $request->phone2;
+        // if (Auth::user()->username == 'HK34') {
+        //     $numb2 = "hola";
+        //     exit;
+        // }
         $numbfax2 = $request->fax2;
         $numbcell2 = $request->cell2;
 

@@ -97,6 +97,10 @@
   <h5>Enter the data for your {{strip_tags($product->prod_name)}}. <br> 
 
   Create or Update your proof before adding the product to your cart.</h5>
+
+  @if (($product->id == 110 || $product->id == 111) && (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46'))
+    <h5><strong>Phone Numbers are formatted for your locality. Please list reverse side Phone Numbers outside your locality in "Special Instuctions". Be sure to proof your reverse side phone numbers carefully before submission.</strong></h5>
+  @endif
     
       <div class="panel panel-primary space-above">
       <div class="panel-body">
@@ -441,7 +445,7 @@
   <div class="form-inline">
     {!! Form::label('address1', 'Address1:', ['class' => 'move-down col-sm-2 control-label']) !!}
     <div class="col-sm-5 control-text move-down">
-      {!! Form::text('address1', null, ['class' => 'form-control',  'style' => 'width:200px', 'placeholder' => 'Address1 Front']) !!}
+      {!! Form::text('address1', Auth::user()->loc_address1, ['class' => 'form-control',  'style' => 'width:200px', 'placeholder' => 'Address1 Front']) !!}
     </div>
     {!! Form::label('address1b', 'Address1:', ['class' => 'move-down control-label']) !!}
     <div class="col-sm-5 control-text-zip move-down">
@@ -454,7 +458,7 @@
   <div class="form-inline">
     {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
     <div class="col-sm-5 control-text move-down">
-      {!! Form::text('address2', null, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'Address2 Front']) !!}
+      {!! Form::text('address2', Auth::user()->loc_address2, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'Address2 Front']) !!}
     </div>
     {!! Form::label('address2b', 'Address2:', ['class' => 'move-down control-label']) !!}
     <div class="col-sm-5 control-text-zip move-down">
@@ -467,7 +471,7 @@
   <div class="form-inline">
     {!! Form::label('city', 'City:', ['class' => 'move-down col-sm-2 control-label']) !!}
     <div class="col-sm-5 control-text move-down">
-      {!! Form::text('city', null, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'City Front']) !!}
+      {!! Form::text('city', Auth::user()->loc_city, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'City Front']) !!}
     </div>
     {!! Form::label('', '', ['class' => 'move-down control-label']) !!}
     <div class="col-sm-5 control-text-zip move-down">
@@ -480,7 +484,7 @@
   <div class="form-inline">
     {!! Form::label('state', 'State:', ['class' => 'move-down col-sm-2 control-label']) !!}
     <div class="col-sm-5 control-text move-down">
-      {!! Form::text('state', null, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'State Front']) !!}
+      {!! Form::text('state', Auth::user()->loc_state, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'State Front']) !!}
     </div>
     {!! Form::label('', '', ['class' => 'move-down control-label']) !!}
     <div class="col-sm-5 control-text-zip move-down">
@@ -493,7 +497,7 @@
   <div class="form-inline">
     {!! Form::label('zip', 'Zip:', ['class' => 'move-down col-sm-2 control-label']) !!}
     <div class="col-sm-5 control-text move-down">
-      {!! Form::text('zip', null, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'Zip Front']) !!}
+      {!! Form::text('zip', Auth::user()->loc_zip, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'Zip Front']) !!}
     </div>
     {!! Form::label('', '', ['class' => 'move-down control-label']) !!}
     <div class="col-sm-5 control-text-zip move-down">
@@ -554,7 +558,7 @@
     <div class="col-sm-5 control-text-zip move-down">
 
       {{-- Bogotá --}}
-      @if (Auth::user()->username == 'HK34') 
+      {{-- @if (Auth::user()->username == 'HK34') 
         {!! Form::text('phone2', null, [
           'class'                         => 'form-control',
           'style'                         => 'width:200px', 
@@ -565,10 +569,18 @@
           'data-parsley-maxlength-message'=>'Phone numbers should have exactly 10 digits.',
           'data-parsley-minlength'        =>'10',
           'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
+        ]) !!} --}}
+        @if (Auth::user()->username == 'HK34') 
+        {!! Form::text('phone2', null, [
+          'class'                         => 'form-control',
+          'style'                         => 'width:200px', 
+          'placeholder'                   => 'xx.x.xxx.xxxx',
+          'data-parsley-trigger'          => 'input',
+          'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
         ]) !!}
 
       {{-- México UK--}}
-      @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
+      {{-- @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
         {!! Form::text('phone2', null, [
           'class'                         => 'form-control',
           'style'                         => 'width:200px', 
@@ -579,6 +591,13 @@
           'data-parsley-maxlength-message'=>'Phone numbers should have exactly 12 digits.',
           'data-parsley-minlength'        =>'12',
           'data-parsley-minlength-message'=>'Phone numbers should have exactly 12 digits.',
+        ]) !!} --}}
+        @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
+        {!! Form::text('phone2', null, [
+          'class'                         => 'form-control',
+          'style'                         => 'width:200px', 
+          'placeholder'                   => 'xx.xx.xxxx.xxxx',
+          'data-parsley-trigger'          => 'input',
         ]) !!}
 
       @else

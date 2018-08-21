@@ -39,9 +39,9 @@
         <div class="panel panel-default move-down">
 
     @if (Auth::user())
-        <div class="panel-heading text-center">Need some help with the portal? Have a question about your order? We are here to help!<br>You can contact us by phone, fax, or email, or simply submit the support form below. <br>Phone: 813-254-9444 • Fax: 813-254-9445 • Email: support@hkorderportal.com</div>
+        <div class="panel-heading text-center">Need some help with the portal? Have a question about your order? We are here to help!<br>You can contact us by phone, fax, or email, or simply submit the support form below. <br>Phone: 813-254-9444 • Fax: 813-254-9445 • Email: {{ Html::mailto('support@g-d.com') }}</div>
     @else
-        <div class="panel-heading text-center"> In order to enhance email user privacy and security, passwords will be reset by the Order Portal Admin Only. <br> Please send this secure request stating that you need your password reset, or your username recovered. <br>For immediate help, you may contact us by phone, fax, or email. <br><strong>Phone: 813-254-9444 • Fax: 813-254-9445 • Email: support@hkorderportal.com</strong></div>
+        <div class="panel-heading text-center"> In order to enhance email user privacy and security, passwords will be reset by the Order Portal Admin Only. <br> Please send this secure request stating that you need your password reset, or your username recovered. <br>For immediate help, you may contact us by phone, fax, or email. <br><strong>Phone: 813-254-9444 • Fax: 813-254-9445 • Email:  {{ Html::mailto('support@g-d.com') }}</div>
     @endif
         
     <div class="panel-body">
