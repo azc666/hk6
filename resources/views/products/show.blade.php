@@ -189,12 +189,22 @@
       </div>
     </div>
 
+    @if (!file_exists('assets/mpdf/temp/' . Auth::user()->username . '/showData.pdf'))
     <div class="form-group">
         {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-10 control-text move-down">
           {!! Form::text('address2', Auth::user()->loc_address2, ['class' => 'form-control', 'placeholder' => 'Address 2 (Optional)']) !!}
       </div>
     </div>
+    @else
+    <div class="form-group">
+        {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
+      <div class="col-sm-10 control-text move-down">
+          {!! Form::text('address2', $request->address2, ['class' => 'form-control', 'placeholder' => 'Address 2 (Optional)']) !!}
+      </div>
+    </div>
+    @endif
+
 
     <div class="form-group">
         {!! Form::label('city', 'City:', ['class' => 'move-down col-sm-2 control-label']) !!}
