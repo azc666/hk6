@@ -190,19 +190,19 @@
     </div>
 
     @if (!file_exists('assets/mpdf/temp/' . Auth::user()->username . '/showData.pdf'))
-    <div class="form-group">
-        {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
-      <div class="col-sm-10 control-text move-down">
-          {!! Form::text('address2', Auth::user()->loc_address2, ['class' => 'form-control', 'placeholder' => 'Address 2 (Optional)']) !!}
+      <div class="form-group">
+          {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
+        <div class="col-sm-10 control-text move-down">
+            {!! Form::text('address2', Auth::user()->loc_address2, ['class' => 'form-control', 'placeholder' => 'Address 2 (Optional)']) !!}
+        </div>
       </div>
-    </div>
     @else
-    <div class="form-group">
-        {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
-      <div class="col-sm-10 control-text move-down">
-          {!! Form::text('address2', $request->address2, ['class' => 'form-control', 'placeholder' => 'Address 2 (Optional)']) !!}
+      <div class="form-group">
+          {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
+        <div class="col-sm-10 control-text move-down">
+            {!! Form::text('address2', $request->address2, ['class' => 'form-control', 'placeholder' => 'Address 2 (Optional)']) !!}
+        </div>
       </div>
-    </div>
     @endif
 
 
@@ -466,10 +466,17 @@
 
 <div class="form-group">
   <div class="form-inline">
-    {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
-    <div class="col-sm-5 control-text move-down">
-      {!! Form::text('address2', Auth::user()->loc_address2, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'Address2 Front']) !!}
-    </div>
+    @if (!file_exists('assets/mpdf/temp/' . Auth::user()->username . '/showData.pdf'))
+      {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
+      <div class="col-sm-5 control-text move-down">
+        {!! Form::text('address2', Auth::user()->loc_address2, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'Address2 Front']) !!}
+      </div>
+    @else
+      {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
+      <div class="col-sm-5 control-text move-down">
+        {!! Form::text('address2', $request->address2, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'Address2 Front']) !!}
+      </div>
+    @endif
     {!! Form::label('address2b', 'Address2:', ['class' => 'move-down control-label']) !!}
     <div class="col-sm-5 control-text-zip move-down">
       {!! Form::text('address2b', null, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'Address2 Back']) !!}
