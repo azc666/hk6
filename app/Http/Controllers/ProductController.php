@@ -466,10 +466,10 @@ $cartItem = array(
         }
 // 
 //////////////// Double Sided Business Cards /////////////////        
-// dd($request->prod_id); 
+
 //   dd('hola');       
         if ($request->prod_id == 110 || $request->prod_id == 111 || $request->prod_name == "Associate Double Sided BC" || $request->prod_name == "Partner Double Sided BC") {
-           
+ // dd($request->email2);           
             $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'numb2', 'numbfax2', 'numbcell2', 'phone', 'phone2', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2', 'prod_layout', 'rowId', 'cartItem', 'titles'), [
                 'mode'                 => '',
                 'format'               => array(300, 360),
@@ -561,7 +561,7 @@ Session::put('product_layout', $request->prod_layout);
         $im->writeImage($image_name); 
         $im->clear(); 
         $im->destroy();
-
+// dd('hola');
         if ($request->prod_id == 101 || $request->prod_id == 104 || $request->prod_id == 107) {
             $titles = Title::where('type', 'Staff')->orderBy('title')->pluck('title', 'title');
         }
@@ -571,7 +571,7 @@ Session::put('product_layout', $request->prod_layout);
         if ($request->prod_id == 103 || $request->prod_id == 106 || $request->prod_id == 109) {
             $titles = Title::where('type', 'Partner')->orderBy('title')->pluck('title', 'title');
         }
-        return view('products.edit', compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'numb2', 'numbfax2', 'numbcell2', 'phone2', 'titles', 'HKEmail', 'prod_layout', 'rowId'));
+        return view('products.edit', compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'numb2', 'numbfax2', 'numbcell2', 'phone2', 'titles', 'HKEmail', '$HKEmail2', 'prod_layout', 'rowId'));
 
     }
 }

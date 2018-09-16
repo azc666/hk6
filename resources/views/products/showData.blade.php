@@ -290,6 +290,18 @@ Session::put('cell', $request->cell);
 {!! Session::put('state', $request->state) !!}
 {!! Session::put('zip', $request->zip) !!}
 
+{!! Session::put('name2', $request->name2) !!}
+{!! Session::put('title2', $request->title2) !!}
+{!! Session::put('email2', strtolower($HKEmail2)) !!}
+{!! Session::put('address1b', $request->address1b) !!}
+{!! Session::put('address2b', $request->address2b) !!}
+{!! Session::put('city2', $request->city2) !!}
+{!! Session::put('state2', $request->state2) !!}
+{!! Session::put('zip2', $request->zip2) !!}
+{!! Session::put('phone2', $request->phone2) !!}
+{!! Session::put('fax2', $request->fax2) !!}
+{!! Session::put('cell2', $request->cell2) !!}
+
 {!! Session::put('specialInstructions', $request->specialInstructions) !!}
 {!! Session::put('prod_name', $request->prod_name) !!}
 {!! Session::put('prod_description', $request->prod_description) !!}

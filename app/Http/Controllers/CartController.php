@@ -121,7 +121,7 @@ class CartController extends Controller
                 'email2' => Session::get('email2'),
                 'address1' => Session::get('address1'),
                 'address2' => Session::get('address2'),
-                'address1b' => Session::get('address1'),
+                'address1b' => Session::get('address1b'),
                 'address2b' => Session::get('address2b'),
                 'city' => Session::get('city'),
                 'state' => Session::get('state'),

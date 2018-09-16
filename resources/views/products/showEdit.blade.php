@@ -310,7 +310,9 @@
 
     </div> {{-- close row --}}
 </div>  {{-- close container --}}
-
+@php
+    // dd($request);
+@endphp
 {!! Session::put('qty', $request->qty) !!}
 
 {!! Session::put('name', $request->name) !!}

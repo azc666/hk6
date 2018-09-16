@@ -40,6 +40,10 @@
   <h5>Enter the data for your {{ $request->prod_name }}. <br>
 
  Create or Update your proof before adding the product to your cart.</h5>
+
+ @if (($request->prod_id == 110 || $request->prod_id == 111) && (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46'))
+    <h5><strong>Phone Numbers are formatted for your locality. Please list formatted reverse side Phone Numbers outside your locality in "Special Instuctions". Be sure to proof your reverse side phone numbers carefully before submission.</strong></h5>
+  @endif
       
       <div class="panel panel-primary space-above">
       <div class="panel-body">
@@ -398,7 +402,7 @@
       </div>
       {!! Form::label('', '', ['class' => 'move-down control-label']) !!}
       <div class="col-sm-5 control-text-zip move-down">
-        {!! Form::text('address1b', null, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'No Data']) !!}
+        {!! Form::text('address1b', Session::get('address1b'), ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'No Data']) !!}
       </div>
     </div>
   </div>

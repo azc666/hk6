@@ -62,9 +62,7 @@
                             <a href="{{ url(substr_replace($item->options->proofPath, 'pdf', -3)) }}" target="_blank"><img src="{{ $item->options->proofPath }}" style="max-width:300px;" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
                         </td>
 
-                        @php
-                            // dd($item->options->email);
-                        @endphp
+                        
 
                         <td>
                             <strong>{{ strip_tags($item->name) }}</strong>
@@ -79,6 +77,9 @@
                                 <br>{!! $item->options->name !!} 
                                 <br>{!! $item->options->email !!} 
                             @endif
+                            {{-- @php
+                            dd($item->options);
+                        @endphp --}}
                             
                             <br><br>
                              <div class="text-muted move-up">
@@ -178,6 +179,11 @@
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="submit" class="btn btn-danger btn-xs" value="Remove">
                         </form>
+
+                        @php
+                            // dd($item->options->phone);
+                            // exit;
+                        @endphp
 
                         <form action="{{ route('showEdit') }}" method="POST" class="side-by-side">
                             {!! csrf_field() !!}

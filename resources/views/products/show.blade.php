@@ -99,7 +99,7 @@
   Create or Update your proof before adding the product to your cart.</h5>
 
   @if (($product->id == 110 || $product->id == 111) && (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46'))
-    <h5><strong>Phone Numbers are formatted for your locality. Please list reverse side Phone Numbers outside your locality in "Special Instuctions". Be sure to proof your reverse side phone numbers carefully before submission.</strong></h5>
+    <h5><strong>Phone Numbers are formatted for your locality. Please list formatted reverse side Phone Numbers outside your locality in "Special Instuctions". Be sure to proof your reverse side phone numbers carefully before submission.</strong></h5>
   @endif
     
       <div class="panel panel-primary space-above">
@@ -873,7 +873,9 @@
 {!! Form::hidden('loc_name', Auth::user()->loc_name) !!}
 
 <div class="row text-center">
-
+@php
+  // dd($request->city)
+@endphp
   <div class="col-xs-4">
     <button type="submit" class="btn btn-primary btn-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create Proof&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
   </div>
@@ -903,6 +905,7 @@
       {!! Session::put('prod_layout', $product->prod_layout) !!}
       {{-- <input type="hidden" name="email" value="{{ $request->email }}"> --}}
       <input type="hidden" name="quantity" value="{!! $product->quantity !!}">
+      <input type="hidden" name="address1b" value="{!! $request->address1b !!}">
       <input type="submit" class="btn btn-success btn-block" value="Add to Cart">
     </form>
   @endif
