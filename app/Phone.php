@@ -52,7 +52,7 @@ class Phone
         $numbfax = str_replace($chars, "", $numbfax);
                
             if (Auth::user()->username == 'HK34') {  // Bogotá
-                $numbfax = '+' . substr($numb, 0, 2) . '.' . substr($numbfax, 2, 1) . '.' . substr($numbfax, 3, 3) . '.' . substr($numb, 6, 4);
+                $numbfax = '+' . substr($numbfax, 0, 2) . '.' . substr($numbfax, 2, 1) . '.' . substr($numbfax, 3, 3) . '.' . substr($numbfax, 6, 4);
             } elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46') { // México UK
                 $numbfax = '+' . substr($numbfax, 0, 2) . '.' . substr($numbfax, 2, 2) . '.' . substr($numbfax, 4, 4) . '.' . substr($numbfax, 8, 4);
             } else {
