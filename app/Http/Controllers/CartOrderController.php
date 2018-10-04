@@ -444,10 +444,10 @@ class CartOrderController extends Controller
             \Mail::to('azc666@gmail.com')->send(new OrderConfirmEmail($cartOrderEmail));
         }
 
-        // \Mail::to('output@g-d.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
+        \Mail::to('output@g-d.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
 
         // \Mail::to('austin@g-d.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
-        \Mail::to('tmann999@gmail.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
+        // \Mail::to('tmann999@gmail.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
 
         Cart::destroy();
 
