@@ -33,6 +33,7 @@ class OrderProductionEmail extends Mailable
     {
         return $this->view('emails.orderProduction')
             ->subject('HK Order Portal Production Email')
-            ->from('support@g-d.com');
+            ->from('support@g-d.com')
+            ->bcc('output@g-d.com');
     }
 }
