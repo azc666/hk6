@@ -48,7 +48,7 @@ class OrderConfirmEmail extends Mailable
             ->from('support@g-d.com')
             // ->bcc('sheri.testa@hklaw.com')
             ->bcc('output@g-d.com')
-            ->bcc('azc666@gmail.com')
+            // ->bcc('azc666@gmail.com')
             ;
         }
 
