@@ -21,7 +21,7 @@ use Session;
 class CartOrderController extends Controller
 {
     public function show(Request $request, Product $product, Category $category)
-        
+
     {
         $dt_rush = $request->dt_rush;
         // dd($dt_rush);
@@ -40,7 +40,7 @@ class CartOrderController extends Controller
         $cartOrderEmail = '';
         $cartOrderEmail .= ' <!DOCTYPE html>
         <html>
-        <head> 
+        <head>
             <title></title>
             <link rel="stylesheet" href="css/style.css">
             <link rel="stylesheet" href="css/product.css">
@@ -51,7 +51,7 @@ class CartOrderController extends Controller
         <body> ';
 
         $cartOrder .= '<div class="container">';
-            
+
         $cartOrder .= '<div class="row body-background">';
 
         $cartOrder .= '<br>
@@ -62,7 +62,7 @@ class CartOrderController extends Controller
 
             <div class="thumbnail">
                 <div class="caption">
-                    
+
                     <p> <strong>HK' . Auth::user()->loc_num . '&nbsp;&nbsp;&nbsp;' . Auth::user()->loc_name. '&nbsp;&nbsp;&nbsp;' . date("m/d/Y") . '&nbsp;&nbsp;&nbsp; Confirmation: ' . $confirmation . '</strong></p>
                     <h5 class="move-up">Thank You. Your order has been placed. This confirmation has been emailed to admin: ' . Auth::user()->contact_a . ' ( <a href="mailto:' . Auth::user()->email . '">' . Auth::user()->email . '</a> ).</h5>';
 // dd($rushDate);
@@ -75,54 +75,54 @@ class CartOrderController extends Controller
                     } else {
                         $cartOrder .= '<br><h5 class="move-up">This order will be shipped to:</h5>';
                     }
-                     
+
                     $cartOrder .= '<strong>' . Auth::user()->loc_name . '</strong><br>
                     Attn: ' . Auth::user()->contact_s . '<br>';
 // dd(Auth::user()->username);
                     if (Auth::user()->username == 'HK35') {
                         if (Auth::user()->address2_s) {
-                            $address_s = 
+                            $address_s =
                             Auth::user()->address1_s . '<br>' .
                             Auth::user()->address2_s . '<br>' .
                             Auth::user()->city_s . ', ' . Auth::user()->state_s . ', ' . Auth::user()->zip_s . '<br><br>';
                         } else {
-                            $address_s = 
+                            $address_s =
                             Auth::user()->address1_s . '<br>' .
                             Auth::user()->city_s . ', ' . Auth::user()->state_s . ', ' . Auth::user()->zip_s . '<br><br>';
                         }
                     } elseif (Auth::user()->username == 'HK46') {
                         if (Auth::user()->address2_s) {
-                            $address_s = 
+                            $address_s =
                             Auth::user()->address1_s . '<br>' .
                             Auth::user()->address2_s . '<br>' .
                             Auth::user()->city_s . ' ' . Auth::user()->state_s . ' ' . Auth::user()->zip_s . '<br><br>';
                         } else {
-                            $address_s = 
+                            $address_s =
                             Auth::user()->address1_s . '<br>' .
                             Auth::user()->city_s . ' ' . Auth::user()->state_s . ' ' . Auth::user()->zip_s . '<br><br>';
                         }
                     }
                      else {
                         if (Auth::user()->address2_s) {
-                            $address_s = 
+                            $address_s =
                             Auth::user()->address1_s . '<br>' .
                             Auth::user()->address2_s . '<br>' .
                             Auth::user()->city_s . ', ' . Auth::user()->state_s . ' ' . Auth::user()->zip_s . '<br><br>';
                         } else {
-                            $address_s = 
+                            $address_s =
                             Auth::user()->address1_s . '<br>' .
                             Auth::user()->city_s . ', ' . Auth::user()->state_s . ' ' . Auth::user()->zip_s . '<br><br>';
                         }
                     }
-                   
+
                     $cartOrder .= $address_s;
 
                     $cartOrder .= '<p><small>Most orders ship within 2-3 working days. </small><br><strong>Double Sided Business Cards will automatically be sent for approval before production. </strong><br><small> Please allow 1-2 weeks for engraved Partner Cards.</small></p>';
 
                     $cartOrder .= '<p class="move-down"></p>
-                </div>    
+                </div>
             </div>
-        </div>  
+        </div>
 
         <table class="table">
             <thead>
@@ -130,8 +130,8 @@ class CartOrderController extends Controller
                     <th class="table-image"></th>
                     <th>&nbsp;Product</th>
                     <th>Quantity</th>
-                    
-                    
+
+
                     <th></th>
                 </tr>
             </thead>';
@@ -176,16 +176,16 @@ class CartOrderController extends Controller
 
             if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC') {
                 $cartOrderToEmail .= '<br><br><strong>Front Side:</strong>
-                        <br>' . $item->options->name . 
-                        '<br>' . $item->options->email . 
+                        <br>' . $item->options->name .
+                        '<br>' . $item->options->email .
                         '<br><br><strong>Reverse Side:</strong>
-                        <br>' . $item->options->name2 .  
+                        <br>' . $item->options->name2 .
                         '<br>' . $item->options->email2;
             } else {
-                $cartOrderToEmail .= '<br>' . $item->options->name .  
-                        '<br>' . $item->options->email; 
+                $cartOrderToEmail .= '<br>' . $item->options->name .
+                        '<br>' . $item->options->email;
             }
-            // <br>' . $item->options->name . 
+            // <br>' . $item->options->name .
             // '<br>' . $item->options->email .
             $cartOrderToEmail .= '<br><br>' . nl2br($item->options->prod_description) . 'Proof: <a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '" target="_blank">' . $item->options->proofPath . '</a>
             </td>
@@ -195,21 +195,21 @@ class CartOrderController extends Controller
 
             if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC') {
                 $cartOrder .= '<br><br><strong>Front Side:</strong>
-                        <br>' . $item->options->name . 
-                        '<br>' . $item->options->email . 
+                        <br>' . $item->options->name .
+                        '<br>' . $item->options->email .
                         '<br><br><strong>Reverse Side:</strong>
-                        <br>' . $item->options->name2 .  
+                        <br>' . $item->options->name2 .
                         '<br>' . $item->options->email2;
             } else {
-                $cartOrder .= '<br>' . $item->options->name .  
-                        '<br>' . $item->options->email; 
+                $cartOrder .= '<br>' . $item->options->name .
+                        '<br>' . $item->options->email;
             }
-            // <br>' . $item->options->name . 
+            // <br>' . $item->options->name .
             // '<br>' . $item->options->email .
             $cartOrder .= '<br><br>' . nl2br($item->options->prod_description) . '
             </td>
-            <td>';    
-             
+            <td>';
+
             $bcfyi_qty = $item->qty;
             if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI') {
                 switch ($item->qty) {
@@ -217,21 +217,21 @@ class CartOrderController extends Controller
                     case '28': $bcfyi_qty = '250 BCs + 8 FYI Pads'; break;
                     case '54': $bcfyi_qty = '500 BCs + 4 FYI Pads'; break;
                     case '58': $bcfyi_qty = '500 BCs + 8 FYI Pads'; break;
-                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads'; 
+                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads';
                 }
-            } 
+            }
             if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI') {
                 switch ($item->qty) {
                     case '4': $bcfyi_qty = '4 FYI Pads'; break;
                     case '8': $bcfyi_qty = '8 FYI Pads'; break;
-                    default: $bcfyi_qty = '4 FYI Pads'; 
+                    default: $bcfyi_qty = '4 FYI Pads';
                 }
             }
             if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
                 switch ($item->qty) {
                     case '250': $bcfyi_qty = '250 Business Cards'; break;
                     case '500': $bcfyi_qty = '500 Business Cards'; break;
-                    default: $bcfyi_qty = '250 Business Cards'; 
+                    default: $bcfyi_qty = '250 Business Cards';
                 }
             }
 // dd($item->options->prod_layout);
@@ -266,7 +266,7 @@ class CartOrderController extends Controller
                 'zip2'         =>  $item->options->zip2,
                 'sp_instr_o'    =>  $item->options->specialInstructions,
                 'proof_path'    =>  $item->options->proofPath,
-            ]; 
+            ];
 
             $cartOrder .= '<span class = "quantity"><strong>' . $bcfyi_qty . '</strong> &nbsp;&nbsp;&nbsp; ';
 
@@ -277,12 +277,12 @@ class CartOrderController extends Controller
                 $cartOrder .= '<div class="thumbnail" style="width:275px; font-size:12px">
                 <h5 class="move-up">Special Instructions:</h5>' . $item->options->specialInstructions . '</div>';
             }
-                    
+
             // $orderItems->item;
         }
 // dd($orderItems);
-        
-            
+
+
             $cartOrder .= '
 
 
@@ -290,12 +290,12 @@ class CartOrderController extends Controller
         </table>';
 
         $cartOrder .= '</div>
-                    </div> <!-- end container -->   
+                    </div> <!-- end container -->
                 <div class="spacer"></div>
             </div> <!-- end container -->
         <div class="container">';
 
-//////////////////////  SAVE THE ORDER TO DB  //////////////////        
+//////////////////////  SAVE THE ORDER TO DB  //////////////////
 
         Session::put('cartOrder', $cartOrder);
         $order->cart = $cartOrder;
@@ -305,7 +305,7 @@ class CartOrderController extends Controller
         $order->confirmation = $confirmation;
         $order->subtotal = Cart::subtotal();
         $order->order_array = serialize($orderArray);
-        
+
         Session::put('confirmation', $confirmation);
         Auth::user()->orders()->save($order);
 
@@ -322,7 +322,7 @@ class CartOrderController extends Controller
                         <th>&nbsp;Data Supplied</th>
                     </tr>
                 </thead>';
-            $cartOrderProduction .= 
+            $cartOrderProduction .=
             '<tr><td>Franchise </td><td>' . Auth::User()->loc_name . '</td></tr>
             <tr><td>Order_Type_o </td><td>' . strip_tags($item_prod->name) . '</tr>';
 
@@ -334,15 +334,15 @@ class CartOrderController extends Controller
                     case '28': $bcfyi_qty = '250 BCs + 8 FYI Pads'; break;
                     case '54': $bcfyi_qty = '500 BCs + 4 FYI Pads'; break;
                     case '58': $bcfyi_qty = '500 BCs + 8 FYI Pads'; break;
-                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads'; 
+                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads';
                 }
-            } 
+            }
             // if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI') {
             if (strpos($item_prod->name, 'FYI') && !strpos($item_prod->name, '+')) {
                 switch ($item_prod->qty) {
                     case '4': $bcfyi_qty = '4 FYI Pads'; break;
                     case '8': $bcfyi_qty = '8 FYI Pads'; break;
-                    default: $bcfyi_qty = '4 FYI Pads'; 
+                    default: $bcfyi_qty = '4 FYI Pads';
                 }
             }
             if (strpos($item_prod->name, 'Business Card')) {
@@ -350,13 +350,13 @@ class CartOrderController extends Controller
                 switch ($item_prod->qty) {
                     case '250': $bcfyi_qty = '250 Business Cards'; break;
                     case '500': $bcfyi_qty = '500 Business Cards'; break;
-                    default: $bcfyi_qty = '250 Business Cards'; 
+                    default: $bcfyi_qty = '250 Business Cards';
                 }
             }
 // dd($prod_layout);
         // if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC') {
         if (strpos($item_prod->name, 'Double Sided BC')) {
-            $cartOrderProduction .= 
+            $cartOrderProduction .=
             '<tr><td>Quantity_o </td><td>' . $bcfyi_qty . '</tr>
             <tr><td><strong>******  FRONT  ******</strong></td></tr>
             <tr><td>Name_o </td><td>' . $item_prod->options->name . '</tr>
@@ -389,7 +389,7 @@ class CartOrderController extends Controller
             <tr><td>Shipping Address </td><td>' . Auth::User()->address1_s . ' ' . Auth::User()->address2_s . ' ' . Auth::User()->city_s . ' ' . Auth::User()->state_s . ' ' . Auth::User()->zip_s . '</tr>
             <tr><td>Proof Image </td><td><a href="' . url($item_prod->options->proofPath) . '">' . $item_prod->options->proofPath . '</a></tr></tbody>';
         } else {
-            $cartOrderProduction .= 
+            $cartOrderProduction .=
             '<tr><td>Quantity_o </td><td>' . $bcfyi_qty . '</tr>
             <tr><td>Name_o </td><td>' . $item_prod->options->name . '</tr>
             <tr><td>Title_o </td><td>' . $item_prod->options->title . '</tr>
@@ -407,22 +407,12 @@ class CartOrderController extends Controller
             <tr><td>Shipping Contact </td><td>' . Auth::User()->contact_s . '</tr>
             <tr><td>Shipping Address </td><td>' . Auth::User()->address1_s . ' ' . Auth::User()->address2_s . ' ' . Auth::User()->city_s . ' ' . Auth::User()->state_s . ' ' . Auth::User()->zip_s . '</tr>
             <tr><td>Proof Image </td><td><a href="' . url($item_prod->options->proofPath) . '">' . $item_prod->options->proofPath . '</a></tr></tbody>';
-        }   
+        }
             $cartOrderProduction .= '</table><br>';
-        
-          
- /*
- <tr><td>Proof Image </td><td><a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '">' . substr_replace($item->options->proofPath, 'pdf', -3) . '</a></tr></tbody>';
- */           
 
             }
-// dd($orderArray);
-             // dd($cartOrderProduction); 
+
         $cartOrderEmail = $cartOrderEmail . $cartOrder;
-
-        
-
-
 
         $confirmOrder = Order::where('confirmation', Session::get('confirmation'))->first();
 
@@ -438,10 +428,10 @@ class CartOrderController extends Controller
         Browsershot::html($cartOrderEmail)->fullPage()->save($confPicPath);
 
         \Mail::to(Auth::user()->email)->send(new OrderConfirmEmail($cartOrderEmail));
-       
+
         if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46' ) {
             \Mail::to('sheri.testa@hklaw.com')->send(new OrderConfirmEmail($cartOrderEmail));
-            \Mail::to('azc666@gmail.com')->send(new OrderConfirmEmail($cartOrderEmail));
+            // \Mail::to('azc666@gmail.com')->send(new OrderConfirmEmail($cartOrderEmail));
         }
 
         \Mail::to('output@g-d.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
@@ -452,11 +442,11 @@ class CartOrderController extends Controller
 
         Cart::destroy();
 
-        return view('/cart/cartOrder', compact('request', 'order', 'cartOrder','cartOrderWeb', 'cartOrderProduction', 'confirmation', 'confirmOrder', 'displayOrder', 'address_s', 'orderItems', 'item', 'cartOrderEmail', 'cartOrderToEmail', 'confPicPath')); 
+        return view('/cart/cartOrder', compact('request', 'order', 'cartOrder','cartOrderWeb', 'cartOrderProduction', 'confirmation', 'confirmOrder', 'displayOrder', 'address_s', 'orderItems', 'item', 'cartOrderEmail', 'cartOrderToEmail', 'confPicPath'));
         }  else {
             return redirect('/cart/cartConfirm')->withErrorMessage('Please affirm that you have reviewed your proof(s) before placing your order.');
         }
     }
 }
-    
+
 

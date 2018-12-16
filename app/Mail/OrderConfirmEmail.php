@@ -11,9 +11,9 @@ use Auth;
 
 class OrderConfirmEmail extends Mailable
 {
-    
+
     use Queueable, SerializesModels;
-    
+
     public $cartOrder;
 
     /**
@@ -47,11 +47,11 @@ class OrderConfirmEmail extends Mailable
             ->subject('HK Order Portal Email Confirmation')
             ->from('support@g-d.com')
             // ->bcc('sheri.testa@hklaw.com')
-            ->bcc('output@g-d.com')
+            // ->bcc('output@g-d.com')
             // ->bcc('azc666@gmail.com')
             ;
         }
 
-        
+
     }
 
