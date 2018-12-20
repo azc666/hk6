@@ -429,7 +429,7 @@ class CartOrderController extends Controller
 
         \Mail::to(Auth::user()->email)->send(new OrderConfirmEmail($cartOrderEmail));
 
-        if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46' ) {
+        if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46' || $prod_layout == 'PDSBC' || $prod_layout == 'ADSBC') {
             \Mail::to('sheri.testa@hklaw.com')->send(new OrderConfirmEmail($cartOrderEmail));
             // \Mail::to('azc666@gmail.com')->send(new OrderConfirmEmail($cartOrderEmail));
         }
