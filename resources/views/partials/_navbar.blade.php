@@ -17,29 +17,29 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav" style="font-size:16px; text-align: center">
         <li class="active"><a href="{{ url('/') }}"> Home <span class="sr-only"></span></a></li>
-        
+
         {{-- <li><a href="{{ url('/support') }}">Support </a></li> --}}
         {{-- <li><a href="{{ url('/logout') }}">Log Out </a></li> --}}
-      
+
 @if (Auth::user())
   <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support<span class="caret"></span></a>       
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support<span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
       <li><a href="{{ route('showContactus') }}"><i class="fa fa-info-circle" aria-hidden="true" style="font-size:16px"></i>&nbsp;&nbsp;Contact Us</a></li>
       {{-- <li><a href="#">Another action</a></li> --}}
       {{-- <li><a href="#">Something else here</a></li> --}}
       <li class="divider"></li>
-      <li><a href="{{ asset('/assets/HK Order Portal User Manual 2018.pdf') }}" target="_blank"><i class="fa fa-book" aria-hidden="true" style="font-size:16px"></i>&nbsp;&nbsp;Order Portal Documentation</a></li>
-    </ul>                
+      <li><a href="{{ asset('/assets/HK Order Portal User Manual 2019.pdf') }}" target="_blank"><i class="fa fa-book" aria-hidden="true" style="font-size:16px"></i>&nbsp;&nbsp;Order Portal Documentation</a></li>
+    </ul>
   </li>
 @endif
 
 @if (Auth::user() && Auth::user()->admin == 1)
   {{-- expr --}}
 
-  
+
   <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<span class="caret"></span></a>       
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
                 <li><a href="{{ route('register') }}">Create a new user</a></li>
                 {{-- <li><a href="#">Another action</a></li> --}}
@@ -48,14 +48,14 @@
                 <li><a href="{{ route('login') }}">Login as another user</a></li>
                 <li class="divider"></li>
                 <li><a href="{{ route('titles') }}">Titles Maintenance</a></li>
-              </ul>                
+              </ul>
             </li>
 @endif
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        @if (Auth::check())       
-        
+        @if (Auth::check())
+
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/assets/carticon/ShoppingCart{{ Cart::content()->count() }}.gif" style="max-width:35px;">&nbsp;<span style="line-height:25px"> My Cart</span><span class="caret"></span></a>
 
@@ -67,10 +67,10 @@
               <li><a href="{{ route('storecart') }}"><i class="fa fa-cart-plus" aria-hidden="true" style="font-size:18px"></i>&nbsp;&nbsp;Save Cart</a></li>
               <li><a href="{{ route('restorecart') }}"><i class="fa fa-cart-arrow-down" aria-hidden="true" style="font-size:18px"></i>&nbsp;&nbsp;Restore Cart</a></li>
               {{-- @endif --}}
-              
+
             </ul>
           </li>
-        
+
         {{-- <li><a href="{{ url('cart') }}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> My Cart <strong>({{ Cart::count() }})</strong></a></li> --}}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true" style="font-size:24px"></i> {{ Auth::user()->loc_name }}<span class="caret"></span></a>
@@ -94,7 +94,7 @@
             </form>
           </li>
         @endif
-  
+
           </ul>
         </li>
       </ul>
