@@ -21,20 +21,28 @@ use Carbon\Carbon;
 
 class ReorderController extends Controller
 {
-    
+
     public function store(Request $request, Product $product)
     {
-
         $order = new Order;
+
+        // $q = $order->whereDate('date', '<', date('2018-04-16'));
+// dd ($order->name);
+
+        // if ($q = $order->whereDate('date', '<', '2018-04-16')
+        // ) {
+        //     return redirect('cart')->withErrorMessage('Sorry, this confirmation cannot be reordered');
+        // }
+
         $array = $order->where('confirmation', Session::get('showOrder'))->first();
         $data = unserialize($array->order_array);
-        // dd($data);
-        
+        if ($array->created_at < date('2018-04-12')) {
+            return redirect('cart')->withErrorMessage('Sorry, this confirmation (Confirmation# ' . Session::get('showOrder') . ') cannot be restored to a new cart. Please create a new order.');
+        }
         if($data) {
             foreach($data as $val) {
                 $prod_layout = $val['prod_layout'];
-                
-
+                // dd($val['prod_layout']);
                 if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'PDSBC' || $prod_layout == 'ADSBC') {
                     switch (Session::get('qty')) {
                         case '250': $quantity = 250; break;
@@ -48,7 +56,7 @@ class ReorderController extends Controller
                     switch (Session::get('qty')) {
                         case '4': $quantity = 4; break;
                         case '8': $quantity = 8; break;
-                        default: $quantity = 4; 
+                        default: $quantity = 4;
                     }
                 }
 
@@ -58,83 +66,99 @@ class ReorderController extends Controller
                         case '28': $quantity = 28; break;
                         case '54': $quantity = 54; break;
                         case '58': $quantity = 58; break;
-                        default: $quantity = 24; 
+                        default: $quantity = 24;
                     }
                 }
 
                 $price = 0;
-// dd($val['prod_layout']);
-            //     if ($prod_layout != 'PDSBC' || $prod_layout != 'ADSBC') {
-            //         Cart::add($val['row_id'], $val['order_type_o'], $quantity, $price, [
-            //         'rowId' =>  $val['row_id'],
-            //         'proofPath' => $val['proof_path'],
-            //         'name' =>  $val['name_o'],
-            //         'title' =>  $val['title_o'],
-            //         'email' =>  $val['email_o'],
-            //         'address1' =>  $val['address1_o'],
-            //         'address2' => $val['address2_o'],
-            //         'city' => $val['city_o'],
-            //         'state' => $val['state_o'],
-            //         'zip' => $val['zip_o'],
-            //         'phone' => $val['phone_o'],
-            //         'fax' => $val['fax_o'],
-            //         'cell' => $val['cell_o'],
-            //         'specialInstructions' => $val['sp_instr_o'],
-            //         'prod_name' => $val['order_type_o'],
-            //         'prod_layout' => $val['prod_layout'],
-            //         'prod_id' => $request->id,
-            //         'prod_description' => strip_tags($val['prod_descr']),
-            //         'imagePath' => Session::get('imagePath'),
-            //     ])->associate('App\Product');
-            // } else {
-                Cart::add($val['row_id'], $val['order_type_o'], $quantity, $price, [
-                    'rowId' =>  $val['row_id'],
-                    'proofPath' => $val['proof_path'],
-                    'name' =>  $val['name_o'],
-                    'title' =>  $val['title_o'],
-                    'email' =>  $val['email_o'],
-                    'address1' =>  $val['address1_o'],
-                    'address2' => $val['address2_o'],
-                    'city' => $val['city_o'],
-                    'state' => $val['state_o'],
-                    'zip' => $val['zip_o'],
-                    'phone' => $val['phone_o'],
-                    'fax' => $val['fax_o'],
-                    'cell' => $val['cell_o'],
-                    'name2' =>  $val['name2'],
-                    'title2' =>  $val['title2'],
-                    'email2' =>  $val['email2'],
-                    'address1b' =>  $val['address1b'],
-                    'address2b' => $val['address2b'],
-                    'city2' => $val['city2'],
-                    'state2' => $val['state2'],
-                    'zip2' => $val['zip2'],
-                    'phone2' => $val['phone2'],
-                    'fax2' => $val['fax2'],
-                    'cell2' => $val['cell2'],
-                    'specialInstructions' => $val['sp_instr_o'],
-                    'prod_name' => $val['order_type_o'],
-                    'prod_layout' => $val['prod_layout'],
-                    'prod_id' => $request->id,
-                    'prod_description' => strip_tags($val['prod_descr']),
-                    'imagePath' => Session::get('imagePath'),
-                ])->associate('App\Product');
-           // dd(Cart::search(['id' => $request->id ]));     
-            // }
-        }    
-    } 
-// dd($val['title2']);
-        $product = Product::all();
-// Session::put('data2', $data);
-        // return view('/cart', compact('product', 'request', 'cart', 'val'));
 
-        return redirect('/cart')->withSuccessMessage(' Your archived order (Confirmation # ' . Session::get('showOrder') . ') has been restored to your cart!')->with($data);  
+                if (!array_key_exists('email2', $data[0])) {
+
+                    // if ($array->created_at < date('2018-04-12')) {
+                    //     return redirect('cart')->withErrorMessage(' Sorry, this confirmation,  (Confirmation # ' . Session::get('showOrder') . ')cannot be reordered');
+                    // }
+                    // dd($array->created_at < date('2018-04-12'));
+
+                    Cart::add($val['row_id'], $val['order_type_o'], $quantity, $price, [
+                        'rowId' =>  $val['row_id'],
+                        'proofPath' => $val['proof_path'],
+                        'name' =>  $val['name_o'],
+                        'title' =>  $val['title_o'],
+                        'email' =>  $val['email_o'],
+                        'address1' =>  $val['address1_o'],
+                        'address2' => $val['address2_o'],
+                        'city' => $val['city_o'],
+                        'state' => $val['state_o'],
+                        'zip' => $val['zip_o'],
+                        'phone' => $val['phone_o'],
+                        'fax' => $val['fax_o'],
+                        'cell' => $val['cell_o'],
+                        'name2' =>  "",
+                        'title2' =>  "",
+                        'email2' =>  "",
+                        'address1b' => "",
+                        'address2b' => "",
+                        'city2' => "",
+                        'state2' => "",
+                        'zip2' => "",
+                        'phone2' => "",
+                        'fax2' => "",
+                        'cell2' => "",
+                        'specialInstructions' => $val['sp_instr_o'],
+                        'prod_name' => $val['order_type_o'],
+                        'prod_layout' => $val['prod_layout'],
+                        'prod_id' => $request->id,
+                        'prod_description' => strip_tags($val['prod_descr']),
+                        'imagePath' => Session::get('imagePath'),
+                    ])->associate('App\Product');
+
+                } else {
+
+                    Cart::add($val['row_id'], $val['order_type_o'], $quantity, $price, [
+                        'rowId' => $val['row_id'],
+                        'proofPath' => $val['proof_path'],
+                        'name' => $val['name_o'],
+                        'title' => $val['title_o'],
+                        'email' => $val['email_o'],
+                        'address1' => $val['address1_o'],
+                        'address2' => $val['address2_o'],
+                        'city' => $val['city_o'],
+                        'state' => $val['state_o'],
+                        'zip' => $val['zip_o'],
+                        'phone' => $val['phone_o'],
+                        'fax' => $val['fax_o'],
+                        'cell' => $val['cell_o'],
+                        'name2' => $val['name2'],
+                        'title2' => $val['title2'],
+                        'email2' => $val['email2'],
+                        'address1b' => $val['address1b'],
+                        'address2b' => $val['address2b'],
+                        'city2' => $val['city2'],
+                        'state2' => $val['state2'],
+                        'zip2' => $val['zip2'],
+                        'phone2' => $val['phone2'],
+                        'fax2' => $val['fax2'],
+                        'cell2' => $val['cell2'],
+                        'specialInstructions' => $val['sp_instr_o'],
+                        'prod_name' => $val['order_type_o'],
+                        'prod_layout' => $val['prod_layout'],
+                        'prod_id' => $request->id,
+                        'prod_description' => strip_tags($val['prod_descr']),
+                        'imagePath' => Session::get('imagePath'),
+                    ])->associate('App\Product');
+                }
+            }
+        }
+        $product = Product::all();
+
+        return redirect('/cart')->withSuccessMessage(' Your archived order (Confirmation # ' . Session::get('showOrder') . ') has been restored to your cart!')->with($data);
     }
+
 
     ///////////////////////////////////////////////////////////////////
     public function storeReorder(Request $request, Product $product)
     {
-        
+
         $order = new Order;
         $array = $order->where('confirmation', '99-1848-20457')->first();
         $render = unserialize($array->order_array);
@@ -147,7 +171,7 @@ class ReorderController extends Controller
         // dd(Session::get('prod_layout') . 'nope');
         $proofFilePath = 'assets/proofs/' . Auth::user()->username  . '/' . Session::get('prod_layout') . '-' . DisplayName::initials(Session::get('name')) . '-' . $emailuser . '-' . Carbon::now('America/New_York')->format('m-d-y-gis') . '-proof.jpg';
         $proofFilePathPdf = 'assets/proofs/' . Auth::user()->username  . '/' . Session::get('prod_layout') . '-' . DisplayName::initials(Session::get('name')) . '-' . $emailuser . '-' . Carbon::now('America/New_York')->format('m-d-y-gis') . '-proof.pdf';
-        
+
         $rowId = $render[0]['row_id'];
         $prod_layout = Session::get('prod_layout');
 // dd($rowId);
@@ -171,9 +195,9 @@ class ReorderController extends Controller
             'prod_id' => $request->prod_id,
             // 'prod_id' => 103,
         ]);
-              
+
         Session::put('proofFilePath', $proofFilePath);
 
-        return redirect('cart')->withSuccessMessage('Your Cart has been updated!');  
-    }   
+        return redirect('cart')->withSuccessMessage('Your Cart has been updated!');
+    }
 }
