@@ -35,7 +35,7 @@ class ContactusEmail extends Mailable
         return $this->view('emails.contactus')
             ->subject('Your Support Email Confirmation')
             ->from('support@g-d.com')
-            // ->bcc('support@arhorderportal.com');
+            ->bcc('output@g-d.com')
             ->bcc('azc666@gmail.com');
     }
 }
