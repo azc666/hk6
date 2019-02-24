@@ -24,7 +24,7 @@
         <th>Location</th>
         <th>Location Name</th>
         <th>Confirmation</th>
-        <th>Cart</th>
+        {{-- <th>Cart</th> --}}
       </tr>
     </thead>
 
@@ -45,7 +45,7 @@
              {{-- <td>{{ $order->confirmation }}</td> --}}
 
              <td>{!! Form::submit($order->confirmation, ['class' => 'btn btn-default move-up']) !!}</td>
-            <td>{{ $order->cart }}</td>
+            <td>{{ $order->order_array }}</td>
              {!! Form::close() !!}
             </tr>
         @endforeach
