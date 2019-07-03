@@ -37,7 +37,7 @@ class CartController extends Controller
 
     public function show(Request $request, Product $product)
     {
-        
+
         return view('cart/cartConfirm');
     }
 
@@ -52,7 +52,7 @@ class CartController extends Controller
         //     return redirect('cart')->withInput()->withSuccessMessage('Item is already in your cart!');
         // }
 
-        
+
         if (file_exists('assets/mpdf/temp/' . Auth::user()->username  . '/showData.jpg')) {
 
         $emailuser = explode("@", Session::get('email'));
@@ -61,9 +61,9 @@ class CartController extends Controller
         $proofFilePathDir = 'assets/proofs/' . Auth::user()->username  . '/';
         $proofFilePath = 'assets/proofs/' . Auth::user()->username  . '/' . Session::get('prod_layout') . '-' . DisplayName::initials(Session::get('card_name')) . '-' . $emailuser . '-' . Carbon::now('America/New_York')->format('m-d-y-gis') . '-proof.jpg';
         $proofFilePathPdf = 'assets/proofs/' . Auth::user()->username  . '/' . Session::get('prod_layout') . '-' . DisplayName::initials(Session::get('card_name')) . '-' . $emailuser . '-' . Carbon::now('America/New_York')->format('m-d-y-gis') . '-proof.pdf';
-        
+
         //dd($proofFilePath);
-        
+
         if (file_exists('assets/proofs/' . Auth::user()->username . '/')) {
             $proofFilePath = 'assets/proofs/' . Auth::user()->username  . '/' . Session::get('prod_layout') . '-' . DisplayName::initials(Session::get('name')) . '-' . $emailuser . '-' . Carbon::now('America/New_York')->format('m-d-y-gis') . '-proof.jpg';
             $proofFilePathPdf = 'assets/proofs/' . Auth::user()->username  . '/' . Session::get('prod_layout') . '-' . DisplayName::initials(Session::get('name')) . '-' . $emailuser . '-' . Carbon::now('America/New_York')->format('m-d-y-gis') . '-proof.pdf';
@@ -72,7 +72,7 @@ class CartController extends Controller
             $proofFilePath = 'assets/proofs/' . Auth::user()->username  . '/' . Session::get('prod_layout') . '-' . DisplayName::initials(Session::get('name')) . '-' . $emailuser . '-' . Carbon::now('America/New_York')->format('m-d-y-gis') . '-proof.jpg';
             $proofFilePathPdf = 'assets/proofs/' . Auth::user()->username  . '/' . Session::get('prod_layout') . '-' . DisplayName::initials(Session::get('name')) . '-' . $emailuser . '-' . Carbon::now('America/New_York')->format('m-d-y-gis') . '-proof.pdf';
         }
-        
+
             $im = new \Imagick($filePath);
             $imp = new \Imagick($filePath);
             $im->setImageFormat('jpg');
@@ -81,6 +81,10 @@ class CartController extends Controller
             file_put_contents($proofFilePathPdf, $imp);
 
         $prod_layout = Session::get('prod_layout');
+
+        if ($prod_layout == 'NTAG') {
+            $quantity = 1;
+        }
 
         if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC') {
             switch (Session::get('qty')) {
@@ -95,7 +99,7 @@ class CartController extends Controller
             switch (Session::get('qty')) {
                 case '4': $quantity = 4; break;
                 case '8': $quantity = 8; break;
-                default: $quantity = 4; 
+                default: $quantity = 4;
             }
         }
 
@@ -105,7 +109,7 @@ class CartController extends Controller
                 case '28': $quantity = 28; break;
                 case '54': $quantity = 54; break;
                 case '58': $quantity = 58; break;
-                default: $quantity = 24; 
+                default: $quantity = 24;
             }
         }
 
@@ -148,9 +152,9 @@ class CartController extends Controller
             // dd($request->id);
             $product = Product::all();
             // dd($product->get('prod_layout')->first());
-            return redirect('/cart')->withSuccessMessage(strip_tags($request->name) . ' was added to your cart!');  
-    
-    } 
+            return redirect('/cart')->withSuccessMessage(strip_tags($request->name) . ' was added to your cart!');
+
+    }
 }
 
     /**
@@ -164,14 +168,14 @@ class CartController extends Controller
     {
 
         $prod_layout = $request->prod_layout;
-                
+
         if ($request->qty > 0) {
 
             if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC') {
                 switch ($request->qty) {
                     case '250': $bcfyi_qty = '250 Business Cards'; break;
                     case '500': $bcfyi_qty = '500 Business Cards'; break;
-                    default: $bcfyi_qty = '250 Business Cards'; 
+                    default: $bcfyi_qty = '250 Business Cards';
                 }
             }
             if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI') {
@@ -180,19 +184,19 @@ class CartController extends Controller
                     case '28': $bcfyi_qty = '250 BCs + 8 FYI Pads'; break;
                     case '54': $bcfyi_qty = '500 BCs + 4 FYI Pads'; break;
                     case '58': $bcfyi_qty = '500 BCs + 8 FYI Pads'; break;
-                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads'; 
+                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads';
                 }
-            } 
+            }
             if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI') {
                 switch ($request->qty) {
                     case '4': $bcfyi_qty = '4 FYI Pads'; break;
                     case '8': $bcfyi_qty = '8 FYI Pads'; break;
-                    default: $bcfyi_qty = '4 FYI Pads'; 
+                    default: $bcfyi_qty = '4 FYI Pads';
                 }
             }
 
           Cart::update($request->rowId, ['qty' => $request->qty]);
- 
+
             if ($_SERVER['HTTP_REFERER'] == 'http://hk6.test/cart/cartConfirm') {
                 return redirect('cart/cartConfirm')->withSuccessMessage('The quantity has been updated to ' . $bcfyi_qty . '.');
             } else {
@@ -200,11 +204,11 @@ class CartController extends Controller
             }
         } else {
             if ($_SERVER['HTTP_REFERER'] == 'http://hk6.test/cart/cartConfirm') {
-                return redirect('cart/cartConfirm')->withErrorMessage('The quantity remained unchanged'); 
+                return redirect('cart/cartConfirm')->withErrorMessage('The quantity remained unchanged');
             } else {
                 return redirect('cart/')->withErrorMessage('The quantity remained unchanged');
             }
-        }       
+        }
     }
 
     /**

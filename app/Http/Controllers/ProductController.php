@@ -146,6 +146,31 @@ class ProductController extends Controller
             $pathToWhereJpgShouldBeStored = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.jpg';
         }
 
+        /////////////////////  Name Tags ///////////////////////
+
+        if ($request->id == 112) {
+            $pdf = PDF::loadView('products.showData', $data, compact('product', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2'), [
+                'mode'                 => '',
+                'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
+                'default_font_size'    => '12',
+                'default_font'         => 'sans-serif',
+                'margin_left'          => 0,
+                'margin_right'         => 0,
+                'margin_top'           => 0,
+                'margin_bottom'        => 0,
+                'margin_header'        => 0,
+                'margin_footer'        => 0,
+                'orientation'          => 'P',
+                'title'                => 'Laravel mPDF',
+                'author'               => '',
+                'watermark'            => 'PROOF',
+                'show_watermark'       => true,
+                'watermark_font'       => 'sans-serif',
+                'display_mode'         => 'fullpage',
+                'watermark_text_alpha' => 0.075,
+            ]);
+        }
+
 ///////////////////// Business Cards ///////////////////////
 
         if ($request->id == 101 || $request->id == 102 || $request->id == 103) {
@@ -374,6 +399,32 @@ $cartItem = array(
             $pathToPdf = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.pdf';
             $pathToWhereJpgShouldBeStored = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.jpg';
         }
+
+        /////////////////////  Name Tags ///////////////////////
+
+        if ($request->prod_id == 112) {
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2'), [
+                'mode'                 => '',
+                'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
+                'default_font_size'    => '12',
+                'default_font'         => 'sans-serif',
+                'margin_left'          => 0,
+                'margin_right'         => 0,
+                'margin_top'           => 0,
+                'margin_bottom'        => 0,
+                'margin_header'        => 0,
+                'margin_footer'        => 0,
+                'orientation'          => 'P',
+                'title'                => 'Laravel mPDF',
+                'author'               => '',
+                'watermark'            => 'PROOF',
+                'show_watermark'       => true,
+                'watermark_font'       => 'sans-serif',
+                'display_mode'         => 'fullpage',
+                'watermark_text_alpha' => 0.075,
+            ]);
+        }
+
 
 //////////////// Business Cards /////////////////
 

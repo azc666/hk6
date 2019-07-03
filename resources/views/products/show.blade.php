@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container"> 
+<div class="container">
   <div class="row">
     <h2 class="pull-left move-right move-up"> {{ strip_tags($product->prod_name) }} - Data Entry</h2>
   </div>
@@ -32,7 +32,7 @@
 
       @else
           <div>
-            
+
             @php
             if (Auth::user()->username == 'HK35') {
               $product->id == 103 ? $imagePath  = '/assets/partner/mexico_pbc.jpg' : '';
@@ -71,13 +71,13 @@
               $product->id == 110 ? $imagePath  = '/assets/associate/london_adsbc.jpg' : '';
               $product->id == 111 ? $imagePath  = '/assets/partner/london_pdsbc.jpg' : '';
             }
-            @endphp  
+            @endphp
 
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
               <a href="{{ url(substr_replace($imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $imagePath }}" class="img-responsive dropshadow" alt="..."></a>
            @else
               <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $product->imagePath }}" class="img-responsive dropshadow" alt="..."></a>
-           @endif 
+           @endif
 
 
             <h5><i>&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></h5>
@@ -94,21 +94,31 @@
       <br>
 
   <h4>Your Location: {{ Auth::user()->username }}  {{ Auth::user()->loc_name }}</h4>
-  <h5>Enter the data for your {{strip_tags($product->prod_name)}}. <br> 
+  <h5>Enter the data for your {{strip_tags($product->prod_name)}}. <br>
 
   Create or Update your proof before adding the product to your cart.</h5>
 
   @if (($product->id == 110 || $product->id == 111) && (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46'))
     <h5><strong>Phone Numbers are formatted for your locality. Please list formatted reverse side Phone Numbers outside your locality in "Special Instuctions". Be sure to proof your reverse side phone numbers carefully before submission.</strong></h5>
   @endif
-    
+
       <div class="panel panel-primary space-above">
       <div class="panel-body">
-      
+
   {!! Form::open(['route' => 'showData', 'method' => 'POST', 'class' => 'form-horizontal', 'data-parsley-validate' => '']) !!}
 
+{{--  //////////////////// NAMETAG //////////////////// --}}
+@if ($product->id == 112)
+<div class="form-group">
+  {!! Form::label('name', 'Name:', ['class' => 'col-sm-2 control-label']) !!}
+  <div class="col-sm-10 control-text">
+    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name']) !!}
+  </div>
+</div>
+@endif
+
 {{--  //////////////////// BC FYI //////////////////// --}}
-  @if ($product->id == 101 || $product->id == 102 ||  $product->id == 103 || $product->id == 104 || $product->id == 105 || $product->id == 106 || $product->id == 107 || $product->id == 108 || $product->id == 109) 
+  @if ($product->id == 101 || $product->id == 102 ||  $product->id == 103 || $product->id == 104 || $product->id == 105 || $product->id == 106 || $product->id == 107 || $product->id == 108 || $product->id == 109)
     <div class="form-group">
         {!! Form::label('name', 'Name:', ['class' => 'col-sm-2 control-label']) !!}
       <div class="col-sm-10 control-text">
@@ -117,13 +127,13 @@
     </div>
 
           {{-- /////// Staff Titles /////// --}}
-    @if ($product->id == 101 || $product->id == 104) 
+    @if ($product->id == 101 || $product->id == 104)
       <div class="form-group">
         {!! Form::label('title', 'Title:', ['class' => 'move-down col-sm-2 control-label']) !!}
         <div class="col-sm-10 control-text move-down">
           @if ($product->id == 101)
             {!! Form::select("title", $titles, null, [
-              'class'                         => 'form-control', 
+              'class'                         => 'form-control',
               'placeholder'                   => 'Only Approved Titles Are Listed',
               'data-parsley-trigger'          => 'input',
               'style'                         => 'color:#8e8e92',
@@ -132,7 +142,7 @@
             ]) !!}
           @else
             {!! Form::select('title', $titles, null, [
-              'class'                         => 'form-control', 
+              'class'                         => 'form-control',
               'placeholder'                   => 'Only Approved Titles Are Listed (Used for Business Card Only)',
               'data-parsley-trigger'          => 'input',
               'style'                         => 'color:#8e8e92',
@@ -145,20 +155,20 @@
     @endif
 
             {{-- /////// Assoc & Partner Titles /////// --}}
-    @if ($product->id == 102 || $product->id == 103 || $product->id == 105 || $product->id == 106 || $product->id == 110 || $product->id == 111) 
+    @if ($product->id == 102 || $product->id == 103 || $product->id == 105 || $product->id == 106 || $product->id == 110 || $product->id == 111)
       <div class="form-group">
         {!! Form::label('title', 'Title:', ['class' => 'move-down col-sm-2 control-label']) !!}
         <div class="col-sm-10 control-text move-down">
           @if ($product->id == 102 || $product->id == 103 || $product->id == 110 || $product->id == 111)
             {!! Form::select("title", $titles, null, [
-              'class'                         => 'form-control', 
+              'class'                         => 'form-control',
               'placeholder'                   => 'Only Approved Titles Are Listed',
               'data-parsley-trigger'          => 'input',
               'style'                         => 'color:#8e8e92',
             ]) !!}
           @else
             {!! Form::select('title', $titles, null, [
-              'class'                         => 'form-control', 
+              'class'                         => 'form-control',
               'placeholder'                   => 'Only Approved Titles Are Listed (Used for Business Card Only)',
               'data-parsley-trigger'          => 'input',
               'style'                         => 'color:#8e8e92',
@@ -232,9 +242,9 @@
       <div class="col-sm-4 control-text move-down">
 
         {{-- Bogotá --}}
-        @if (Auth::user()->username == 'HK34') 
+        @if (Auth::user()->username == 'HK34')
           {!! Form::text('phone', null, [
-            'class'                         => 'form-control', 
+            'class'                         => 'form-control',
             'placeholder'                   => 'xx.x.xxx.xxxx',
             'data-parsley-trigger'          => 'input',
             'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -247,7 +257,7 @@
         {{-- México UK--}}
         @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
           {!! Form::text('phone', null, [
-            'class'                         => 'form-control', 
+            'class'                         => 'form-control',
             'placeholder'                   => 'xx.xx.xxxx.xxxx',
             'data-parsley-trigger'          => 'input',
             'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -259,7 +269,7 @@
 
         @else
           {!! Form::text('phone', null, [
-            'class'                         => 'form-control', 
+            'class'                         => 'form-control',
             'placeholder'                   => '123.123.1234',
             'data-parsley-trigger'          => 'input',
             'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -273,11 +283,11 @@
 
       {!! Form::label('fax', 'Fax:', ['class' => 'move-down col-sm-2 control-label-zip']) !!}
         <div class="col-sm-4 control-text-zip move-down">
-          
+
           {{-- Bogotá --}}
           @if (Auth::user()->username == 'HK34')
             {!! Form::text('fax', null, [
-              'class'                         => 'form-control', 
+              'class'                         => 'form-control',
               'placeholder'                   => 'xx.x.xxx.xxxx',
               'data-parsley-trigger'          => 'input',
               'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -287,10 +297,10 @@
               'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
             ]) !!}
 
-          {{-- México UK --}}  
+          {{-- México UK --}}
           @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
             {!! Form::text('fax', null, [
-              'class'                         => 'form-control', 
+              'class'                         => 'form-control',
               'placeholder'                   => 'xx.xx.xxxx.xxxx',
               'data-parsley-trigger'          => 'input',
               'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -302,7 +312,7 @@
 
           @else
             {!! Form::text('fax', null, [
-              'class'                         => 'form-control', 
+              'class'                         => 'form-control',
               'placeholder'                   => '123.123.1234',
               'data-parsley-trigger'          => 'input',
               'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -311,7 +321,7 @@
               'data-parsley-minlength'        =>'10',
               'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
               ]) !!}
-            @endif  
+            @endif
       </div>
     </div>
 <div class="col-xs-12" style="height:15px;"></div>
@@ -323,7 +333,7 @@
           {{-- Bogotá --}}
           @if (Auth::user()->username == 'HK34')
             {!! Form::text('cell', null, [
-              'class'                         => 'form-control', 
+              'class'                         => 'form-control',
               'placeholder'                   => 'xx.xxx.xxx.xxxx',
               'data-parsley-trigger'          => 'input',
               'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -336,7 +346,7 @@
           {{-- México --}}
           @elseif (Auth::user()->username == 'HK35')
             {!! Form::text('cell', null, [
-              'class'                         => 'form-control', 
+              'class'                         => 'form-control',
               'placeholder'                   => 'xx.xx.xxxx.xxxx',
               'data-parsley-trigger'          => 'input',
               'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -349,7 +359,7 @@
             {{-- UK --}}
           @elseif (Auth::user()->username == 'HK46')
             {!! Form::text('cell', null, [
-              'class'                         => 'form-control', 
+              'class'                         => 'form-control',
               'placeholder'                   => 'xx.xxxx.xxxxxx',
               'data-parsley-trigger'          => 'input',
               'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -361,7 +371,7 @@
 
           @else
             {!! Form::text('cell', null, [
-              'class'                         => 'form-control', 
+              'class'                         => 'form-control',
               'placeholder'                   => '123.123.1234',
               'data-parsley-trigger'          => 'input',
               'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -375,10 +385,10 @@
     </div>
   </div>
 
-  @endif 
+  @endif
 
 {{--  //////////////// Double Sided BC //////////////// --}}
-  @if ($product->id == 110 || $product->id == 111) 
+  @if ($product->id == 110 || $product->id == 111)
 
 <span style="margin:125px"><strong>Front Side</strong></span>
 <span style="margin:20px"><strong>Reverse Side</strong></span>
@@ -397,13 +407,13 @@
 </div>
 
    {{-- /////// Assoc & Partner Titles /////// --}}
-@if ($product->id == 110 || $product->id == 111) 
-  <div class="form-group"> 
+@if ($product->id == 110 || $product->id == 111)
+  <div class="form-group">
     <div class="form-inline">
       {!! Form::label('title', 'Title:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-5 control-text move-down">
         {!! Form::select("title", $titles, null, [
-          'class'                         => 'form-control', 
+          'class'                         => 'form-control',
           'placeholder'                   => 'Approved Titles',
           'data-parsley-trigger'          => 'input',
           'style'                         => 'color:#8e8e92',
@@ -413,7 +423,7 @@
       {!! Form::label('', '', ['class' => 'move-down control-label']) !!}
       <div class="col-sm-5 control-text-zip move-down">
         {!! Form::select("title2", $titles, null, [
-          'class'                         => 'form-control', 
+          'class'                         => 'form-control',
           'placeholder'                   => 'Approved Titles',
           'data-parsley-trigger'          => 'input',
           'style'                         => 'color:#8e8e92',
@@ -423,7 +433,7 @@
     </div>
   </div>
 @endif
-  
+
 <div class="form-group">
   <div class="form-inline">
     {!! Form::label('email', 'Email:', ['class' => 'move-down col-sm-2 control-label']) !!}
@@ -451,7 +461,7 @@
   </div>
 </div>
 
-<div class="form-group">  
+<div class="form-group">
   <div class="form-inline">
     {!! Form::label('address1', 'Address1:', ['class' => 'move-down col-sm-2 control-label']) !!}
     <div class="col-sm-5 control-text move-down">
@@ -484,7 +494,7 @@
   </div>
 </div>
 
-<div class="form-group">        
+<div class="form-group">
   <div class="form-inline">
     {!! Form::label('city', 'City:', ['class' => 'move-down col-sm-2 control-label']) !!}
     <div class="col-sm-5 control-text move-down">
@@ -519,7 +529,7 @@
     {!! Form::label('', '', ['class' => 'move-down control-label']) !!}
     <div class="col-sm-5 control-text-zip move-down">
         {!! Form::text('zip2', null, ['class' => 'form-control', 'style' => 'width:200px', 'placeholder' => 'Zip Back']) !!}
-    </div> 
+    </div>
   </div>
 </div>
 
@@ -529,10 +539,10 @@
     <div class="col-sm-5 control-text move-down">
 
       {{-- Bogotá --}}
-      @if (Auth::user()->username == 'HK34') 
+      @if (Auth::user()->username == 'HK34')
         {!! Form::text('phone', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.x.xxx.xxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -546,7 +556,7 @@
       @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
         {!! Form::text('phone', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.xx.xxxx.xxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -575,10 +585,10 @@
     <div class="col-sm-5 control-text-zip move-down">
 
       {{-- Bogotá --}}
-      {{-- @if (Auth::user()->username == 'HK34') 
+      {{-- @if (Auth::user()->username == 'HK34')
         {!! Form::text('phone2', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.x.xxx.xxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -587,10 +597,10 @@
           'data-parsley-minlength'        =>'10',
           'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
         ]) !!} --}}
-        @if (Auth::user()->username == 'HK34') 
+        @if (Auth::user()->username == 'HK34')
         {!! Form::text('phone2', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.x.xxx.xxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -600,7 +610,7 @@
       {{-- @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
         {!! Form::text('phone2', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.xx.xxxx.xxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -612,7 +622,7 @@
         @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
         {!! Form::text('phone2', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.xx.xxxx.xxxx',
           'data-parsley-trigger'          => 'input',
         ]) !!}
@@ -620,7 +630,7 @@
       @else
         {!! Form::text('phone2', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => '123.123.1234',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -638,12 +648,12 @@
   <div class="form-inline">
     {!! Form::label('fax', 'Fax:', ['class' => 'move-down col-sm-2 control-label']) !!}
     <div class="col-sm-5 control-text move-down">
-        
+
       {{-- Bogotá --}}
       @if (Auth::user()->username == 'HK34')
         {!! Form::text('fax', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.x.xxx.xxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -653,11 +663,11 @@
           'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
         ]) !!}
 
-        {{-- México UK --}}  
+        {{-- México UK --}}
         @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
           {!! Form::text('fax', null, [
             'class'                         => 'form-control',
-            'style'                         => 'width:200px', 
+            'style'                         => 'width:200px',
             'placeholder'                   => 'xx.xx.xxxx.xxxx',
             'data-parsley-trigger'          => 'input',
             'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -670,7 +680,7 @@
         @else
           {!! Form::text('fax', null, [
             'class'                         => 'form-control',
-            'style'                         => 'width:200px', 
+            'style'                         => 'width:200px',
             'placeholder'                   => '123.123.1234',
             'data-parsley-trigger'          => 'input',
             'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -679,17 +689,17 @@
             'data-parsley-minlength'        =>'10',
             'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
             ]) !!}
-          @endif  
+          @endif
       </div>
 
       {!! Form::label('', '', ['class' => 'move-down control-label']) !!}
       <div class="col-sm-5 control-text-zip move-down">
-          
+
         {{-- Bogotá --}}
         @if (Auth::user()->username == 'HK34')
           {!! Form::text('fax2', null, [
             'class'                         => 'form-control',
-            'style'                         => 'width:200px', 
+            'style'                         => 'width:200px',
             'placeholder'                   => 'xx.x.xxx.xxxx',
             'data-parsley-trigger'          => 'input',
             'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -699,11 +709,11 @@
             'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
           ]) !!}
 
-        {{-- México UK --}}  
+        {{-- México UK --}}
         @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
           {!! Form::text('fax2', null, [
             'class'                         => 'form-control',
-            'style'                         => 'width:200px', 
+            'style'                         => 'width:200px',
             'placeholder'                   => 'xx.xx.xxxx.xxxx',
             'data-parsley-trigger'          => 'input',
             'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -716,7 +726,7 @@
         @else
           {!! Form::text('fax2', null, [
             'class'                         => 'form-control',
-            'style'                         => 'width:200px', 
+            'style'                         => 'width:200px',
             'placeholder'                   => '123.123.1234',
             'data-parsley-trigger'          => 'input',
             'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -725,12 +735,12 @@
             'data-parsley-minlength'        =>'10',
             'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
             ]) !!}
-          @endif  
+          @endif
       </div>
     </div>
   </div>
 
-<div class="form-group">  
+<div class="form-group">
   <div class="form-inline">
     {!! Form::label('cell', 'Cell:', ['class' => 'col-sm-2 control-label move-down']) !!}
     <div class="col-sm-5 control-text move-down">
@@ -739,7 +749,7 @@
       @if (Auth::user()->username == 'HK34')
         {!! Form::text('cell', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.xxx.xxx.xxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -753,7 +763,7 @@
       @elseif (Auth::user()->username == 'HK35')
         {!! Form::text('cell', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.xx.xxxx.xxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -767,7 +777,7 @@
       @elseif (Auth::user()->username == 'HK46')
         {!! Form::text('cell', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.xxxx.xxxxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -780,7 +790,7 @@
       @else
         {!! Form::text('cell', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => '123.123.1234',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -799,7 +809,7 @@
       @if (Auth::user()->username == 'HK34')
         {!! Form::text('cell2', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.xxx.xxx.xxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -813,7 +823,7 @@
       @elseif (Auth::user()->username == 'HK35')
         {!! Form::text('cell2', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.xx.xxxx.xxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -827,7 +837,7 @@
       @elseif (Auth::user()->username == 'HK46')
         {!! Form::text('cell2', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => 'xx.xxxx.xxxxxx',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -840,7 +850,7 @@
       @else
         {!! Form::text('cell2', null, [
           'class'                         => 'form-control',
-          'style'                         => 'width:200px', 
+          'style'                         => 'width:200px',
           'placeholder'                   => '123.123.1234',
           'data-parsley-trigger'          => 'input',
           'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
@@ -854,7 +864,7 @@
   </div>
 </div>
 
-@endif 
+@endif
 {{-- </div> --}}
 {{-- <div class="col-xs-12" style="height:15px;"></div> --}}
 
@@ -889,8 +899,8 @@
       <a href="{{ url('/partner') }}" class="btn btn-danger" role="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
     @endif
 
-  </div>  
-   
+  </div>
+
 {!! Form::close() !!}
 
 <div class="col-xs-4">
@@ -914,11 +924,11 @@
 
 </div>{{-- closes <div class="panel-body"> --}}
     </div>{{-- closes <div class="panel panel-primary space-above"> --}}
-  </div> 
+  </div>
 </div> {{-- closes <div class="col-md-7"> --}}
 </div> {{-- closes <div class="row body-background"> --}}
 
-@endsection    
+@endsection
 
 @section('extra-js')
   <script>

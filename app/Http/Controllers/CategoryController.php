@@ -32,6 +32,14 @@ class CategoryController extends Controller
         return view('category.staff', compact('category', 'request', 'categories', 'product'));
     }
 
+    public function showNametagCategories(Category $category, Request $request, Product $product)
+    {
+        session(['catId' => $category->id, 'catName' => $category->cat_name]);
+        $product = Product::all();
+        // dd($product);
+        return view('category.nametag', compact('category', 'request', 'categories', 'product'));
+    }
+
     public function showAssociateCategories(Category $category, Request $request, Product $product)
     {
         session(['catId' => $category->id, 'catName' => $category->cat_name]);

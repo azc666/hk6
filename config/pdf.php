@@ -53,6 +53,12 @@ return [
             // 'B'  => 'ExampleFont-Bold.ttf',       // optional: bold font
             // 'I'  => 'ExampleFont-Italic.ttf',     // optional: italic font
             // 'BI' => 'ExampleFont-Bold-Italic.ttf' // optional: bold-italic font
+        ],
+        'arial' => [
+            'R'  => 'Arial.ttf',    // regular font
+            // 'B'  => 'ExampleFont-Bold.ttf',       // optional: bold font
+            // 'I'  => 'ExampleFont-Italic.ttf',     // optional: italic font
+            // 'BI' => 'ExampleFont-Bold-Italic.ttf' // optional: bold-italic font
         ]
         // ...add as many as you want.
     ]

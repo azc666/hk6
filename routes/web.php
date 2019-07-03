@@ -23,6 +23,7 @@ Route::get('contactus', 'UserController@showContactus')->name('showContactus');
 Route::post('contactus', 'UserController@sendContactus')->name('sendContactus');
 
 Route::get('staff', 'CategoryController@showStaffCategories')->name('staff');
+Route::get('nametag', 'CategoryController@showNametagCategories')->name('nametag');
 Route::get('associate', 'CategoryController@showAssociateCategories')->name('associate');
 Route::get('partner', 'CategoryController@showPartnerCategories')->name('partner');
 
@@ -78,10 +79,10 @@ Route::get('carousel', function () {
 
 Route::get('phpinfo', function () {
     if (Auth::check()) {
-       return view('phpinfo'); 
+       return view('phpinfo');
     } else {
         return view('home');
-    } 
+    }
 });
 
 // Registration Routes...

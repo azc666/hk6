@@ -2,16 +2,26 @@
 <html>
 <head>
     <title></title>
-{!! Html::style('css/mpdfstyle.css') !!}    
+{!! Html::style('css/mpdfstyle.css') !!}
 </head>
 <body>
-    
+
 <div class="container">
     <div class="row">
 @php
      // dd($request->prod_name)
 @endphp
-{{-- ////////////////// Business Card //////////////// --}}    
+
+{{-- ////////////////// Name Tag //////////////// --}}
+@if ($request->prod_id == 112)
+<div class="nt_background">
+    <div class="nt_name">
+        {!! $request->name ?: '&nbsp;' !!}
+    </div>
+</div> {{-- close background class --}}
+@endif
+
+{{-- ////////////////// Business Card //////////////// --}}
     @if ($request->prod_id == 101 || $request->prod_id == 102 || $request->prod_id == 103 || $request->prod_name == "Staff Business Card" || $request->prod_name == "Associate Business Card" || $request->prod_name == "Partner Business Card")
         <div class="bc_background">
        <div class="bc_name">
@@ -28,7 +38,7 @@
             <div class="bc_address_line1_1">
                 {{ $HKName }}
             </div>
-        @endif   
+        @endif
         <div class="bc_address_line2">
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
                 @if ($request->address2)
@@ -41,7 +51,7 @@
                     {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
                 @else
                     {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
-                @endif    
+                @endif
             @else
                 @if ($request->address2)
                     {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
@@ -49,13 +59,13 @@
                     {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @endif
             @endif
-            <br> 
-    
+            <br>
+
             @if ($phone != null)
                 {{ $phone }} <br>
-            @endif 
-            
-        </div> 
+            @endif
+
+        </div>
         <div class="bc_email">
             {{ strtolower($HKEmail) }}
         </div>
@@ -64,7 +74,7 @@
 {{--     @php
     dd($request->prod_name);
 @endphp --}}
-{{-- ////////////////// Double sided Business Card //////////////// --}}    
+{{-- ////////////////// Double sided Business Card //////////////// --}}
     @if ($request->prod_id == 110 || $request->prod_id == 111 || $request->prod_name == 'Partner Double Sided BC' || $request->prod_name == 'Associate Double Sided BC' )
         <div class="dsbc_background">
        <div class="dsbcf_name">
@@ -85,7 +95,7 @@
             <div class="dsbcf_address_line1_1">
                 {{ $HKName }}
             </div>
-        @endif 
+        @endif
 
         <div class="dsbcf_address_line2">
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
@@ -99,7 +109,7 @@
                     {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
                 @else
                     {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
-                @endif    
+                @endif
             @else
                 @if ($request->address2)
                     {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
@@ -110,8 +120,8 @@
 <br>
             @if ($phone != null)
                 {{ $phone }} <br>
-            @endif 
-        </div> 
+            @endif
+        </div>
         <div class="dsbcf_email">
             {{ strtolower($HKEmail) }}
         </div>
@@ -119,7 +129,7 @@
         <div class="dsbcb_name">
             {!! $request->name2 ?: '&nbsp;' !!}
         </div>
-        
+
         <div class="dsbcb_title">
             {!! $request->title2 ?: '&nbsp;' !!}
         </div>
@@ -131,7 +141,7 @@
             <div class="dsbcb_address_line1_1">
                 {{ $HKName }}
             </div>
-        @endif   
+        @endif
         <div class="dsbcb_address_line2">
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
                 @if ($request->address2b)
@@ -144,7 +154,7 @@
                     {{ $request->address1b }} <br> {{ $request->address2b }} <br> {{ $request->city2 }}, {{ $request->state2 }}, {{ $request->zip2 }}
                 @else
                     {{ $request->address1b }} <br> {{ $request->city2 }}, {{ $request->state2 }}, {{ $request->zip2 }}
-                @endif    
+                @endif
             @else
                 @if ($request->address2b)
                     {{ $request->address1b }} <br> {{ $request->address2b }} <br> {{ $request->city2 }}, {{ $request->state2 }} {{ $request->zip2 }}
@@ -152,13 +162,13 @@
                     {{ $request->address1b }} <br> {{ $request->city2 }}, {{ $request->state2 }} {{ $request->zip2 }}
                 @endif
             @endif
-            <br> 
-    
+            <br>
+
             @if ($phone2 != null)
                 {{ $phone2 }} <br>
-            @endif 
-            
-        </div> 
+            @endif
+
+        </div>
         <div class="dsbcb_email">
             {{ strtolower($HKEmail2) }}
         </div>
@@ -166,13 +176,13 @@
     @endif
 
 
-{{-- //////////////////// FYI Pads /////////////////// --}}    
+{{-- //////////////////// FYI Pads /////////////////// --}}
     @if ($request->prod_id == 107 || $request->prod_id == 108 || $request->prod_id == 109 || $request->prod_name == "Staff FYI Pads" || $request->prod_name == "Associate FYI Pads" || $request->prod_name == "Partner FYI Pads")
     <div class="fyi_background">
        <div class="fyi_name">
             {!! $request->name ?: '&nbsp;' !!}
         </div>
-        
+
         @if ($request->address2)
             <div class="fyi_address_line1">
                 {{ $HKName }}
@@ -194,7 +204,7 @@
                     {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
                 @else
                     {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
-                @endif  
+                @endif
             @else
                 @if ($request->address2)
                     {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
@@ -202,7 +212,7 @@
                     {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @endif
             @endif
-            <br>           
+            <br>
             @if ($phone != null)
                 {{ $phone }} <br>
             @endif
@@ -210,11 +220,11 @@
         <div class="fyi_email">
             {{ strtolower($HKEmail) }}
         </div>
-    </div>  
-        </div>      
+    </div>
+        </div>
     @endif
 
-        {{-- //////////////////// Combo BC FYI Pads /////////////////// --}}    
+        {{-- //////////////////// Combo BC FYI Pads /////////////////// --}}
     @if ($request->prod_id == 104 || $request->prod_id == 105 || $request->prod_id == 106 || $request->prod_name == "Staff BC + FYI Pads" || $request->prod_name == "Associate BC + FYI Pads" || $request->prod_name == "Partner BC + FYI Pads")
     <div class="bcfyi_background">
        <div class="bcfyi_bc_name">
@@ -232,7 +242,7 @@
                 {{ $HKName }}
             </div>
         @endif
-        <div class="bcfyi_bc_address_line2">       
+        <div class="bcfyi_bc_address_line2">
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
                 @if ($request->address2)
                     {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
@@ -244,7 +254,7 @@
                     {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
                 @else
                     {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
-                @endif  
+                @endif
             @else
                 @if ($request->address2)
                     {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
@@ -252,10 +262,10 @@
                     {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @endif
             @endif
-            <br>            
+            <br>
             @if ($phone != null)
                 {{ $phone }} <br>
-            @endif    
+            @endif
         </div>
         <div class="bcfyi_bc_email">
             {{ strtolower($HKEmail) }}
@@ -275,7 +285,7 @@
             <div class="bcfyi_fyi_address_line1_1">
                 {{ $HKName }}
             </div>
-        @endif  
+        @endif
         <div class="bcfyi_fyi_address_line2">
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
                 @if ($request->address2)
@@ -288,7 +298,7 @@
                     {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
                 @else
                     {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
-                @endif 
+                @endif
             @else
                 @if ($request->address2)
                     {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
@@ -296,16 +306,16 @@
                     {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @endif
             @endif
-            <br>            
+            <br>
             @if ($phone != null)
                 {{ $phone }} <br>
-            @endif    
+            @endif
         </div>
         <div class="bcfyi_fyi_email">
             {{ strtolower($HKEmail) }}
         </div>
     {{-- </div> --}}  {{-- close backgound --}}
-    {{-- </div> --}} {{-- close <div class="row"> --}}      
+    {{-- </div> --}} {{-- close <div class="row"> --}}
     @endif
 
     </div> {{-- close row --}}
