@@ -151,7 +151,7 @@ class ProductController extends Controller
         if ($request->id == 112) {
             $pdf = PDF::loadView('products.showData', $data, compact('product', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2'), [
                 'mode'                 => '',
-                'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
+                'format'               => array(266, 124.3),    // jpg dimensions (665x381) / 2.5
                 'default_font_size'    => '12',
                 'default_font'         => 'sans-serif',
                 'margin_left'          => 0,
@@ -405,7 +405,7 @@ $cartItem = array(
         if ($request->prod_id == 112) {
             $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail', 'HKEmail2'), [
                 'mode'                 => '',
-                'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
+                'format'               => array( 266, 124.3),    // jpg dimensions (665x381) / 2.5
                 'default_font_size'    => '12',
                 'default_font'         => 'sans-serif',
                 'margin_left'          => 0,

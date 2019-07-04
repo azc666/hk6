@@ -115,9 +115,9 @@ HK Order Portal Home
                 @if (Auth::check())
                 <div class="col-md-6">
                     <div class="thumbnail">
-
-                        <img src="assets/nametag/image001.jpg" class="img-responsive" align="center" alt="Staff Stationery Items">
-
+                        <br>
+                        <img src="assets/nametag/ntag.jpg" class="img-responsive" align="center" alt="Staff Stationery Items">
+                        <br><br>
                         <div class="caption text-center">
                             <a href="{{ Auth::check() ? url('/nametag') : '#'}}">
                                 <h4>Name Tags</h4>
