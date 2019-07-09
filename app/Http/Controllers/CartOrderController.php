@@ -117,7 +117,7 @@ class CartOrderController extends Controller
 
                     $cartOrder .= $address_s;
 
-                    $cartOrder .= '<p><small>Most orders ship within 2-3 working days. </small><br><strong>Double Sided Business Cards will automatically be sent for approval before production. </strong><br><small> Please allow 1-2 weeks for engraved Partner Cards.</small></p>';
+                    $cartOrder .= '<p><small>Most orders ship within 2-3 working days. </small><br><strong>Double Sided Business Cards will automatically be sent for approval before production.<br>Allow 1-2 weeks for engraved Partner Cards.<br>Allow 7-10 business days, plus transit time, for Name Tags.</strong></p>';
 
                     $cartOrder .= '<p class="move-down"></p>
                 </div>
@@ -448,5 +448,3 @@ class CartOrderController extends Controller
         }
     }
 }
-
-
