@@ -116,7 +116,7 @@ HK Order Portal Home
                 <div class="col-md-6">
                     <div class="thumbnail">
                         <br>
-                        <img src="assets/nametag/ntag.jpg" class="img-responsive" align="center" alt="Staff Stationery Items">
+                        <img src="assets/nametag/ntag_display.jpg" class="img-responsive" align="center" alt="Staff Stationery Items">
                         <br><br>
                         <div class="caption text-center">
                             <a href="{{ Auth::check() ? url('/nametag') : '#'}}">

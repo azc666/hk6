@@ -10,7 +10,7 @@ Order Checkout
 
     <h1 class="move-up">Order Checkout
         <a href="{{ url('/') }}" class="btn btn-primary btn-md pull-right move-up">Continue Shopping</a>
-        
+
         @if (Cart::count() > 0)
         <div style="float:right">
             <form action="{{ url('/emptyCart') }}" method="POST">
@@ -57,49 +57,53 @@ Order Checkout
                 @endphp
                 <tr>
                     <td class="table-image">
-                        <a href="{{ url(substr_replace($item->options->proofPath, 'pdf', -3)) }}" target="_blank"><img src="/{{ $item->options->proofPath }}" style="max-width:300px;" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
+                        @if ($prod_layout == 'NTAG')
+                            <a href="{{ url(substr_replace($item->options->proofPath, 'pdf', -3)) }}" target="_blank"><img src="/{{ $item->options->proofPath }}" style="max-width:300px;" alt="proof" class="img-responsive cart-image move-right"></a>
+                        @else
+                            <a href="{{ url(substr_replace($item->options->proofPath, 'pdf', -3)) }}" target="_blank"><img src="/{{ $item->options->proofPath }}" style="max-width:300px;" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
+                        @endif
                     </td>
-                    
+
                     <td>
                        <strong>{{ strip_tags($item->name) }}</strong>
-                       {{-- <br>{!! $item->options->name !!} 
+                       {{-- <br>{!! $item->options->name !!}
                        <br>{!! $item->options->email !!} --}}
                        @if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC')
                             <br><br><strong>Front Side:</strong>
-                            <br>{!! $item->options->name !!} 
+                            <br>{!! $item->options->name !!}
                             <br>{!! $item->options->email !!}
                             <br><br><strong>Reverse Side:</strong>
-                            <br>{!! $item->options->name2 !!} 
+                            <br>{!! $item->options->name2 !!}
                             <br>{!! $item->options->email2 !!}
                         @else
-                            <br>{!! $item->options->name !!} 
-                            <br>{!! $item->options->email !!} 
+                            <br>{!! $item->options->name !!}
+                            <br>{!! $item->options->email !!}
                         @endif
-                         
+
                        <br><br>
                        <div class="text-muted move-up">
-                        {!! nl2br($item->options->prod_description) !!} 
+                        {!! nl2br($item->options->prod_description) !!}
                     </div>
                 </td>
 
                 <td>
                     {!! Form::open(['route' => ['cart', 'method' => 'PATCH']]) !!}
-                    
+
                     @if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC')
                     {!! Form::select('qty', array('Select Quantity', '250' => '250', '500' => '500'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
                     @endif
-                    
-                    @if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI')  
+
+                    @if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI')
                     {!! Form::select('qty', array('Select Quantity', '4' => '4 Pads', '8' => '8 Pads'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
                     @endif
 
-                    @if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI')  
+                    @if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI')
                     {!! Form::select('qty', array('Select Quantity', '24' => '250 BCs + 4 Pads', '28' => '250 BCs + 8 Pads', '54' => '500 BCs + 4 Pads', '58' => '500 BCs + 8 Pads',), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
                     @endif
-                    
+
                     &nbsp;&nbsp;
-                    
-                    @php    
+
+                    @php
                     $bcfyi_qty = $item->qty;
                     if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI') {
                         switch ($item->qty) {
@@ -107,28 +111,28 @@ Order Checkout
                             case '28': $bcfyi_qty = '250 BCs + 8 FYI Pads'; break;
                             case '54': $bcfyi_qty = '500 BCs + 4 FYI Pads'; break;
                             case '58': $bcfyi_qty = '500 BCs + 8 FYI Pads'; break;
-                            default: $bcfyi_qty = '250 BCs + 4 FYI Pads'; 
+                            default: $bcfyi_qty = '250 BCs + 4 FYI Pads';
                         }
-                    } 
+                    }
                     if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI') {
                         switch ($item->qty) {
                             case '4': $bcfyi_qty = '4 FYI Pads'; break;
                             case '8': $bcfyi_qty = '8 FYI Pads'; break;
-                            default: $bcfyi_qty = '4 FYI Pads'; 
+                            default: $bcfyi_qty = '4 FYI Pads';
                         }
                     }
                     if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC') {
                         switch ($item->qty) {
                             case '250': $bcfyi_qty = '250 Business Cards'; break;
                             case '500': $bcfyi_qty = '500 Business Cards'; break;
-                            default: $bcfyi_qty = '250 Business Cards'; 
+                            default: $bcfyi_qty = '250 Business Cards';
                         }
                     }
                     Session::put('qty_text', $bcfyi_qty);
                     @endphp
-                    
+
                     {!! Form::label('quantity', $bcfyi_qty, ['class' => 'quantity']) !!}
-                    
+
                     <p>
                         {{-- {!! Form::hidden('rowId', $item->rowId) !!} --}}
                         {{-- {{ $rowId = $item->rowId }} --}}
@@ -146,7 +150,7 @@ Order Checkout
                     @if ( $item->options->specialInstructions )
                     <div class="thumbnail" style="width:275px; font-size:12px">
                         <h5 class="move-up">Special Instructions:</h5>
-                        {{ $item->options->specialInstructions }} 
+                        {{ $item->options->specialInstructions }}
                     </div>
                     @endif
 
@@ -188,7 +192,7 @@ Order Checkout
                     <div class="caption">
 
                         @if (Session::get('rush') != 'no')
-                            <h4 class='move-up'>This order will be shipped to:</h4>                           
+                            <h4 class='move-up'>This order will be shipped to:</h4>
                         @else
                             @if (Session::get('dt_rush') == "ASAP")
                                 <h4 class='move-up'>This is a <strong>RUSH order, with expedited production, and delivery ASAP</strong><br><br>It will be shipped to:</h4>
@@ -233,12 +237,13 @@ Order Checkout
                             <br>Most orders ship within 2-3 working days.
                         </small>
                         <br><strong>
-                            Double Sided Business Cards will automatically be sent for approval before production. 
+                            Double Sided Business Cards will automatically be sent for approval before production.
+                        <br>
+                            Allow 1-2 weeks for engraved Partner Cards.
+                        <br>
+                            Allow 7-10 business days, plus transit time, for Name Tags.
                         </strong>
-                        <br><small>
-                            Please allow 1-2 weeks for engraved Partner Cards.
-                        </small></p>
-
+                        </p>
                         <form action="{{ route('cartorder') }}" method="POST">
                             <div class="container">
                                 <div class="row">
@@ -246,30 +251,30 @@ Order Checkout
                                         <div class="thumbnail">
                                             <p class="move-down">
                                                 <input type="hidden" name="rush" value="{{ Session::get('rush') }}">
-                                                <input type="hidden" name="dt_rush" value="{{ Session::get('dt_rush') }}"> 
-                                                <input type="checkbox" name="confirm" >&nbsp;&nbsp;I have reviewed the Proof(s) of my cart item(s) and confirm that it is correct. Unless I have specifically instructed to the contrary, I understand that production will commence upon submission, and will be shipped without delay.  
+                                                <input type="hidden" name="dt_rush" value="{{ Session::get('dt_rush') }}">
+                                                <input type="checkbox" name="confirm" >&nbsp;&nbsp;I have reviewed the Proof(s) of my cart item(s) and confirm that it is correct. Unless I have specifically instructed to the contrary, I understand that production will commence upon submission, and will be shipped without delay.
                                             </p>
                                         </div>
-                                    </div>    
+                                    </div>
                                 </div>
                             </div>
                             {!! csrf_field() !!}
                             <input type="submit" class="btn btn-success col-md-5 offset-md-4 pull-left" value="Yes, Place my Order">
                         </form>
                     {{-- </div> --}}
-                    
+
                     {{-- <a href="{{view('cart/cartOrder')}}" class="col-md-5 offset-md-4 btn btn-success" role="button"> Yes, Place my Order </a> --}}
                     &nbsp;
                     <a href="/cart" class="col-md-5 offset-md-4 btn btn-danger pull-right" role="button"> No, Return to my Cart </a>
                 </p>
-            </div>    
+            </div>
         </div>
     </div>
 
     {{-- *UPS Ground charges will be added to the total shown. --}}
 
 </div>
-</div> <!-- end container -->   
+</div> <!-- end container -->
 
 @else
 <div class="row body-background">
@@ -278,7 +283,7 @@ Order Checkout
             <h3 class="text-center">You have no items in your shopping cart</h3>
         </div>
     </div>
-</div>  
+</div>
 @endif
 
 <div class="spacer"></div>

@@ -13,30 +13,32 @@
 @section('content')
 
 {{-- <br> --}}
-<div class="container">     
+<div class="container">
 <div class="row">
   <h2 class="pull-left move-up"> Select {{ $category->cat_name }} </h2>
-  
+
   @if (strpos($category->cat_name, 'Staff') !== false)
     <a href="{{ url("/staff")}}" class="btn btn-primary pull-right" role="button">Return to Staff Stationery Page</a>
   @elseif (strpos($category->cat_name, 'Associate') !== false)
     <a href="{{ url("/associate")}}" class="btn btn-primary pull-right" role="button">Return to Associate Stationery Page</a>
   @elseif (strpos($category->cat_name, 'Partner') !== false)
     <a href="{{ url("/partner")}}" class="btn btn-primary pull-right" role="button">Return to Partner Category Page</a>
+  @elseif (strpos($category->cat_name, 'Name') !== false)
+  <a href="{{ url("/nametag")}}" class="btn btn-primary pull-right" role="button">Return to Name Tag Category Page</a>
   @endif
-  
+
 </div>
 
 @foreach($category->products->sortBy('prod_name')->chunk(3) as $productChunk)
-        
-  <div class="row body-background">   
+
+  <div class="row body-background">
     @if ($category->products->count())
 
       @foreach($productChunk as $product)
 
         <div class="col-sm-6 col-md-12">
           <br><br>
-         <div class="col-sm-6 col-md-6">     
+         <div class="col-sm-6 col-md-6">
             @php
             if (Auth::user()->username == 'HK35') {
               $product->id == 103 ? $imagePath  = '/assets/partner/mexico_pbc.jpg' : '';
@@ -75,30 +77,36 @@
               $product->id == 110 ? $imagePath  = '/assets/associate/london_adsbc.jpg' : '';
               $product->id == 111 ? $imagePath  = '/assets/partner/london_pdsbc.jpg' : '';
             }
-            @endphp  
+            @endphp
 
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
               <a href="{{ url(substr_replace($imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $imagePath }}" class="img-responsive dropshadow" alt="..."></a>
-           @else
+            @elseif ($product->id == 112)
+              <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $product->imagePath }}" class="img-responsive" alt="..."></a>
+            @else
               <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $product->imagePath }}" class="img-responsive dropshadow" alt="..."></a>
-           @endif        
+           @endif
 
               <h5><i>&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></h5>
         </div>
         <div class="col-sm-6 col-md-6">
               <div class="caption">
-                <h3> {!! $product->prod_name !!} </h3><br>
+                <h3> {!! $product->prod_name !!} </h3>
+                @if ($product->id == 112)
+                    <h5><i><strong>Important!</strong></i><br>After proof approval, we will proceed with the production of your order.<br>
+                    Please be aware that Name Tags will take approximately 7-10 business days to manufacture, not including transit time.</h5>
+                @endif
                 <p class="description text-muted">{!! nl2br($product->description) !!}</p>
                 <br>
                 <p><a href="{{ url("/products/$product->id") }}" class="btn btn-primary btn-block" role="button">Enter Your Product Data</a></p>
               </div>
         </div>
         </div>
-      
+
       @endforeach
 
-    @endif 
-    
-  </div>    
+    @endif
+
+  </div>
 @endforeach
 @endsection

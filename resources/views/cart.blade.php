@@ -10,7 +10,7 @@
 
     <h1 class="move-up">My Cart
     <a href="{{ url('/') }}" class="btn btn-primary btn-md pull-right move-up">Continue Shopping</a>
-            
+
     @if (Cart::count() > 0)
         <div style="float:right">
             <form action="{{ url('/emptyCart') }}" method="POST">
@@ -59,52 +59,56 @@
 
                     <tr>
                         <td class="table-image">
-                            <a href="{{ url(substr_replace($item->options->proofPath, 'pdf', -3)) }}" target="_blank"><img src="{{ $item->options->proofPath }}" style="max-width:300px;" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
+                            @if ($prod_layout == 'NTAG')
+                                <a href="{{ url(substr_replace($item->options->proofPath, 'pdf', -3)) }}" target="_blank"><img src="{{ $item->options->proofPath }}" style="max-width:300px;" alt="proof" class="img-responsive cart-image move-right"></a>
+                            @else
+                                <a href="{{ url(substr_replace($item->options->proofPath, 'pdf', -3)) }}" target="_blank"><img src="{{ $item->options->proofPath }}" style="max-width:300px;" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
+                            @endif
                         </td>
 
-                        
+
 
                         <td>
                             <strong>{{ strip_tags($item->name) }}</strong>
                             @if ($prod_layout == 'PDSBC' || $prod_layout == 'ADSBC')
                                 <br><br><strong>Front Side:</strong>
-                                <br>{!! $item->options->name !!} 
+                                <br>{!! $item->options->name !!}
                                 <br>{!! $item->options->email !!}
                                 <br><br><strong>Reverse Side:</strong>
-                                <br>{!! $item->options->name2 !!} 
+                                <br>{!! $item->options->name2 !!}
                                 <br>{!! $item->options->email2 !!}
                             @else
-                                <br>{!! $item->options->name !!} 
-                                <br>{!! $item->options->email !!} 
+                                <br>{!! $item->options->name !!}
+                                <br>{!! $item->options->email !!}
                             @endif
                             {{-- @php
                             dd($item->options);
                         @endphp --}}
-                            
+
                             <br><br>
                              <div class="text-muted move-up">
-                                {!! nl2br($item->options->prod_description) !!} 
-                             </div>                         
-                        </td>   
+                                {!! nl2br($item->options->prod_description) !!}
+                             </div>
+                        </td>
 
                         <td>
                         {!! Form::open(['route' => ['cart', 'method' => 'PATCH']]) !!}
-                        
+
                         @if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC')
                             {!! Form::select('qty', array('Select Quantity', '250' => '250', '500' => '500'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
                         @endif
-                        
-                        @if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI')  
+
+                        @if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI')
                             {!! Form::select('qty', array('Select Quantity', '4' => '4 Pads', '8' => '8 Pads'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
                         @endif
 
-                        @if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI')  
+                        @if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI')
                             {!! Form::select('qty', array('Select Quantity', '24' => '250 BCs + 4 Pads', '28' => '250 BCs + 8 Pads', '54' => '500 BCs + 4 Pads', '58' => '500 BCs + 8 Pads',), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
                         @endif
-                        
+
                         &nbsp;&nbsp;
-                        
-                        @php    
+
+                        @php
                             $bcfyi_qty = $item->qty;
                             if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI') {
                                 switch ($item->qty) {
@@ -112,27 +116,27 @@
                                     case '28': $bcfyi_qty = '250 BCs + 8 FYI Pads'; break;
                                     case '54': $bcfyi_qty = '500 BCs + 4 FYI Pads'; break;
                                     case '58': $bcfyi_qty = '500 BCs + 8 FYI Pads'; break;
-                                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads'; 
+                                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads';
                                 }
-                            } 
+                            }
                             if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI') {
                                 switch ($item->qty) {
                                     case '4': $bcfyi_qty = '4 FYI Pads'; break;
                                     case '8': $bcfyi_qty = '8 FYI Pads'; break;
-                                    default: $bcfyi_qty = '4 FYI Pads'; 
+                                    default: $bcfyi_qty = '4 FYI Pads';
                                 }
                             }
                             if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC' || $prod_layout == 'ADSBC' || $prod_layout == 'PDSBC') {
                                 switch ($item->qty) {
                                     case '250': $bcfyi_qty = '250 Business Cards'; break;
                                     case '500': $bcfyi_qty = '500 Business Cards'; break;
-                                    default: $bcfyi_qty = '250 Business Cards'; 
+                                    default: $bcfyi_qty = '250 Business Cards';
                                 }
                             }
                         @endphp
 
                         {!! Form::label('quantity', $bcfyi_qty, ['class' => 'quantity']) !!}
-                        
+
                         <p>
                             {{-- {!! Form::hidden('rowId', $item->rowId) !!} --}}
                             {{-- {{ $rowId = $item->rowId }} --}}
@@ -146,11 +150,11 @@
                         </p>
                         {!! Form::close() !!}
 
-                        <br>    
+                        <br>
                         @if ( $item->options->specialInstructions )
                             <div class="thumbnail" style="width:275px; font-size:12px">
                                 <h5 class="move-up">Special Instructions:</h5>
-                                {{ $item->options->specialInstructions }} 
+                                {{ $item->options->specialInstructions }}
                             </div>
                         @endif
 
@@ -213,7 +217,7 @@
                             <input type="hidden" name="zip2" value="{{$item->options->zip2}}">
                             <input type="hidden" name="phone2" value="{{$item->options->phone2}}">
                             <input type="hidden" name="fax2" value="{{$item->options->fax2}}">
-                            <input type="hidden" name="cell2" value="{{$item->options->cell2}}"> 
+                            <input type="hidden" name="cell2" value="{{$item->options->cell2}}">
 
                             <input type="hidden" name="specialInstructions" value="{{$item->options->specialInstructions}}">
                             <input type="hidden" name="prod_name" value="{{ $item->options->prod_name }}">
@@ -234,13 +238,13 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="thumbnail">
-            
+
                         {!! Form::open(['route' => 'cartConfirm', 'method' => 'POST', 'class' => 'form-horizontal', 'data-parsley-validate' => '']) !!}
                              {{-- <div class="form-inline"> --}}
                             <div class="input-group">
                             <span class="input-group-addon move-down">
-                            {!! Form::checkbox('rush', 'no', false, ['class' => 'move-right', 'style' => 'margin-left:30px']) !!} &nbsp;&nbsp;<strong>RUSH THIS ORDER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>   
-                                
+                            {!! Form::checkbox('rush', 'no', false, ['class' => 'move-right', 'style' => 'margin-left:30px']) !!} &nbsp;&nbsp;<strong>RUSH THIS ORDER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
+
                             <span class="input-group-addon", style = "text-align:right">
                             {!! Form::label('rushDate', 'Please ship this order to arrive by:', ['class' => 'move-down']) !!}
                             </span>
@@ -249,17 +253,17 @@
       </span>
     </div>
 
-        <br><span class="move-right" style="margin-left:50px">If "RUSH" is selected, all items in this cart will be produced and shipped on an ASAP expedited basis irrespective of date requested.</span><br><span class="move-right" style="margin-left:50px">RUSH Partner Business Cards in this cart will have Digital cards produced and shipped while the engraved version is being produced.<br>&nbsp;</span> 
+        <br><span class="move-right" style="margin-left:50px">If "RUSH" is selected, all items in this cart will be produced and shipped on an ASAP expedited basis irrespective of date requested.</span><br><span class="move-right" style="margin-left:50px">RUSH Partner Business Cards in this cart will have Digital cards produced and shipped while the engraved version is being produced.<br>&nbsp;</span>
                 </div>
-            </div>    
+            </div>
         </div>
-    
+
     <input type="submit" class="btn btn-success btn-md pull-right move-up" style="margin-right:30px" value="Proceed to Checkout">
 {!! Form::close() !!}
 </div>
             </div>
-        </div> <!-- end container -->   
-            
+        </div> <!-- end container -->
+
         @else
             <div class="row body-background">
                 <div class="container">
@@ -267,7 +271,7 @@
                         <h3 class="text-center">You have no items in your shopping cart</h3>
                     </div>
                 </div>
-            </div>  
+            </div>
         @endif
 
         <div class="spacer"></div>

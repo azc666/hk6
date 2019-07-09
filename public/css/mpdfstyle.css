@@ -11,7 +11,7 @@
 }
 
 .nt_background {
-    background-image: url('/assets/mpdf/ntag_template.png');
+    background-image: url('/assets/mpdf/ntag_template.jpg');
     background-size:100%;
     background-repeat:no-repeat;
     padding-bottom: 0;
@@ -29,11 +29,11 @@
     /*font-style: bold;*/
     /*color: #FF0000FF;*/
     line-height: 125%;
-    /* margin-left: 51mm; */
+    margin-left: -12mm;
     padding-top: 10.25mm;
     font-size: 85pt;
     text-align: center;
-    color: red;
+    /* color: red; */
 }
 
 .bc_background {
