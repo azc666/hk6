@@ -14,11 +14,17 @@
 
 {{-- ////////////////// Name Tag //////////////// --}}
 @if ($request->prod_id == 112)
-<div class="nt_background">
-    <div class="nt_name">
-        {!! $request->name ?: '&nbsp;' !!}
-    </div>
-</div> {{-- close background class --}}
+    <div class="nt_background">
+        @if (strlen($request->name) <= 15)
+            <div class="nt_name">
+                {!! $request->name ?: '&nbsp;' !!}
+            </div>
+        @else
+            <div class="nt_name2">
+                {!! $request->name ?: '&nbsp;' !!}
+            </div>
+        @endif
+    </div> {{-- close background class --}}
 @endif
 
 {{-- ////////////////// Business Card //////////////// --}}

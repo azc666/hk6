@@ -25,13 +25,23 @@
     float:left;
     text-align: left;
     font-family: arial;
-    /* font-family: helveticaneueltstdmd; */
-    /*font-style: bold;*/
-    /*color: #FF0000FF;*/
     line-height: 125%;
     margin-left: -12mm;
-    padding-top: 10.25mm;
+    padding-top: 11mm;
     font-size: 85pt;
+    text-align: center;
+    /* color: red; */
+}
+
+.nt_name2 {
+    position: relative;
+    float:left;
+    text-align: left;
+    font-family: arial;
+    line-height: 90%;
+    margin-left: -12mm;
+    padding-top: 25mm;
+    font-size: 55pt;
     text-align: center;
     /* color: red; */
 }

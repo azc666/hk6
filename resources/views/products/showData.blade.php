@@ -18,9 +18,15 @@ Session::put('cell', $request->cell);
 {{-- ////////////////// Name Tag //////////////// --}}
 @if ($request->id == 112)
     <div class="nt_background">
-        <div class="nt_name">
-            {!! $request->name ?: '&nbsp;' !!}
-        </div>
+        @if (strlen($request->name) <= 15)
+            <div class="nt_name">
+                {!! $request->name ?: '&nbsp;' !!}
+            </div>
+        @else
+            <div class="nt_name2">
+                {!! $request->name ?: '&nbsp;' !!}
+            </div>
+        @endif
     </div> {{-- close background class --}}
 @endif
 
