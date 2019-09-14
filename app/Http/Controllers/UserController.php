@@ -73,9 +73,11 @@ class UserController extends Controller
 
     public function showContactus(Request $request, User $user)
     {
-        //$user = Auth::user();
-
-        return view('user.contactus', compact('request', 'user'));
+        if ($user = Auth::user()) {
+            return view('user.contactus', compact('request', 'user'));
+        } else {
+            return view('home');
+        }
     }
 
     public function sendContactus(Request $request, User $user)
@@ -90,25 +92,25 @@ class UserController extends Controller
         if ($request->portalSupport == 1) {
            Session::put('portalSupport', 'Yes');
         } else {
-           Session::put('portalSupport', 'Not Requested');            
+           Session::put('portalSupport', 'Not Requested');
         }
 
         if ($request->productInfo == 1) {
            Session::put('productInfo', 'Yes');
         } else {
-           Session::put('productInfo', 'Not Requested');            
+           Session::put('productInfo', 'Not Requested');
         }
 
         if ($request->other == 1) {
            Session::put('other', 'Yes');
         } else {
-           Session::put('other', 'Not Requested');            
+           Session::put('other', 'Not Requested');
         }
 
         //dd(Session::get('other'));
 
         \Mail::to(Session::get('contactus_email'))->send(new ContactusEmail($user, $request));
-        
+
         // dd($request->contactMessage);
         return view('home')->withSuccess('Thanks ' . $request->contactus_name . '. Your message has been sent!');
     }
