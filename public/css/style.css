@@ -51,7 +51,7 @@ h2.page_head {
 }
 
 #menu_text {
-    display: inline;    
+    display: inline;
     padding-left: 0px;
     font-size: .7em;
     font-weight: bold;
@@ -100,4 +100,3 @@ a.menu_link:hover, a.menu_link:active {
     min-width:5px;
     text-align:left;
 }
-

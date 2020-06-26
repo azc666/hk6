@@ -7,15 +7,15 @@
 @section('content')
 
 {{-- <br> --}}
-<div class="container">     
+<div class="container">
 <div class="row">
   <h2 class="pull-left move-up"> Select a Associate Stationery Item </h2>
   <a href="{{ url("/") }}" class="btn btn-primary pull-right" role="button">Return to Select a Category Page</a>
   {{-- </div> --}}
 </div>
-        
-<div class="row body-background">   
-    
+
+<div class="row body-background">
+
     <div class="col-sm-3 col-md-4">
         <br>
         <div class="thumbnail">
@@ -29,11 +29,18 @@
                 <img src="assets/associate/abc_display.jpg" class="img-responsive" alt="Associate Stationery Items">
             @endif
             <div class="caption">
-                <h3> Business Cards </h3><br>
+                <h3> Business Cards* </h3><br>
                 <p class="description text-muted">{!! nl2br($product[1]->description) !!}</p>
                     <p>
                         <a href="{!! url("/categories/7") !!}" class="btn btn-primary btn-block" role="button"> Select Business Cards </a>
                     </p>
+            </div>
+            <div class="disclaimer">
+                <strong>*Important:</strong><br>
+                Any attorney requesting business cards must be licensed in the state of their primary office. If the attorney is not
+                licensed in the state, please contact <a href="mailto:sheri.testa@hklaw.com">Sheri Testa</a> who can assist with a
+                proof of the business card to be generated.<br>
+                Cards for Associates with pending bar admissions for their assigned primary office must wait until the state bar admission is processed before placing an order for business cards.
             </div>
         </div>
     </div>
@@ -56,7 +63,7 @@
                     <p>
                         <a href="{!! url("/categories/8") !!}" class="btn btn-primary btn-block" role="button"> Select FYI Pads </a>
                     </p>
-            </div>    
+            </div>
         </div>
     </div>
 
@@ -73,7 +80,7 @@
                 <img src="assets/associate/abcfyi_display.jpg" class="img-responsive" alt="Associate Stationery Items">
             @endif
             <div class="caption">
-                <h3> Combo FYI Pads & BCs </h3><br>
+                <h3> Combo FYI Pads & BCs* </h3><br>
                 <p class="description text-muted">{!! nl2br($product[4]->description) !!}</p>
                     <p>
                         <a href="{!! url("/categories/9") !!}" class="btn btn-primary btn-block" role="button"> Select Combo FYI Pads & BCs </a>
@@ -82,5 +89,5 @@
         </div>
     </div>
 
-</div> 
+</div>
 @endsection
